@@ -3,12 +3,11 @@ package KalkulatorPRMT.Obliczanie;
 import KalkulatorPRMT.Obliczanie.Dzialania.Dzielenie;
 import KalkulatorPRMT.Obliczanie.Dzialania.Mnozenie;
 import KalkulatorPRMT.Obliczanie.Dzialania.TypDzialania;
-import KalkulatorPRMT.Obliczanie.Dzialanie;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class dzialanieNieuporzadkowane extends Dzialanie {
+public class dzialanieNieuporzadkowane extends Dzialanie{
 
     HashMap<TypDzialania,Double> baza = new LinkedHashMap<>();
 
@@ -16,11 +15,30 @@ public class dzialanieNieuporzadkowane extends Dzialanie {
 
     }
     public String toString(){
+        // Aby złożyć stringa z działania tworzę StringBuildera
         StringBuilder build = new StringBuilder();
 
-        for( TypDzialania keys : baza.keySet()){
-            build.append(keys.getZnakDzialania()+""+baza.get(keys));
+        boolean znakpierwszy = false;
+
+        for( TypDzialania keys : baza.keySet()) {
+            if (!znakpierwszy) {
+                // Analizuję pierwszy znak działania aby niepotrzebnie nie pisać plusa
+
+                if(keys.getZnakDzialania().equals("+")){
+                    // Pomijam plusa
+                    build.append(baza.get(keys));
+                }else{
+                    // Nie mogę pominąć znaku:
+                    build.append(keys.getZnakDzialania() + "" + baza.get(keys));
+                }
+                znakpierwszy = true;
+            } else {
+                // Nie mogę pominąć znaku
+                build.append(keys.getZnakDzialania() + "" + baza.get(keys));
+            }
         }
+
+        // Zamieniam StringBuildera na Stringa
 
         return build.toString();
     }
@@ -42,14 +60,15 @@ public class dzialanieNieuporzadkowane extends Dzialanie {
         for(TypDzialania dzialania : baza.keySet()){
 
             if(dzialania.getClass() == Mnozenie.class ){
-
+                // Mnoże poprzedni zbiorczy wynik z zberaną liczbą
                 valmem *= baza.get(dzialania);
 
             }else  if(dzialania.getClass() == Dzielenie.class ){
-
+                // Dzielę poprzedni zbiorczy wynik z zberaną liczbą
                 valmem /= baza.get(dzialania);
             }else{
                 if(dziala !=null) {
+                    // Inicujuję działanie
                     uporzadkowane.add(dziala, valmem);
                 }
 
@@ -59,6 +78,8 @@ public class dzialanieNieuporzadkowane extends Dzialanie {
 
         }
         if(dziala !=null) {
+            // Jeżeli nie zainicjowano to dodaję niedodane wcześniej dane:
+
             uporzadkowane.add(dziala, valmem);
         }
 
