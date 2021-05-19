@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class Wyrazenie extends Dzialanie{
+
+    // Klasa wyrażenie odpowiada za przechowywanie nieuporządkowanego działania zawierającego zmienne oraz liczby. Działanie takie dzięki tej klasie można
+    // Przetowrzyć do działania, które zawieraa tylko
     private HashMap<String,Double> zmienne;
     HashMap<TypDzialania,String> baza = new LinkedHashMap<>();
 
@@ -20,17 +23,37 @@ public class Wyrazenie extends Dzialanie{
     }
 
     public String toString(){
+        // Aby złożyć stringa z działania tworzę StringBuildera
         StringBuilder build = new StringBuilder();
 
-        for( TypDzialania keys : baza.keySet()){
-            build.append(keys.getZnakDzialania()+""+baza.get(keys));
+        boolean znakpierwszy = false;
+
+        for( TypDzialania keys : baza.keySet()) {
+            if (!znakpierwszy) {
+                // Analizuję pierwszy znak działania aby niepotrzebnie nie pisać plusa
+
+                if(keys.getZnakDzialania().equals("+")){
+                    // Pomijam plusa
+                    build.append(baza.get(keys));
+                }else{
+                    // Nie mogę pominąć znaku:
+                    build.append(keys.getZnakDzialania() + "" + baza.get(keys));
+                }
+                znakpierwszy = true;
+            } else {
+                // Nie mogę pominąć znaku
+                build.append(keys.getZnakDzialania() + "" + baza.get(keys));
+            }
         }
+
+        // Zamieniam StringBuildera na Stringa
 
         return build.toString();
     }
 
     public dzialanieNieuporzadkowane toDzialanieNieuporzadkowane(){
 
+        // Rozpoczynam przetwarzanie klasy z Wyrażenia do działaniaNieuporządkowanego
         dzialanieNieuporzadkowane odp = new dzialanieNieuporzadkowane();
 
         try {
@@ -55,6 +78,8 @@ public class Wyrazenie extends Dzialanie{
                 }
             }
         }catch (NumberFormatException err){
+
+            // Gdy zapis liczbowy nie jest prawidłowy
             System.out.println("Błąd zapisu dla wyrażenia: "+this.toString());
             odp.clearAll();
         }

@@ -13,11 +13,30 @@ public class dzialanieUporzadkowane extends Dzialanie{
     }
 
     public String toString(){
+        // Aby złożyć stringa z działania tworzę StringBuildera
         StringBuilder build = new StringBuilder();
 
-        for( TypDzialania keys : baza.keySet()){
-            build.append(keys.getZnakDzialania()+""+baza.get(keys));
+        boolean znakpierwszy = false;
+
+        for( TypDzialania keys : baza.keySet()) {
+            if (!znakpierwszy) {
+                // Analizuję pierwszy znak działania aby niepotrzebnie nie pisać plusa
+
+                if(keys.getZnakDzialania().equals("+")){
+                    // Pomijam plusa
+                    build.append(baza.get(keys));
+                }else{
+                    // Nie mogę pominąć znaku:
+                    build.append(keys.getZnakDzialania() + "" + baza.get(keys));
+                }
+                znakpierwszy = true;
+            } else {
+                // Nie mogę pominąć znaku
+                build.append(keys.getZnakDzialania() + "" + baza.get(keys));
+            }
         }
+
+        // Zamieniam StringBuildera na Stringa
 
         return build.toString();
     }
