@@ -10,6 +10,8 @@ public class Kalkulator {
 
     public Kalkulator(){
 
+        // Przykład działania
+
         HashMap<String,Double> zmienne = new HashMap<>();
         String dzialanie = "2+2*2/e-PI+2/e";
         System.out.println(dzialanie);
