@@ -1,6 +1,7 @@
 package KalkulatorPRMT;
 
 import KalkulatorPRMT.Obliczanie.Przetwarzanie.*;
+import KalkulatorPRMT.Obliczanie.ZbiorWyrazen;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -9,13 +10,24 @@ public class Kalkulator {
 
     public Kalkulator(){
 
-        Scanner scan = new Scanner(System.in);
-        String wyrazenie = scan.nextLine();
-        HashMap<String,Double> zmienne = new HashMap<>();
+        // Program testowy
 
-        Grupowanie grp = new Grupowanie(wyrazenie,zmienne);
+        String wyrazenie = "";
 
-        System.out.println(grp.wynik());
+        ZbiorWyrazen zbior = new ZbiorWyrazen();
+
+        while (!wyrazenie.equals("do")) {
+            Scanner scan = new Scanner(System.in);
+            wyrazenie = scan.nextLine();
+
+            if(!wyrazenie.equals("do")) zbior.add(wyrazenie);
+        }
+
+        zbior.rozwiaz();
+
+
+
+
     }
 
     public static void main(String[] args){

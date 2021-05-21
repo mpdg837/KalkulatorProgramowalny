@@ -54,17 +54,17 @@ public class Wyrazenie extends Dzialanie{
         return build.toString();
     }
 
-    public dzialanieNieuporzadkowane toDzialanieNieuporzadkowane() throws MyError{
+    public DzialanieNieuporzadkowane toDzialanieNieuporzadkowane() throws MyError{
 
         // Rozpoczynam przetwarzanie klasy z Wyrażenia do działaniaNieuporządkowanego
-        dzialanieNieuporzadkowane odp = new dzialanieNieuporzadkowane();
+        DzialanieNieuporzadkowane odp = new DzialanieNieuporzadkowane();
 
         try {
 
             for (TypDzialania dzialania : baza.keySet()) {
 
 
-                if (baza.get(dzialania).equals("PI")) {
+                if (baza.get(dzialania).equals("PI") || baza.get(dzialania).equals("pi")) {
                     // Gdy stała PI
                     odp.add(dzialania, Stale.PI);
                 } else if (baza.get(dzialania).equals("e")) {

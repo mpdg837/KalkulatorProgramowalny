@@ -8,11 +8,11 @@ import KalkulatorPRMT.Obliczanie.MyError;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class dzialanieNieuporzadkowane extends Dzialanie {
+public class DzialanieNieuporzadkowane extends Dzialanie {
 
     HashMap<TypDzialania,Double> baza = new LinkedHashMap<>();
 
-    public dzialanieNieuporzadkowane(){
+    public DzialanieNieuporzadkowane(){
 
     }
     public String toString(){
@@ -54,11 +54,11 @@ public class dzialanieNieuporzadkowane extends Dzialanie {
         baza.clear();
     }
 
-    public dzialanieUporzadkowane toDzialanieUporzadkowane() throws MyError {
+    public DzialanieUporzadkowane toDzialanieUporzadkowane() throws MyError {
         double valmem = 0;
 
         TypDzialania dziala = null;
-        dzialanieUporzadkowane uporzadkowane = new dzialanieUporzadkowane();
+        DzialanieUporzadkowane uporzadkowane = new DzialanieUporzadkowane();
 
         for(TypDzialania dzialania : baza.keySet()){
 

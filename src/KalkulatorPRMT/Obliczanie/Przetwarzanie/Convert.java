@@ -62,6 +62,7 @@ public class Convert {
 
         for(char zna : znaki){
             switch (zna+""){
+                case " " ->{}
                 case "+" , "-" , "*" ,"/" -> {
 
                     // Dodaje wcześniej zgromadzony znak i wyrażenie/liczbę do klasy Wyrażenie

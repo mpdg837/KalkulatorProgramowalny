@@ -7,10 +7,10 @@ import KalkulatorPRMT.Obliczanie.Dzialania.TypDzialania;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class dzialanieUporzadkowane extends Dzialanie{
+public class DzialanieUporzadkowane extends Dzialanie{
     HashMap<TypDzialania,Double> baza = new LinkedHashMap<>();
 
-    public dzialanieUporzadkowane(){
+    public DzialanieUporzadkowane(){
 
     }
 
