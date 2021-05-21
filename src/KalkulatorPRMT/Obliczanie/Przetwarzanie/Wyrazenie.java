@@ -1,6 +1,7 @@
-package KalkulatorPRMT.Obliczanie;
+package KalkulatorPRMT.Obliczanie.Przetwarzanie;
 
 import KalkulatorPRMT.Obliczanie.Dzialania.TypDzialania;
+import KalkulatorPRMT.Obliczanie.MyError;
 import KalkulatorPRMT.Stale;
 
 import java.util.HashMap;
@@ -37,12 +38,14 @@ public class Wyrazenie extends Dzialanie{
                     build.append(baza.get(keys));
                 }else{
                     // Nie mogę pominąć znaku:
-                    build.append(keys.getZnakDzialania() + "" + baza.get(keys));
+                    build.append(keys.getZnakDzialania());
+                    build.append(baza.get(keys));
                 }
                 znakpierwszy = true;
             } else {
                 // Nie mogę pominąć znaku
-                build.append(keys.getZnakDzialania() + "" + baza.get(keys));
+                build.append(keys.getZnakDzialania());
+                build.append(baza.get(keys));
             }
         }
 
@@ -51,7 +54,7 @@ public class Wyrazenie extends Dzialanie{
         return build.toString();
     }
 
-    public dzialanieNieuporzadkowane toDzialanieNieuporzadkowane(){
+    public dzialanieNieuporzadkowane toDzialanieNieuporzadkowane() throws MyError{
 
         // Rozpoczynam przetwarzanie klasy z Wyrażenia do działaniaNieuporządkowanego
         dzialanieNieuporzadkowane odp = new dzialanieNieuporzadkowane();
@@ -59,6 +62,8 @@ public class Wyrazenie extends Dzialanie{
         try {
 
             for (TypDzialania dzialania : baza.keySet()) {
+
+
                 if (baza.get(dzialania).equals("PI")) {
                     // Gdy stała PI
                     odp.add(dzialania, Stale.PI);
@@ -72,6 +77,7 @@ public class Wyrazenie extends Dzialanie{
 
                 } else {
                     // Dodaję:
+
                     double value = Double.parseDouble(baza.get(dzialania));
 
                     odp.add(dzialania,value);
@@ -80,8 +86,8 @@ public class Wyrazenie extends Dzialanie{
         }catch (NumberFormatException err){
 
             // Gdy zapis liczbowy nie jest prawidłowy
-            System.out.println("Błąd zapisu dla wyrażenia: "+this.toString());
-            odp.clearAll();
+            throw new MyError("Błąd zapisu dla wyrażenia: "+this.toString());
+
         }
         return odp;
     }

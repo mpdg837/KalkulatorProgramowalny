@@ -1,4 +1,4 @@
-package KalkulatorPRMT.Obliczanie;
+package KalkulatorPRMT.Obliczanie.Przetwarzanie;
 
 import KalkulatorPRMT.Obliczanie.Dzialania.*;
 
@@ -9,25 +9,25 @@ public class Convert {
     // Klasa odpowiadająca za konwersję wyrażenia strnig (napisu) do klasy Wyrażenie,
     // Przechowującym działanie podzielone na znaki działań, liczby i nazwy zmiennych.
 
-    public static TypDzialania getZnak(String znak,int n){
+    public static TypDzialania getZnak(String znak, int n){
 
         // Przetworzenie znaków działań na klasy działań
 
         switch (znak){
             case "+":
-                return new Dodawanie(n);
+                return new Dodawanie();
 
             case "-":
-                return new Odejmowanie(n);
+                return new Odejmowanie();
 
             case "*":
-                return new Mnozenie(n);
+                return new Mnozenie();
 
             case "/":
-                return new Dzielenie(n);
+                return new Dzielenie();
 
             default:
-                return new Dodawanie(n);
+                return new Dodawanie();
 
         }
     }
@@ -50,7 +50,7 @@ public class Convert {
         if(znaki.length>0){
             // Pod tym względem nie ma sensu analizować działania nieposiadającego znaków
 
-            String minus = (new Odejmowanie(0)).getZnakDzialania();
+            String minus = (new Odejmowanie()).getZnakDzialania();
             if(minus.equals(znaki[0]+"")){
                 // Wykryto minus zatem zmieniam pierwszy znak
 
@@ -62,29 +62,27 @@ public class Convert {
 
         for(char zna : znaki){
             switch (zna+""){
-                case "+":
-                case "-":
-                case "*":
-                case "/":
+                case "+" , "-" , "*" ,"/" -> {
 
                     // Dodaje wcześniej zgromadzony znak i wyrażenie/liczbę do klasy Wyrażenie
+                    if(wartosc.length()==0 && (zna+"").equals("-")){
+                        // Gdy wprowadzam minusa, może to oznaczać liczbę ujemną.
 
-                    odp.add(getZnak(znak,n),wartosc.toString());
+                        wartosc.append(zna);
+                    }else {
+                        odp.add(getZnak(znak, n), wartosc.toString());
 
-                    // Wykrywam znak działania
-                    // Dodaje go do klasy Wyrażenie:
+                        // Wykrywam znak działania
+                        // Dodaje go do klasy Wyrażenie:
 
-                    // Resetuje zmienne kontrolujące analizę:
-                    n ++;
-                    znak = zna+"";
-                    wartosc = new StringBuilder();
-                    break;
-                default:
-
-                    // Dodaje znaki do StringBuildera odpowiadającego za skompletowanie pojedyńczych zmiennych/liczb które będą skłądowymi wyrażenia:
-
-                    wartosc.append(zna);
-                    break;
+                        // Resetuje zmienne kontrolujące analizę:
+                        n++;
+                        znak = zna + "";
+                        wartosc = new StringBuilder();
+                    }
+                }
+                default -> // Dodaje znaki do StringBuildera odpowiadającego za skompletowanie pojedyńczych zmiennych/liczb które będą skłądowymi wyrażenia:
+                        wartosc.append(zna);
 
             }
         }

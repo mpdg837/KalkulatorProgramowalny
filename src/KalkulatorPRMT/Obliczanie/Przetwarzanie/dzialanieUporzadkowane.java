@@ -1,6 +1,8 @@
-package KalkulatorPRMT.Obliczanie;
+package KalkulatorPRMT.Obliczanie.Przetwarzanie;
 
-import KalkulatorPRMT.Obliczanie.Dzialania.*;
+import KalkulatorPRMT.Obliczanie.Dzialania.Dodawanie;
+import KalkulatorPRMT.Obliczanie.Dzialania.Odejmowanie;
+import KalkulatorPRMT.Obliczanie.Dzialania.TypDzialania;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -27,12 +29,14 @@ public class dzialanieUporzadkowane extends Dzialanie{
                     build.append(baza.get(keys));
                 }else{
                     // Nie mogę pominąć znaku:
-                    build.append(keys.getZnakDzialania() + "" + baza.get(keys));
+                    build.append(keys.getZnakDzialania());
+                    build.append(baza.get(keys));
                 }
                 znakpierwszy = true;
             } else {
                 // Nie mogę pominąć znaku
-                build.append(keys.getZnakDzialania() + "" + baza.get(keys));
+                build.append(keys.getZnakDzialania());
+                build.append(baza.get(keys));
             }
         }
 

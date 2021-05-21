@@ -1,8 +1,8 @@
 package KalkulatorPRMT.Obliczanie.Dzialania;
 
 public class Odejmowanie extends TypDzialania{
-    public Odejmowanie(int index){
-        setIndex(index);
+    public Odejmowanie(){
+
         znakDzialania = "-";
         type = 1;
     }

@@ -1,13 +1,14 @@
-package KalkulatorPRMT.Obliczanie;
+package KalkulatorPRMT.Obliczanie.Przetwarzanie;
 
 import KalkulatorPRMT.Obliczanie.Dzialania.Dzielenie;
 import KalkulatorPRMT.Obliczanie.Dzialania.Mnozenie;
 import KalkulatorPRMT.Obliczanie.Dzialania.TypDzialania;
+import KalkulatorPRMT.Obliczanie.MyError;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class dzialanieNieuporzadkowane extends Dzialanie{
+public class dzialanieNieuporzadkowane extends Dzialanie {
 
     HashMap<TypDzialania,Double> baza = new LinkedHashMap<>();
 
@@ -29,12 +30,14 @@ public class dzialanieNieuporzadkowane extends Dzialanie{
                     build.append(baza.get(keys));
                 }else{
                     // Nie mogę pominąć znaku:
-                    build.append(keys.getZnakDzialania() + "" + baza.get(keys));
+                    build.append(keys.getZnakDzialania());
+                    build.append(baza.get(keys));
                 }
                 znakpierwszy = true;
             } else {
                 // Nie mogę pominąć znaku
-                build.append(keys.getZnakDzialania() + "" + baza.get(keys));
+                build.append(keys.getZnakDzialania());
+                build.append(baza.get(keys));
             }
         }
 
@@ -51,7 +54,7 @@ public class dzialanieNieuporzadkowane extends Dzialanie{
         baza.clear();
     }
 
-    public dzialanieUporzadkowane toDzialanieUporzadkowane(){
+    public dzialanieUporzadkowane toDzialanieUporzadkowane() throws MyError {
         double valmem = 0;
 
         TypDzialania dziala = null;
@@ -65,7 +68,11 @@ public class dzialanieNieuporzadkowane extends Dzialanie{
 
             }else  if(dzialania.getClass() == Dzielenie.class ){
                 // Dzielę poprzedni zbiorczy wynik z zberaną liczbą
-                valmem /= baza.get(dzialania);
+                if(baza.get(dzialania) == 0){
+                    throw new MyError("Nie dzielimy przez 0");
+                }else {
+                    valmem /= baza.get(dzialania);
+                }
             }else{
                 if(dziala !=null) {
                     // Inicujuję działanie

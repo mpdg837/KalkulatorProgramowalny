@@ -1,31 +1,21 @@
 package KalkulatorPRMT;
 
-import KalkulatorPRMT.Obliczanie.*;
-import KalkulatorPRMT.Obliczanie.Dzialania.Dodawanie;
-import KalkulatorPRMT.Obliczanie.Dzialania.Mnozenie;
+import KalkulatorPRMT.Obliczanie.Przetwarzanie.*;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Kalkulator {
 
     public Kalkulator(){
 
-        // Przykład działania
-
+        Scanner scan = new Scanner(System.in);
+        String wyrazenie = scan.nextLine();
         HashMap<String,Double> zmienne = new HashMap<>();
-        String dzialanie = "2+2*2/e-PI+2/e";
-        System.out.println(dzialanie);
-        Wyrazenie dzial = Convert.fromStringtoWyrazenie(zmienne,dzialanie);
 
+        Grupowanie grp = new Grupowanie(wyrazenie,zmienne);
 
-        System.out.println(dzial.toString());
-
-        dzialanieNieuporzadkowane nieuporzadkowane = dzial.toDzialanieNieuporzadkowane();
-        System.out.println(nieuporzadkowane.toString());
-
-        dzialanieUporzadkowane  uporzadkowane = nieuporzadkowane.toDzialanieUporzadkowane();
-        System.out.println(uporzadkowane.toString());
-        System.out.println(uporzadkowane.wynik());
+        System.out.println(grp.wynik());
     }
 
     public static void main(String[] args){
