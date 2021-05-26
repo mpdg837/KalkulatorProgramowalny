@@ -100,20 +100,25 @@ public class ZbiorWyrazen {
 
                     //Gdy nie mamy doczynienia z przypisywaniem zmiennych
                     Grupowanie grp = new Grupowanie(wyrazenie, zmienne);
-                    double wynik = grp.wynik();
+                    if (grp.wynik() != null) {
+                        double wynik = grp.wynik();
 
-                    System.out.println(wynik);
+                        System.out.println(wynik);
 
-                    wyniki.add(wynik);
-                }else{
+                        wyniki.add(wynik);
+                    }
+                }else {
 
                     // Gdy mamy przypisywanie zmiennych
 
                     Grupowanie grp = new Grupowanie(rozbicie[1], zmienne);
-                    double wynik = grp.wynik();
+                    if (grp.wynik() != null) {
+                        double wynik = grp.wynik();
 
-                    System.out.println(rozbicie[0]+"="+wynik);
-                    zmienne.put(rozbicie[0],wynik);
+                        System.out.println(rozbicie[0] + "=" + wynik);
+
+                        zmienne.put(rozbicie[0], wynik);
+                    }
                 }
 
             }
