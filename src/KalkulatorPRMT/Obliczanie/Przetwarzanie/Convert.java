@@ -69,7 +69,6 @@ public class Convert {
                     if(wartosc.length()==0 && (zna+"").equals("-")){
                         // Gdy wprowadzam minusa, może to oznaczać liczbę ujemną.
 
-                        wartosc.append(zna);
                     }else {
                         odp.add(getZnak(znak, n), wartosc.toString());
 

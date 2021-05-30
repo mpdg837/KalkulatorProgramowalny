@@ -1,0 +1,15 @@
+Zestaw komend do działań:
+
+ln(zawartość) - wyciąga logarytm naturalny zawartości nawiasu
+
+sin(zawartość) - wyciąga sinus zawartości nawiasu
+cos(zawartość) - wyciąga cosinus zawartości nawiasu
+tan(zawartość) - wyciąga tangens zawartości nawiasu
+exp(zawartość) - wyciąga funkcje exponens zawartości nawiasu
+log(zawartość) - wyciąga logarytm dziesiętny zawartości nawiasu
+abs(zawartość) - wyciąga wartość bezwzględną nawiasu
+
+sqrt(zawartość) - wyciąga pierwiastek kwadratowy zawartości nawiasu
+pow2(zawartość),pow(zawartość) - wyciąga kwadrat zawartości nawiasu
+pow3(zawartość) - wyciąga sześcian zawartości nawiasu
+fact(zawartość) - wyciąga silnie zawartości nawiasu
