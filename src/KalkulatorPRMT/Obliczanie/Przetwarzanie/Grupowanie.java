@@ -2,6 +2,7 @@ package KalkulatorPRMT.Obliczanie.Przetwarzanie;
 
 import KalkulatorPRMT.Obliczanie.DodatekMatematyczny;
 import KalkulatorPRMT.Obliczanie.MyError;
+import KalkulatorPRMT.Obliczanie.Tablice.DlugoscTablicy;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -82,7 +83,7 @@ public class Grupowanie {
         }
         // Analiza komend 3 znakowych
         switch (komenda3.toString()) {
-            case "sin", "cos", "tan", "abs", "exp", "log","pow" -> {
+            case "sin", "cos", "tan", "abs", "exp", "log","pow","len" -> {
                 nowazaw = new StringBuilder();
 
                 // Czyszczę stringbuildera z niepotrzebnych znaków
@@ -99,6 +100,12 @@ public class Grupowanie {
                     case "exp" -> nowazaw.append(Math.exp(rozwiazSkladowa(zawartosc)));
                     case "log" -> nowazaw.append(DodatekMatematyczny.log(rozwiazSkladowa(zawartosc)));
                     case "pow" -> nowazaw.append(Math.pow(rozwiazSkladowa(zawartosc), 2));
+                    case "len" ->{
+
+                        int k = DlugoscTablicy.dlugosc(zmienne,zawartosc);
+
+                        nowazaw.append(k);
+                    }
                 }
                 czyWykrytoKomende = true;
             }
@@ -177,9 +184,35 @@ public class Grupowanie {
 
             boolean trybTekstowy = false;
 
+            // Enumeracja ewentualnych tablic
+            boolean trybEnumeracjiTablicy = false;
+            StringBuilder zawEnumeracji = new StringBuilder();
+
+
             for (char c : znaki) {
 
                 switch (c + "") {
+                    case "=" ->{
+                        throw new MyError("Wykryto znak = w nieporządanym miejscu");
+                    }
+                    case "[" ->{
+                        trybEnumeracjiTablicy = true;
+                    }
+                    case "]" ->{
+
+                        String zawEnum = zawEnumeracji.toString();
+
+                        // Dopisywanie znaków niedotyczących podziału na nawiasy
+
+                        StringBuilder builder = poziomy.get(stopienzagniezdzenia);
+                        builder.append("_");
+                        builder.append((int)rozwiazSkladowa(zawEnum));
+
+                        poziomy.set(stopienzagniezdzenia, builder);
+
+                        zawEnumeracji = new StringBuilder();
+                        trybEnumeracjiTablicy = false;
+                    }
                     case " " ->{
                         if(trybTekstowy){
                             // Dopisywanie znaków niedotyczących podziału na nawiasy
@@ -192,6 +225,9 @@ public class Grupowanie {
                     }
                     // Nawias otwarty następny poziom zagnieżdżenia
                     case "(" -> {
+                        if(trybEnumeracjiTablicy){
+                            zawEnumeracji.append(c);
+                        }else
                         if(!trybTekstowy) {
                             // Wykrywanie komend;
 
@@ -211,6 +247,9 @@ public class Grupowanie {
                         }
                     }
                     case ")" -> {
+                        if(trybEnumeracjiTablicy){
+                            zawEnumeracji.append(c);
+                        }else
                         if(!trybTekstowy) {
                             String zawartosc = poziomy.get(stopienzagniezdzenia).toString();
                             poziomy.set(stopienzagniezdzenia, new StringBuilder());
@@ -238,16 +277,19 @@ public class Grupowanie {
                         }
                     }
                     default -> {
+                        if(trybEnumeracjiTablicy){
+                            zawEnumeracji.append(c);
+                        }else {
+                            if ((c + "").equals("'")) {
+                                trybTekstowy = !trybTekstowy;
+                            }
+                            // Dopisywanie znaków niedotyczących podziału na nawiasy
 
-                        if((c+"").equals("'")){
-                            trybTekstowy  = !trybTekstowy ;
+                            StringBuilder builder = poziomy.get(stopienzagniezdzenia);
+                            builder.append(c);
+
+                            poziomy.set(stopienzagniezdzenia, builder);
                         }
-                        // Dopisywanie znaków niedotyczących podziału na nawiasy
-
-                        StringBuilder builder = poziomy.get(stopienzagniezdzenia);
-                        builder.append(c);
-
-                        poziomy.set(stopienzagniezdzenia, builder);
                     }
                 }
             }

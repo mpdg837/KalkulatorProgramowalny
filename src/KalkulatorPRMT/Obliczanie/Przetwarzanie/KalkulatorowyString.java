@@ -49,16 +49,18 @@ public class KalkulatorowyString {
                     trybTekstowy = !trybTekstowy;
 
                     }
-                case "+" ->{
+                case "+" -> {
 
-                    if(nazwazmiennej.length()>0){
-                        builder.append(pobierzZmienna(nazwazmiennej.toString()));
-                    }else{
-                        builder.append(tresc.toString());
+                    if (!trybTekstowy) {
+                        if (nazwazmiennej.length() > 0) {
+                            builder.append(pobierzZmienna(nazwazmiennej.toString()));
+                        } else {
+                            builder.append(tresc.toString());
+                        }
+
+                        nazwazmiennej = new StringBuilder();
+                        tresc = new StringBuilder();
                     }
-
-                    nazwazmiennej = new StringBuilder();
-                    tresc = new StringBuilder();
                 }
                 default -> {
                     if(trybTekstowy){

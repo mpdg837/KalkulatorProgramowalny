@@ -49,8 +49,9 @@ public class Deklarowanie {
         String dzialanie = build.toString();
         Grupowanie grp = new Grupowanie(dzialanie,zmienne);
 
+        name = nazwa.toString();
         size = (int)(double)grp.wynik();
-        if(size>0){
+        if(size<=0){
             throw new MyError("Rozmiar tablicy musi być dodatni");
         }
 
@@ -58,7 +59,7 @@ public class Deklarowanie {
     public void utworzZmienne(){
 
         for(int n=0;n<size;n++){
-
+            zmienne.put(name+"_"+n,(double) 0);
         }
     }
 

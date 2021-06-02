@@ -1,6 +1,7 @@
 package KalkulatorPRMT.Obliczanie;
 
 import KalkulatorPRMT.Obliczanie.Przetwarzanie.Grupowanie;
+import KalkulatorPRMT.Obliczanie.Tablice.Deklarowanie;
 import KalkulatorPRMT.Obliczanie.Warunki.InstrukcjaWarunkowa;
 import KalkulatorPRMT.Obliczanie.Warunki.Skok;
 import KalkulatorPRMT.Obliczanie.Warunki.ZbiorWarunkow;
@@ -58,15 +59,35 @@ public class ZbiorWyrazen {
 
         // Inicjacja analizy stringa
         boolean wykrytoRownaSie = false;
+        boolean wykrytoEnumeracje = false;
+
+        StringBuilder enumeracja = new StringBuilder();
 
         for(char znak : znaki){
             switch (znak+""){
                 // Gdy znajduje równa się
+                case "[" ->{
+                    wykrytoEnumeracje = true;
+                }
+                case "]" ->{
+
+                    String enu = enumeracja.toString();
+                    wyrazenie.append("_");
+
+                    Grupowanie grp = new Grupowanie(enu, zmienne);
+                    int wynik = (int)(double)grp.wynik();
+
+                    wyrazenie.append(wynik+"");
+
+                    wykrytoEnumeracje = false;
+                    enumeracja = new StringBuilder();
+                }
                 case "=" ->{
                     if(!wykrytoRownaSie) {
                         // Skoro to będzie zmienna to trzeba przenieść nazwę z wyrażenia do nazwy
                         wykrytoRownaSie = true;
                         nazwa = wyrazenie;
+
 
                         // Wyzerowanie wyrażenia
                         wyrazenie = new StringBuilder();
@@ -76,15 +97,19 @@ public class ZbiorWyrazen {
                     }
                 }
                 default -> {
-                    // W każdym innym przypadku dopisuje znak do wyrażenia
-                    wyrazenie.append(znak);
+                    if(wykrytoEnumeracje){
+                        enumeracja.append(znak);
+                    }else {
+                        // W każdym innym przypadku dopisuje znak do wyrażenia
+                        wyrazenie.append(znak);
+                    }
                 }
             }
         }
 
         // Zamiana builderów na Stringi
 
-        zbitka[0] = nazwa.toString();
+        zbitka[0] = nazwa.toString().replace(" ","");
         zbitka[1] = wyrazenie.toString();
 
         return zbitka;
@@ -122,7 +147,7 @@ public class ZbiorWyrazen {
         return odp;
     }
 
-    public int getNumerIndeksu(String nazwa,int nx){
+    public int getNumerIndeksu(String nazwa,int nx) throws MyError{
 
         for(int n=0;n<wyrazenia.size();n++){
             String wyrazenie = wyrazenia.get(n);
@@ -132,7 +157,7 @@ public class ZbiorWyrazen {
             char[] znaki = wyrazenie.toCharArray();
             for(int x=0;x<znaki.length;x++){
                 if(x==0){
-                    if(znaki[x]+"" !=":"){
+                    if((znaki[x]+"").equals(":")){
                         break;
                     }
                 }else{
@@ -145,7 +170,7 @@ public class ZbiorWyrazen {
             }
         }
 
-        return nx;
+        throw new MyError("Nie odnaleziono rządanej etykiety");
     }
 
     public void rozwiaz() {
@@ -168,6 +193,13 @@ public class ZbiorWyrazen {
 
                     }
                     case "dim" ->{
+                        String zaw = polecenie[1].replaceAll(" ","");
+                        Deklarowanie dek = new Deklarowanie(zaw,zmienne);
+
+                        dek.analizuj();
+                        dek.utworzZmienne();
+
+                        zmienne = dek.getZmienne();
 
                     }
                     case "goto"->{
