@@ -180,6 +180,16 @@ public class Grupowanie {
             for (char c : znaki) {
 
                 switch (c + "") {
+                    case " " ->{
+                        if(trybTekstowy){
+                            // Dopisywanie znaków niedotyczących podziału na nawiasy
+
+                            StringBuilder builder = poziomy.get(stopienzagniezdzenia);
+                            builder.append(c);
+
+                            poziomy.set(stopienzagniezdzenia, builder);
+                        }
+                    }
                     // Nawias otwarty następny poziom zagnieżdżenia
                     case "(" -> {
                         if(!trybTekstowy) {

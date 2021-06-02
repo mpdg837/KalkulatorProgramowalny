@@ -110,7 +110,7 @@ public class ZbiorWyrazen {
 
                 switch (polecenie.toString()) {
 
-                    case "if","goto",":" -> {
+                    case "if","goto",":","dim" -> {
                         wykrytoPolecenie = true;
                     }
 
@@ -165,6 +165,9 @@ public class ZbiorWyrazen {
 
                 switch (polecenie[0]){
                     case ":","//" -> {
+
+                    }
+                    case "dim" ->{
 
                     }
                     case "goto"->{
