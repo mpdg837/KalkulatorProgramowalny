@@ -3,8 +3,10 @@ package KalkulatorPRMT.Obliczanie.Przetwarzanie;
 import KalkulatorPRMT.Obliczanie.DodatekMatematyczny;
 import KalkulatorPRMT.Obliczanie.MyError;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Grupowanie {
 
@@ -104,7 +106,7 @@ public class Grupowanie {
 
         // Analiza komend 4 znakowych
         switch (komenda4.toString()) {
-            case "sqrt", "pow2", "pow3", "fact" -> {
+            case "sqrt", "pow2", "pow3", "fact" ,"show","inpu"-> {
 
                 // Czyszczę StringBuildera z zbędnych znaków
                 nowazaw = new StringBuilder();
@@ -118,7 +120,29 @@ public class Grupowanie {
                     case "pow2" -> nowazaw.append(Math.pow(rozwiazSkladowa(zawartosc), 2));
                     case "pow3" -> nowazaw.append(Math.pow(rozwiazSkladowa(zawartosc), 3));
                     case "fact" -> nowazaw.append(DodatekMatematyczny.fact(rozwiazSkladowa(zawartosc)));
+                    case "show" -> {
 
+                        KalkulatorowyString zaw = new KalkulatorowyString(zawartosc,zmienne);
+
+                        JOptionPane.showMessageDialog(new JPanel(),zaw.convert());
+                        nowazaw.append("0");
+                    }
+                    case "inpu" ->{
+
+
+
+                        try{
+                            KalkulatorowyString zaw = new KalkulatorowyString(zawartosc,zmienne);
+
+                            String num = JOptionPane.showInputDialog(new JPanel(), zaw.convert());
+
+                            double numer = Double.parseDouble(num);
+                            zawartosc = "";
+                            nowazaw.append(numer);
+                        }catch (NumberFormatException err){
+                            throw new MyError("Wprowadzono nieprawidłowo liczbę");
+                        }
+                    }
 
                 }
 
@@ -135,8 +159,10 @@ public class Grupowanie {
         return nowazaw;
 
     }
-    public Double wynik(){
-        try {
+
+
+    public Double wynik() throws MyError{
+
             // Zmienna infromująca o poziomie zagnieżgdżenia wyrażeń rozwiązywanych przez klasy nieobsługujące nawiasów
             int stopienzagniezdzenia = 0;
 
@@ -149,44 +175,63 @@ public class Grupowanie {
             // Rozpoczęcie
             poziomy.add(new StringBuilder());
 
+            boolean trybTekstowy = false;
 
             for (char c : znaki) {
+
                 switch (c + "") {
                     // Nawias otwarty następny poziom zagnieżdżenia
                     case "(" -> {
-                        // Wykrywanie komend;
+                        if(!trybTekstowy) {
+                            // Wykrywanie komend;
 
-                        // Przejście do następnego
-                        stopienzagniezdzenia++;
+                            // Przejście do następnego
+                            stopienzagniezdzenia++;
 
-                        if (stopienzagniezdzenia > poziomy.size() - 1) {
-                            // Gdy nie powstał jeszcze poziom zagnieżdżenia
+                            if (stopienzagniezdzenia > poziomy.size() - 1) {
+                                // Gdy nie powstał jeszcze poziom zagnieżdżenia
 
-                            poziomy.add(new StringBuilder());
+                                poziomy.add(new StringBuilder());
+                            }
+                        }else{
+                            StringBuilder builder = poziomy.get(stopienzagniezdzenia);
+                            builder.append(c);
+
+                            poziomy.set(stopienzagniezdzenia, builder);
                         }
                     }
                     case ")" -> {
-                        String zawartosc = poziomy.get(stopienzagniezdzenia).toString();
-                        poziomy.set(stopienzagniezdzenia, new StringBuilder());
+                        if(!trybTekstowy) {
+                            String zawartosc = poziomy.get(stopienzagniezdzenia).toString();
+                            poziomy.set(stopienzagniezdzenia, new StringBuilder());
 
-                        if (stopienzagniezdzenia > 0) {
-                            // Obniżam poziom zagnieżdżenia
-                            stopienzagniezdzenia--;
+                            if (stopienzagniezdzenia > 0) {
+                                // Obniżam poziom zagnieżdżenia
+                                stopienzagniezdzenia--;
+                            } else {
+
+                                // Poziom zagnieżdżenia nie może być ujemny w prawidłowo opisanym działaniu
+                                throw new MyError("Za dużo nawiasów domykających");
+                            }
+
+                            // Dodanie wyniku obliczania wnętrza nawiasu
+                            StringBuilder nowazaw = poziomy.get(stopienzagniezdzenia);
+
+                            nowazaw = dodajWynik(nowazaw, zawartosc);
+
+                            poziomy.set(stopienzagniezdzenia, nowazaw);
                         }else{
+                            StringBuilder builder = poziomy.get(stopienzagniezdzenia);
+                            builder.append(c);
 
-                            // Poziom zagnieżdżenia nie może być ujemny w prawidłowo opisanym działaniu
-                            throw new MyError("Za dużo nawiasów domykających");
+                            poziomy.set(stopienzagniezdzenia, builder);
                         }
-
-                        // Dodanie wyniku obliczania wnętrza nawiasu
-                        StringBuilder nowazaw = poziomy.get(stopienzagniezdzenia);
-
-                        nowazaw = dodajWynik(nowazaw,zawartosc);
-
-                        poziomy.set(stopienzagniezdzenia, nowazaw);
                     }
                     default -> {
 
+                        if((c+"").equals("'")){
+                            trybTekstowy  = !trybTekstowy ;
+                        }
                         // Dopisywanie znaków niedotyczących podziału na nawiasy
 
                         StringBuilder builder = poziomy.get(stopienzagniezdzenia);
@@ -204,11 +249,6 @@ public class Grupowanie {
 
             // Wysyłam wynik
             return rozwiazSkladowa(poziomy.get(stopienzagniezdzenia).toString());
-        }catch (MyError err){
 
-            // Wykryto błąd podczas realizacji działania
-            System.out.println(err.getMessage());
-            return null;
-        }
     }
 }
