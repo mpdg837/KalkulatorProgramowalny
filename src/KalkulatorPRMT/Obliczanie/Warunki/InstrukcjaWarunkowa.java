@@ -62,7 +62,6 @@ public class InstrukcjaWarunkowa {
             }
         }
 
-
         ZbiorWarunkow warunki = new ZbiorWarunkow(build.toString(),zmienne);
 
         if(warunki.toBoolean()){

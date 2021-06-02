@@ -155,13 +155,13 @@ public class ZbiorWyrazen {
             StringBuilder etykieta = new StringBuilder();
 
             char[] znaki = wyrazenie.toCharArray();
-            for(int x=0;x<znaki.length;x++){
-                if(x==0){
-                    if((znaki[x]+"").equals(":")){
-                        break;
+            if(znaki.length>2) {
+                if((znaki[0]+"").equals(":")) {
+                    for (int x = 1; x < znaki.length; x++) {
+
+                        etykieta.append(znaki[x]);
+
                     }
-                }else{
-                    etykieta.append(znaki[x]);
                 }
             }
 
