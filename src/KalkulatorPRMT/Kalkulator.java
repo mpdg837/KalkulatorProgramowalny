@@ -41,5 +41,7 @@ public class Kalkulator {
         //Kalkulator calc = new Kalkulator();
         GUI oknoGUI = new GUI("Kalkulator");
         oknoGUI.pokazGUI();
+
+        Kalkulator calc = new Kalkulator();
     }
 }

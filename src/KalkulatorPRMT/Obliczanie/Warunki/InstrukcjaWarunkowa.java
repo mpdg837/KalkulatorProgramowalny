@@ -16,7 +16,7 @@ public class InstrukcjaWarunkowa {
         this.zmienne = zmienne;
     }
 
-    public void analizuj() throws MyError {
+    public void analizuj(boolean ifnot) throws MyError {
 
         char[] znaki = ciag.toCharArray();
 
@@ -64,15 +64,30 @@ public class InstrukcjaWarunkowa {
 
         ZbiorWarunkow warunki = new ZbiorWarunkow(build.toString(),zmienne);
 
-        if(warunki.toBoolean()){
-            if(command.toString().equals("goto")) {
+        if(command.toString().equals("goto")) {
+
+            if(warunki.toBoolean()){
                 this.etykieta = etykieta.toString();
             }else{
-                throw new MyError("Podano złą etykiete");
+                this.etykieta = "";
             }
+
+
+        }else if(command.toString().equals("notgoto")) {
+
+            if(warunki.toBoolean()){
+                this.etykieta = "";
+            }else{
+                this.etykieta = etykieta.toString();
+            }
+
+
         }else{
-            this.etykieta = "";
+            throw new MyError("Zła komenda");
         }
+
+
+
 
     }
 }

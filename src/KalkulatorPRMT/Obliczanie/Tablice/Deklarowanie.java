@@ -66,4 +66,5 @@ public class Deklarowanie {
     public HashMap<String,Double> getZmienne(){
         return zmienne;
     }
+    public String getName(){return name;}
 }

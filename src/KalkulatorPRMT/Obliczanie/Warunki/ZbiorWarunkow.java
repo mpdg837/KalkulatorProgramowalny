@@ -4,8 +4,6 @@ import KalkulatorPRMT.Obliczanie.MyError;
 import KalkulatorPRMT.Obliczanie.Warunki.Rodzaje.Warunek;
 
 import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.StreamSupport;
 
 public class ZbiorWarunkow {
 

@@ -135,7 +135,7 @@ public class ZbiorWyrazen {
 
                 switch (polecenie.toString()) {
 
-                    case "if","goto",":","dim" -> {
+                    case "if","goto",":","//","dim","gosub","return","show","end","new" -> {
                         wykrytoPolecenie = true;
                     }
 
@@ -179,6 +179,10 @@ public class ZbiorWyrazen {
 
         wyniki.clear();
         zmienne.clear();
+
+        List<Integer> powrotyGOSUB= new ArrayList<Integer>();
+        int zagn = 0;
+
         try {
             for (int n=0;n<wyrazenia.size();n++) {
 
@@ -189,7 +193,36 @@ public class ZbiorWyrazen {
                 String[] polecenie = getPolecenie(wyrazenie);
 
                 switch (polecenie[0]){
+                    case "new" ->{
+                        zmienne = new HashMap<String,Double>();
+                    }
                     case ":","//" -> {
+
+                    }
+                    case "end"->{
+                        n=wyrazenia.size();
+                    }
+
+                    case "gosub"->{
+                        Skok skok = new Skok(wyrazenie);
+
+                        String etykieta = skok.analizuj();
+                        if (!etykieta.equals("")) {
+                            zagn ++;
+                            int mem = n;
+                            n = getNumerIndeksu(etykieta, n);
+
+                            if(powrotyGOSUB.size()>zagn){
+                                powrotyGOSUB.set(zagn,mem);
+                            }else{
+                                powrotyGOSUB.add(mem);
+
+                            }
+                        }
+                    }
+                    case "return"->{
+                        n = powrotyGOSUB.get(zagn-1);
+                        zagn --;
 
                     }
                     case "dim" ->{
@@ -197,25 +230,31 @@ public class ZbiorWyrazen {
                         Deklarowanie dek = new Deklarowanie(zaw,zmienne);
 
                         dek.analizuj();
-                        dek.utworzZmienne();
+                        if(dek.getName().length()>0) {
+                            dek.utworzZmienne();
 
-                        zmienne = dek.getZmienne();
 
+                            zmienne = dek.getZmienne();
+                        }
                     }
-                    case "goto"->{
+                    case "goto"-> {
                         Skok skok = new Skok(wyrazenie);
 
                         String etykieta = skok.analizuj();
-
-                        n = getNumerIndeksu(etykieta,n);
+                        if (!etykieta.equals("")) {
+                            n = getNumerIndeksu(etykieta, n);
+                        }
                     }
+
                     case "if"->{
 
                         InstrukcjaWarunkowa war = new InstrukcjaWarunkowa(polecenie[1],zmienne);
 
-                        war.analizuj();
+                        war.analizuj(false);
 
-                        n = getNumerIndeksu(war.etykieta,n);
+                        if (!war.etykieta.equals("")) {
+                            n = getNumerIndeksu(war.etykieta, n);
+                        }
                     }
                     default -> {
 
@@ -228,7 +267,7 @@ public class ZbiorWyrazen {
 
                             Double wynik = grp.wynik();
 
-                            if (wynik != null) {
+                            if (wynik != null && !polecenie[0].equals("show")) {
                                 System.out.println(wynik);
 
                                 wyniki.add(wynik);
@@ -240,7 +279,7 @@ public class ZbiorWyrazen {
                             Grupowanie grp = new Grupowanie(rozbicie[1], zmienne);
 
                             Double wynik = grp.wynik();
-                            if (wynik != null) {
+                            if (wynik != null && !polecenie[0].equals("show")) {
 
 
 

@@ -83,7 +83,7 @@ public class Grupowanie {
         }
         // Analiza komend 3 znakowych
         switch (komenda3.toString()) {
-            case "sin", "cos", "tan", "abs", "exp", "log","pow","len" -> {
+            case "sin", "cos", "tan", "abs", "exp", "log","pow","len","sgn" -> {
                 nowazaw = new StringBuilder();
 
                 // Czyszczę stringbuildera z niepotrzebnych znaków
@@ -100,6 +100,7 @@ public class Grupowanie {
                     case "exp" -> nowazaw.append(Math.exp(rozwiazSkladowa(zawartosc)));
                     case "log" -> nowazaw.append(DodatekMatematyczny.log(rozwiazSkladowa(zawartosc)));
                     case "pow" -> nowazaw.append(Math.pow(rozwiazSkladowa(zawartosc), 2));
+                    case "sgn" -> nowazaw.append(Math.signum(rozwiazSkladowa(zawartosc)));
                     case "len" ->{
 
                         int k = DlugoscTablicy.dlugosc(zmienne,zawartosc);
