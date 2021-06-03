@@ -38,6 +38,8 @@ public class Kalkulator {
     }
 
     public static void main(String[] args){
-        Kalkulator calc = new Kalkulator();
+        //Kalkulator calc = new Kalkulator();
+        GUI oknoGUI = new GUI("Kalkulator");
+        oknoGUI.pokazGUI();
     }
 }
