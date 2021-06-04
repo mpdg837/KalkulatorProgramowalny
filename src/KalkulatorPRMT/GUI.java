@@ -1,13 +1,17 @@
 package KalkulatorPRMT;
 
+import KalkulatorPRMT.GUIModul.Przycisk;
+import KalkulatorPRMT.GUIModul.SPrzycisk;
+import KalkulatorPRMT.GUIModul.SSPrzycisk;
+
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 
-public class GUI extends Frame {
-    JTextField tekst;
+public class GUI extends JFrame {
+    JTextArea tekst;
 
 
     public GUI(String nazwa) {
@@ -23,54 +27,77 @@ public class GUI extends Frame {
         });
 
         //stworzenie paneli
-        Panel panelCyfrowy = new Panel(new GridLayout(4,3));
-        Panel panelDzialania1 = new Panel(new GridLayout(2,2));
-        Panel panelDzialania2 = new Panel(new GridLayout(2,1));
-        Panel panelDzialania3 = new Panel(new GridLayout(2,1));
-        Panel panelDzialania123 = new Panel(new BorderLayout());
-        Panel panelDzialania4 = new Panel(new GridLayout(4,4));
-        Panel panelFinalny = new Panel(new BorderLayout());
+        JPanel panelCyfrowy = new JPanel(new GridLayout(4,3,2,2));
+        panelCyfrowy.setBackground(Color.DARK_GRAY);
+        JPanel panelDzialania1 = new JPanel(new GridLayout(2,2,2,2));
+        panelDzialania1.setBackground(Color.DARK_GRAY);
+        JPanel panelDzialania2 = new JPanel(new BorderLayout());
+        panelDzialania2.setBackground(Color.DARK_GRAY);
+        JPanel panelDzialania3 = new JPanel(new GridLayout(2,1,2,2));
+        panelDzialania3.setBackground(Color.DARK_GRAY);
+        BorderLayout lay1 = new BorderLayout();
+        lay1.setVgap(2);
+        lay1.setHgap(2);
+        JPanel panelDzialania123 = new JPanel(lay1);
+        panelDzialania123.setBorder(BorderFactory.createEmptyBorder(1,2,2,2));
+        panelDzialania123.setBackground(Color.DARK_GRAY);
+        JPanel panelDzialania4 = new JPanel(new GridLayout(4,4,2,2));
+        panelDzialania4.setBackground(Color.DARK_GRAY);
+        BorderLayout lay = new BorderLayout();
+        lay.setVgap(2);
+        JPanel panelFinalny = new JPanel(lay);
+        panelFinalny.setBackground(Color.DARK_GRAY);
 
         //stworzenie przyciskow, tekstu i umieszczanie ich na panelach
-        tekst = new JTextField(5);
+        tekst = new JTextArea("eee");
 
-        JButton but1 = new JButton("1");
-        JButton but2 = new JButton("2");
-        JButton but3 = new JButton("3");
-        JButton but4 = new JButton("4");
-        JButton but5 = new JButton("5");
-        JButton but6 = new JButton("6");
-        JButton but7 = new JButton("7");
-        JButton but8 = new JButton("8");
-        JButton but9 = new JButton("9");
-        JButton but0 = new JButton("0");
-        JButton butZnak = new JButton("+/-");
-        JButton butPrzecinek = new JButton(",");
+        tekst.setBackground(Color.WHITE);
+        tekst.setFont(new Font("Courier",Font.PLAIN,21));
+        tekst.setRows(25);
+        tekst.setColumns(25);
 
-        JButton butNawiasLewy = new JButton("(");
-        JButton butNawiasPrawy = new JButton(")");
-        JButton butMnozenie = new JButton("*");
-        JButton butDzielenie = new JButton("/");
-        JButton butOdejmowanie = new JButton("-");
-        JButton butDodawanie = new JButton("+");
-        JButton butRownosc = new JButton("=");
+        JScrollPane pane = new JScrollPane(tekst);
 
-        JButton butPierwiastek = new JButton("sqrt");
-        JButton butPi = new JButton("pi");
-        JButton butE = new JButton("e");
-        JButton butKasuj = new JButton("[x>");
-        JButton butKwadrat = new JButton("()^2");
-        JButton butSinus = new JButton("sin");
-        JButton butLogarytmNaturalny = new JButton("ln");
-        JButton butEnter = new JButton("enter");
-        JButton butSzescian = new JButton("()^3");
-        JButton butCosinus = new JButton("cos");
-        JButton butEksponenta = new JButton("exp");
-        JButton butPlay = new JButton("play");
-        JButton butModul = new JButton("| |");
-        JButton butTangens = new JButton("tan");
-        JButton butLogarytmDziesietny = new JButton("log");
-        JButton butSilnia = new JButton("n!");
+        pane.setPreferredSize(new Dimension(500,200));
+        pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        Przycisk but1 = new Przycisk("1");
+        Przycisk but2 = new Przycisk("2");
+        Przycisk but3 = new Przycisk("3");
+        Przycisk but4 = new Przycisk("4");
+        Przycisk but5 = new Przycisk("5");
+        Przycisk but6 = new Przycisk("6");
+        Przycisk but7 = new Przycisk("7");
+        Przycisk but8 = new Przycisk("8");
+        Przycisk but9 = new Przycisk("9");
+        Przycisk but0 = new Przycisk("0");
+        Przycisk butZnak = new Przycisk("+/-");
+        Przycisk butPrzecinek = new Przycisk(",");
+
+        JButton butNawiasLewy = new SPrzycisk("(");
+        JButton butNawiasPrawy = new SPrzycisk(")");
+        JButton butMnozenie = new SPrzycisk("*");
+        JButton butDzielenie = new SPrzycisk("/");
+        JButton butOdejmowanie = new SPrzycisk("-");
+        JButton butDodawanie = new SPrzycisk("+");
+        JButton butRownosc = new Przycisk("=");
+
+
+        SSPrzycisk butPierwiastek = new SSPrzycisk("sqrt");
+        SSPrzycisk butPi = new SSPrzycisk("pi");
+        SSPrzycisk butE = new SSPrzycisk("e");
+        SSPrzycisk butKasuj = new SSPrzycisk("[x>");
+        SSPrzycisk butKwadrat = new SSPrzycisk("()^2");
+        SSPrzycisk butSinus = new SSPrzycisk("sin");
+        SSPrzycisk butLogarytmNaturalny = new SSPrzycisk("ln");
+        SSPrzycisk butEnter = new SSPrzycisk("enter");
+        SSPrzycisk butSzescian = new SSPrzycisk("()^3");
+        SSPrzycisk butCosinus = new SSPrzycisk("cos");
+        SSPrzycisk butEksponenta = new SSPrzycisk("exp");
+        SSPrzycisk butPlay = new SSPrzycisk("play");
+        SSPrzycisk butModul = new SSPrzycisk("| |");
+        SSPrzycisk butTangens = new SSPrzycisk("tan");
+        SSPrzycisk butLogarytmDziesietny = new SSPrzycisk("log");
+        SSPrzycisk butSilnia = new SSPrzycisk("n!");
 
 
         panelCyfrowy.add(but7);
@@ -91,7 +118,7 @@ public class GUI extends Frame {
         panelDzialania1.add(butMnozenie);
         panelDzialania1.add(butDzielenie);
 
-        panelDzialania2.add(butRownosc);
+        panelDzialania2.add(butRownosc,BorderLayout.CENTER);
 
         panelDzialania3.add(butOdejmowanie);
         panelDzialania3.add(butDodawanie);
@@ -119,7 +146,7 @@ public class GUI extends Frame {
         panelDzialania123.add(butRownosc, BorderLayout.WEST);
 
 
-        panelFinalny.add(tekst, BorderLayout.EAST);
+        panelFinalny.add(pane, BorderLayout.NORTH);
         panelFinalny.add(panelDzialania4, BorderLayout.EAST);
         panelFinalny.add(panelDzialania123, BorderLayout.CENTER);
         panelFinalny.add(panelCyfrowy, BorderLayout.WEST);
