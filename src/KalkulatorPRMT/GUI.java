@@ -26,6 +26,7 @@ public class GUI extends JFrame {
             }
         });
 
+        this.setLayout(new BorderLayout());
         //stworzenie paneli
         JPanel panelCyfrowy = new JPanel(new GridLayout(4,3,2,2));
         panelCyfrowy.setBackground(Color.DARK_GRAY);
@@ -145,13 +146,35 @@ public class GUI extends JFrame {
         panelDzialania123.add(panelDzialania3, BorderLayout.CENTER);
         panelDzialania123.add(butRownosc, BorderLayout.WEST);
 
+        JPanel gora = new JPanel(new BorderLayout());
 
-        panelFinalny.add(pane, BorderLayout.NORTH);
+        JPanel upbar = new JPanel();
+        upbar.setPreferredSize(new Dimension(500,30));
+
+        gora.add(upbar,BorderLayout.NORTH);
+        gora.add(pane,BorderLayout.CENTER);
+
+        JTextField wynik = new JTextField("0");
+        wynik.setFont(new Font("Arial",Font.BOLD,20));
+        wynik.setPreferredSize(new Dimension(500,30));
+        wynik.setForeground(Color.white);
+        wynik.setEnabled(false);
+        wynik.setBackground(Color.DARK_GRAY);
+
+
+        gora.add(wynik,BorderLayout.SOUTH);
+
+        panelFinalny.add(gora, BorderLayout.NORTH);
         panelFinalny.add(panelDzialania4, BorderLayout.EAST);
         panelFinalny.add(panelDzialania123, BorderLayout.CENTER);
         panelFinalny.add(panelCyfrowy, BorderLayout.WEST);
 
-        add(panelFinalny);
+        add(panelFinalny,BorderLayout.WEST);
+
+        JPanel panelBoczny = new JPanel();
+        panelBoczny.setPreferredSize(new Dimension(200,200));
+
+        add(panelBoczny,BorderLayout.EAST);
         pack();
         EventQueue.invokeLater(() -> setVisible(true));
     }
