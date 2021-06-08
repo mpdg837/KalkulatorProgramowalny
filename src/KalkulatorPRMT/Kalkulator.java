@@ -3,6 +3,7 @@ package KalkulatorPRMT;
 import KalkulatorPRMT.Obliczanie.Przetwarzanie.*;
 import KalkulatorPRMT.Obliczanie.ZbiorWyrazen;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -32,7 +33,11 @@ public class Kalkulator {
 
         zbior.rozwiaz();
 
+        ArrayList<String> wyniki = zbior.getWyniki();
 
+        for(String wynik: wyniki){
+            System.out.println(wynik);
+        }
 
 
     }

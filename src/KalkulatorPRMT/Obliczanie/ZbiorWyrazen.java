@@ -15,7 +15,7 @@ import java.util.List;
 public class ZbiorWyrazen {
 
     List<String> wyrazenia = new ArrayList<String>();
-    List<Double> wyniki= new ArrayList<Double>();
+    ArrayList<String> wyniki= new ArrayList<String>();
     HashMap<String,Double> zmienne= new HashMap<String, Double>();
 
     public ZbiorWyrazen(){
@@ -26,7 +26,7 @@ public class ZbiorWyrazen {
         return wyrazenia;
     }
 
-    public List<Double> getWyniki() {
+    public ArrayList<String> getWyniki() {
         return wyniki;
     }
 
@@ -303,9 +303,8 @@ public class ZbiorWyrazen {
                             Double wynik = grp.wynik();
 
                             if (wynik != null && !polecenie[0].equals("show")) {
-                                System.out.println(wynik);
 
-                                wyniki.add(wynik);
+                                wyniki.add(" = " + wynik);
                             }
                         }else {
 
@@ -318,8 +317,7 @@ public class ZbiorWyrazen {
 
 
 
-                                System.out.println(rozbicie[0] + "=" + wynik);
-
+                                wyniki.add(rozbicie[0] + "=" + wynik);
                                 zmienne.put(rozbicie[0], wynik);
                             }
                         }

@@ -1,13 +1,13 @@
 package KalkulatorPRMT;
 
-import KalkulatorPRMT.GUIModul.ListaKalkulatorowa;
-import KalkulatorPRMT.GUIModul.Przycisk;
-import KalkulatorPRMT.GUIModul.SPrzycisk;
-import KalkulatorPRMT.GUIModul.SSPrzycisk;
+import KalkulatorPRMT.GUIModul.*;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
@@ -91,7 +91,12 @@ public class GUI extends JFrame {
         SSPrzycisk butSzescian = new SSPrzycisk("()^3");
         SSPrzycisk butCosinus = new SSPrzycisk("cos");
         SSPrzycisk butEksponenta = new SSPrzycisk("exp");
-        SSPrzycisk butPlay = new SSPrzycisk("play");
+        ImageButton butPlay =  new ImageButton(null);
+        try {
+            butPlay = new ImageButton(ImageIO.read(new File("play.png")));
+        }catch (IOException ignore){
+
+        }
         SSPrzycisk butModul = new SSPrzycisk("| |");
         SSPrzycisk butTangens = new SSPrzycisk("tan");
         SSPrzycisk butLogarytmDziesietny = new SSPrzycisk("log");
