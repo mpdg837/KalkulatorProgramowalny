@@ -50,7 +50,7 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
         for(JTextField field : linie){
             if(field.isFocusOwner()){
                 // Odnalazłem linie sfocusowaną
-               return field.getText();
+                return field.getText();
             }
         }
 
@@ -149,14 +149,14 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
         // Przejście do poprzedniej linii
         int n=0;
         for(JTextField field : linie){
-                // Odnalezienie lini sfocusowanej
-                if (field.isFocusOwner()) {
-                    if (n - 1 >= 0) {
-                        // Wracam do poprzedniej linii
-                        linie.get(n - 1).grabFocus();
-                        linie.get(n - 1).requestFocus();
-                    }
+            // Odnalezienie lini sfocusowanej
+            if (field.isFocusOwner()) {
+                if (n - 1 >= 0) {
+                    // Wracam do poprzedniej linii
+                    linie.get(n - 1).grabFocus();
+                    linie.get(n - 1).requestFocus();
                 }
+            }
             n++;
         }
 

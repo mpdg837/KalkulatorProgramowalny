@@ -9,6 +9,7 @@ public class ImageButton extends JButton {
 
     public ImageButton(Image img){
         super(" ");
+        this.setFocusable(false);
         this.setBackground(new Color(200,200,200));
 
         simg = img;

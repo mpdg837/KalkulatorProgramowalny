@@ -7,6 +7,7 @@ public class SPrzycisk extends JButton {
     public SPrzycisk(String tytul){
         super(tytul);
 
+        this.setFocusable(false);
         this.setBackground(new Color(200,200,200));
 
         this.setFont(new Font("Arial",Font.PLAIN,21));

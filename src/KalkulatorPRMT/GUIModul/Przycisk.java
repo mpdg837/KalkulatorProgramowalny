@@ -7,6 +7,7 @@ public class Przycisk extends JButton {
     public Przycisk(String tytul){
         super(tytul);
 
+        this.setFocusable(false);
         this.setBackground(new Color(220,220,220));
 
         this.setFont(new Font("Arial",Font.BOLD,21));
