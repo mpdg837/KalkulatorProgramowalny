@@ -12,8 +12,6 @@ public class Skok {
         char[] znaki = ciag.toCharArray();
 
         StringBuilder build = new StringBuilder();
-        StringBuilder etykieta = new StringBuilder();
-        StringBuilder command = new StringBuilder();
 
         int poziomzag = 0;
 
@@ -23,6 +21,7 @@ public class Skok {
 
             switch (c+""){
                 case "("->{
+                    // Sprawdzam ilość nawiasów domykającyh i zamykającyh.
                     poziomzag++;
                     if(poziomzag!=1) {
                         build.append(c);
@@ -37,12 +36,14 @@ public class Skok {
                 }
                 default -> {
                     if(poziomzag>0){
+                        //Gdy jest prawidłowa pobieram nazwę etykiety
                         build.append(c);
                     }
                 }
             }
         }
 
+        // Zwracam nazwę etykiety
         return build.toString();
     }
 }

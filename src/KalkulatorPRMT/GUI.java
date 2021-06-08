@@ -1,5 +1,6 @@
 package KalkulatorPRMT;
 
+import KalkulatorPRMT.GUIModul.ListaKalkulatorowa;
 import KalkulatorPRMT.GUIModul.Przycisk;
 import KalkulatorPRMT.GUIModul.SPrzycisk;
 import KalkulatorPRMT.GUIModul.SSPrzycisk;
@@ -11,7 +12,7 @@ import javax.swing.*;
 
 
 public class GUI extends JFrame {
-    JTextArea tekst;
+    ListaKalkulatorowa tekst;
 
 
     public GUI(String nazwa) {
@@ -50,14 +51,10 @@ public class GUI extends JFrame {
         panelFinalny.setBackground(Color.DARK_GRAY);
 
         //stworzenie przyciskow, tekstu i umieszczanie ich na panelach
-        tekst = new JTextArea("eee");
-
-        tekst.setBackground(Color.WHITE);
-        tekst.setFont(new Font("Courier",Font.PLAIN,21));
-        tekst.setRows(25);
-        tekst.setColumns(25);
+        tekst = new ListaKalkulatorowa(this);
 
         JScrollPane pane = new JScrollPane(tekst);
+        tekst.setScrollPane(pane);
 
         pane.setPreferredSize(new Dimension(500,200));
         pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
