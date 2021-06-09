@@ -29,6 +29,16 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
 
     }
 
+    public void clearAll(){
+        for(int n=1;n<linie.size();n++){
+            linie.remove(linie.get(n));
+            numerki.remove(numerki.get(n));
+        }
+
+        if(linie.size()>0){
+            linie.get(0).setText("");
+        }
+    }
     public String[] getZawartoscLini(){
         // Pobieranie zawartości linijki
         String[] zaw = new String[linie.size()];
@@ -38,6 +48,15 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
         }
 
         return zaw;
+    }
+
+    public void setZawartoscLini(String[] linieS){
+        // Dodawanie linijek
+        clearAll();
+        for(String linia:linieS){
+            dodajLinijke();
+            linie.get(linie.size()-1).setText(linia);
+        }
     }
     public void setScrollPane(JScrollPane scroll){
         // Pobieranie paska

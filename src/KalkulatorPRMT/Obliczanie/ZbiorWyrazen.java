@@ -179,119 +179,139 @@ public class ZbiorWyrazen {
         throw new MyError("Nie odnaleziono rządanej etykiety");
     }
 
-    public void rozwiaz() {
-
-        // Skoro nowe rozwiązanie to czyszczę zawartość zmiennych i wyników
-
+    private void analizuj() throws MyError{
         wyniki.clear();
         zmienne.clear();
 
         List<Integer> powrotyGOSUB= new ArrayList<Integer>();
         int zagn = 0;
 
-        try {
-            for (int n=0;n<wyrazenia.size();n++) {
+        for (int n=0;n<wyrazenia.size();n++) {
 
-                String wyrazenie = wyrazenia.get(n);
+            String wyrazenie = wyrazenia.get(n);
 
-                // Rozbijam zmienną na nazwę i wyrażenie
+            // Rozbijam zmienną na nazwę i wyrażenie
 
-                String[] polecenie = getPolecenie(wyrazenie);
+            String[] polecenie = getPolecenie(wyrazenie);
 
-                switch (polecenie[0]){
-                    case "new" ->{
-                        zmienne = new HashMap<String,Double>();
-                    }
-                    case "do","",":","//" -> {
+            switch (polecenie[0]){
+                case "new" ->{
+                    zmienne = new HashMap<String,Double>();
+                }
+                case "do","",":","//" -> {
 
-                    }
-                    case "end"->{
-                        n=wyrazenia.size();
-                    }
+                }
+                case "end"->{
+                    n=wyrazenia.size();
+                }
 
-                    case "gosub"->{
-                        Skok skok = new Skok(wyrazenie);
+                case "gosub"->{
+                    Skok skok = new Skok(wyrazenie);
 
-                        String etykieta = skok.analizuj();
-                        if (!etykieta.equals("")) {
-                            zagn ++;
-                            int mem = n;
-                            n = getNumerIndeksu(etykieta, n);
+                    String etykieta = skok.analizuj();
+                    if (!etykieta.equals("")) {
+                        zagn ++;
+                        int mem = n;
+                        n = getNumerIndeksu(etykieta, n);
 
-                            if(powrotyGOSUB.size()>zagn){
-                                powrotyGOSUB.set(zagn,mem);
-                            }else{
-                                powrotyGOSUB.add(mem);
+                        if(powrotyGOSUB.size()>zagn){
+                            powrotyGOSUB.set(zagn,mem);
+                        }else{
+                            powrotyGOSUB.add(mem);
 
-                            }
-                        }
-                    }
-                    case "return"->{
-                        n = powrotyGOSUB.get(zagn-1);
-                        zagn --;
-
-                    }
-
-                    case "dim" ->{
-                        String zaw = polecenie[1].replaceAll(" ","");
-                        Deklarowanie dek = new Deklarowanie(zaw,zmienne);
-
-                        dek.analizuj();
-                        dek.utworzZmienne();
-
-                        zmienne = dek.getZmienne();
-
-                    }
-                    case "goto"->{
-                        Skok skok = new Skok(wyrazenie);
-
-                        String etykieta = skok.analizuj();
-
-                        n = getNumerIndeksu(etykieta,n);
-                    }
-                    case "if"->{
-
-                        InstrukcjaWarunkowa war = new InstrukcjaWarunkowa(polecenie[1],zmienne);
-
-                        war.analizuj();
-
-                        n = getNumerIndeksu(war.etykieta,n);
-                    }
-                    default -> {
-
-                        String[] rozbicie = rozbijNaZmiennaIWyrazenie(wyrazenie);
-
-                        if(rozbicie[0].length() == 0){
-
-                            //Gdy nie mamy doczynienia z przypisywaniem zmiennych
-                            Grupowanie grp = new Grupowanie(wyrazenie, zmienne);
-
-                            Double wynik = grp.wynik();
-
-                            if (wynik != null) {
-
-                                wynikiStringi.add("="+Formatter.konwersjaDoStringa(wynik));
-                                wyniki.add(wynik);
-                            }
-                        }else {
-
-                            // Gdy mamy przypisywanie zmiennych
-
-                            Grupowanie grp = new Grupowanie(rozbicie[1], zmienne);
-
-                            Double wynik = grp.wynik();
-                            if (wynik != null) {
-
-
-                                wynikiStringi.add(rozbicie[0] + "=" + Formatter.konwersjaDoStringa(wynik));
-                                zmienne.put(rozbicie[0], wynik);
-                            }
                         }
                     }
                 }
+                case "return"->{
+                    n = powrotyGOSUB.get(zagn-1);
+                    zagn --;
+
+                }
+
+                case "dim" ->{
+                    String zaw = polecenie[1].replaceAll(" ","");
+                    Deklarowanie dek = new Deklarowanie(zaw,zmienne);
+
+                    dek.analizuj();
+                    dek.utworzZmienne();
+
+                    zmienne = dek.getZmienne();
+
+                }
+                case "goto"->{
+                    Skok skok = new Skok(wyrazenie);
+
+                    String etykieta = skok.analizuj();
+
+                    n = getNumerIndeksu(etykieta,n);
+                }
+                case "if"->{
+
+                    InstrukcjaWarunkowa war = new InstrukcjaWarunkowa(polecenie[1],zmienne);
+
+                    war.analizuj();
+
+                    n = getNumerIndeksu(war.etykieta,n);
+                }
+                default -> {
+
+                    String[] rozbicie = rozbijNaZmiennaIWyrazenie(wyrazenie);
+
+                    if(rozbicie[0].length() == 0){
+
+                        //Gdy nie mamy doczynienia z przypisywaniem zmiennych
+                        Grupowanie grp = new Grupowanie(wyrazenie, zmienne);
+
+                        Double wynik = grp.wynik();
+
+                        if (wynik != null) {
+
+                            wynikiStringi.add("="+Formatter.konwersjaDoStringa(wynik));
+                            wyniki.add(wynik);
+                        }
+                    }else {
+
+                        // Gdy mamy przypisywanie zmiennych
+
+                        Grupowanie grp = new Grupowanie(rozbicie[1], zmienne);
+
+                        Double wynik = grp.wynik();
+                        if (wynik != null) {
 
 
+                            wynikiStringi.add(rozbicie[0] + "=" + Formatter.konwersjaDoStringa(wynik));
+                            zmienne.put(rozbicie[0], wynik);
+                        }
+                    }
+                }
             }
+
+
+        }
+    }
+
+    public boolean sprawdzPoprawnosc(){
+        try {
+
+            // Zwracam błąd
+            JOptionPane.showMessageDialog(new JPanel(),"Zapisane działanie nie zawiera błędów","Poprawność zapisu",JOptionPane.INFORMATION_MESSAGE);
+            analizuj();
+
+            return true;
+        }catch (MyError err){
+
+            // Zwracam błąd
+            JOptionPane.showMessageDialog(new JPanel(),err.getMessage(),"Błąd",JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
+    public void rozwiaz() {
+
+        // Skoro nowe rozwiązanie to czyszczę zawartość zmiennych i wyników
+
+        try {
+
+            analizuj();
         }catch (MyError err){
 
             // Zwracam błąd
