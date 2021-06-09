@@ -13,3 +13,20 @@ sqrt(zawartość) - wyciąga pierwiastek kwadratowy zawartości nawiasu
 pow2(zawartość),pow(zawartość) - wyciąga kwadrat zawartości nawiasu
 pow3(zawartość) - wyciąga sześcian zawartości nawiasu
 fact(zawartość) - wyciąga silnie zawartości nawiasu
+
+if(instrukcje warunkowe) - goto (etykieta) instrukcja warunkowa odnosząca do etykiety
+dim nazwa[rozmiar] - tworzenie tablicy o rozmiarze rozmiar
+new - czyszczenie pamięci
+goto(etykieta) - skok do etykiety
+gosub(etykieta) - skok do etykiety z możliwością powrotu
+:etykieta - deklarowanie etykiety
+return - powrót z powrotem do miejsca ostatniego gosub()
+
+nazwa_zmiennej = wartość - przypisanie wartości zmiennej
+
+nazwa_tablicy[numer_indeksu] - pobranie komórki tablicy
+len(nazwa_tablicy) - pobranie długości tablicy
+
+// - komentarz
+show(komunikat) - pokazanie komunikatu
+inpu(komunikat) - pobranie wartości liczbowej wyświetlając komunikat
