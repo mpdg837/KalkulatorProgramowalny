@@ -5,6 +5,7 @@ import KalkulatorPRMT.Obliczanie.ZbiorWyrazen;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class Kalkulator {
@@ -25,10 +26,10 @@ public class Kalkulator {
 
             Scanner scan = new Scanner(System.in);
             wyrazenie = scan.nextLine();
-
+            zbior.add(wyrazenie);
         }
-        String dzialanie = oknoGUI.getTekst();
-        zbior.add(dzialanie);
+
+
 
         System.out.println("");
         System.out.println("Wykonuje działania. Raport poniżej");
@@ -36,11 +37,10 @@ public class Kalkulator {
 
         zbior.rozwiaz();
 
-        ArrayList<String> wyniki = zbior.getWyniki();
+        List<String> wyniki = zbior.getListaStringow();
 
         for(String wynik: wyniki){
             System.out.println(wynik);
-            oknoGUI.setWynik(wynik);
         }
 
     }
@@ -48,7 +48,8 @@ public class Kalkulator {
     public static void main(String[] args){
         //Kalkulator calc = new Kalkulator();
 
-        oknoGUI.pokazGUI();
+        GUI gui = new GUI("Kalkulator");
+        gui.pokazGUI();
         Kalkulator calc = new Kalkulator();
     }
 }

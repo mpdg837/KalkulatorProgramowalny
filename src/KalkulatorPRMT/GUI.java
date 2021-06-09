@@ -17,11 +17,11 @@ public class GUI extends JFrame {
     JTextField wynik = new JTextField("0");
 
     public void setWynik(String wynik) {
-        this.wynik.setText(wynik + this.wynik.getText());
+        this.wynik.setText(wynik);
     }
 
-    public String getTekst() {
-        return tekst.getLinijka();
+    public String[] getTekst() {
+        return tekst.getZawartoscLini();
     }
 
 

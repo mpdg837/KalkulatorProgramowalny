@@ -5,8 +5,10 @@ import KalkulatorPRMT.Obliczanie.MyError;
 import KalkulatorPRMT.Obliczanie.Tablice.DlugoscTablicy;
 
 import javax.swing.*;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class Grupowanie {
@@ -15,6 +17,7 @@ public class Grupowanie {
 
     // Lista zmiennych używanych przez realizator
     public HashMap<String,Double> zmienne = new HashMap<String,Double>();
+
 
     private final String ciagDzilania;
 
@@ -83,7 +86,7 @@ public class Grupowanie {
         }
         // Analiza komend 3 znakowych
         switch (komenda3.toString()) {
-            case "sin", "cos", "tan", "abs", "exp", "log","pow","len","sgn" -> {
+            case "sin", "cos", "tan", "abs", "exp", "log","pow","len" -> {
                 nowazaw = new StringBuilder();
 
                 // Czyszczę stringbuildera z niepotrzebnych znaków
@@ -93,14 +96,13 @@ public class Grupowanie {
 
                 // Wykonuję działanie
                 switch (komenda3.toString().toLowerCase()) {
-                    case "sin" -> nowazaw.append(Math.sin(rozwiazSkladowa(zawartosc)));
-                    case "cos" -> nowazaw.append(Math.cos(rozwiazSkladowa(zawartosc)));
-                    case "tan" -> nowazaw.append(Math.tan(rozwiazSkladowa(zawartosc)));
-                    case "abs" -> nowazaw.append(Math.abs(rozwiazSkladowa(zawartosc)));
-                    case "exp" -> nowazaw.append(Math.exp(rozwiazSkladowa(zawartosc)));
-                    case "log" -> nowazaw.append(DodatekMatematyczny.log(rozwiazSkladowa(zawartosc)));
-                    case "pow" -> nowazaw.append(Math.pow(rozwiazSkladowa(zawartosc), 2));
-                    case "sgn" -> nowazaw.append(Math.signum(rozwiazSkladowa(zawartosc)));
+                    case "sin" -> nowazaw.append(Formatter.konwersjaDoStringa(Math.sin(rozwiazSkladowa(zawartosc))));
+                    case "cos" -> nowazaw.append(Formatter.konwersjaDoStringa(Math.cos(rozwiazSkladowa(zawartosc))));
+                    case "tan" -> nowazaw.append(Formatter.konwersjaDoStringa(Math.tan(rozwiazSkladowa(zawartosc))));
+                    case "abs" -> nowazaw.append(Formatter.konwersjaDoStringa(Math.abs(rozwiazSkladowa(zawartosc))));
+                    case "exp" -> nowazaw.append(Formatter.konwersjaDoStringa(Math.exp(rozwiazSkladowa(zawartosc))));
+                    case "log" -> nowazaw.append(Formatter.konwersjaDoStringa(DodatekMatematyczny.log(rozwiazSkladowa(zawartosc))));
+                    case "pow" -> nowazaw.append(Formatter.konwersjaDoStringa(Math.pow(rozwiazSkladowa(zawartosc), 2)));
                     case "len" ->{
 
                         int k = DlugoscTablicy.dlugosc(zmienne,zawartosc);
@@ -124,9 +126,9 @@ public class Grupowanie {
 
                 // Wykonuję działanie
                 switch (komenda4.toString().toLowerCase()) {
-                    case "sqrt" -> nowazaw.append(DodatekMatematyczny.sqrt(rozwiazSkladowa(zawartosc)));
-                    case "pow2" -> nowazaw.append(Math.pow(rozwiazSkladowa(zawartosc), 2));
-                    case "pow3" -> nowazaw.append(Math.pow(rozwiazSkladowa(zawartosc), 3));
+                    case "sqrt" -> nowazaw.append(Formatter.konwersjaDoStringa(DodatekMatematyczny.sqrt(rozwiazSkladowa(zawartosc))));
+                    case "pow2" -> nowazaw.append(Formatter.konwersjaDoStringa(Math.pow(rozwiazSkladowa(zawartosc), 2)));
+                    case "pow3" -> nowazaw.append(Formatter.konwersjaDoStringa(Math.pow(rozwiazSkladowa(zawartosc), 3)));
                     case "fact" -> nowazaw.append(DodatekMatematyczny.fact(rozwiazSkladowa(zawartosc)));
                     case "show" -> {
 

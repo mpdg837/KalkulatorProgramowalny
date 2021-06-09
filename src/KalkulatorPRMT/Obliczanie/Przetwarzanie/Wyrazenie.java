@@ -35,11 +35,12 @@ public class Wyrazenie extends Dzialanie{
 
                 if(keys.getZnakDzialania().equals("+")){
                     // Pomijam plusa
+                    build.append(baza.get(keys));
                 }else{
                     // Nie mogę pominąć znaku:
                     build.append(keys.getZnakDzialania());
+                    build.append(baza.get(keys));
                 }
-                build.append(baza.get(keys));
                 znakpierwszy = true;
             } else {
                 // Nie mogę pominąć znaku

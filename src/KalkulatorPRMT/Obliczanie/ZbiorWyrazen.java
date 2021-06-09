@@ -15,8 +15,13 @@ import java.util.List;
 public class ZbiorWyrazen {
 
     List<String> wyrazenia = new ArrayList<String>();
-    ArrayList<String> wyniki= new ArrayList<String>();
+    List<Double> wyniki= new ArrayList<Double>();
     HashMap<String,Double> zmienne= new HashMap<String, Double>();
+
+    public List<String> wynikiStringi= new ArrayList<String>();
+    public List<String> getListaStringow(){
+        return wynikiStringi;
+    }
 
     public ZbiorWyrazen(){
 
@@ -26,11 +31,11 @@ public class ZbiorWyrazen {
         return wyrazenia;
     }
 
-    public ArrayList<String> getWyniki() {
+    public List<Double> getWyniki() {
         return wyniki;
     }
 
-    public HashMap<String, Double> getZmienne()  {
+    public HashMap<String, Double> getZmienne() {
         return zmienne;
     }
 
@@ -44,7 +49,6 @@ public class ZbiorWyrazen {
         zmienne.clear();
         wyniki.clear();
     }
-
 
     public String[] rozbijNaZmiennaIWyrazenie(String ciag) throws MyError{
 
@@ -117,12 +121,8 @@ public class ZbiorWyrazen {
     }
 
     public String[] getPolecenie(String ciag) throws MyError{
-
-        // Pobieram polecenie z ciągu
-
         char[] znaki = ciag.toCharArray();
 
-        // Deklaruje pola na polecenie
         StringBuilder build = new StringBuilder();
         StringBuilder polecenie = new StringBuilder();
 
@@ -133,18 +133,14 @@ public class ZbiorWyrazen {
             if(wykrytoPolecenie || !(c+"").equals(" ")){
 
                 if (!wykrytoPolecenie) {
-                    // Dodaje znaki do polecenia
                     polecenie.append(c);
                 } else {
-                    // Dodaje znaki do parametrów
                     build.append(c);
                 }
 
                 switch (polecenie.toString()) {
 
-                    case "if","goto",":","//","dim","gosub","return","show","end","new" -> {
-
-                        // Wykryto jedno z poleceń zdefiniowanych dla tego programu
+                    case "if","goto",":","dim" -> {
                         wykrytoPolecenie = true;
                     }
 
@@ -158,17 +154,14 @@ public class ZbiorWyrazen {
 
     public int getNumerIndeksu(String nazwa,int nx) throws MyError{
 
-        // Zamieniam nazwę etykety na numer komendy
         for(int n=0;n<wyrazenia.size();n++){
             String wyrazenie = wyrazenia.get(n);
 
-            // Deklaruje pobieranie nazwy etykiety
             StringBuilder etykieta = new StringBuilder();
 
             char[] znaki = wyrazenie.toCharArray();
             if(znaki.length>2) {
                 if((znaki[0]+"").equals(":")) {
-                    // Szukam aż do znalezienia końca nazwy
                     for (int x = 1; x < znaki.length; x++) {
 
                         etykieta.append(znaki[x]);
@@ -177,13 +170,11 @@ public class ZbiorWyrazen {
                 }
             }
 
-            // Sprawdzam czy nazwa zgadza się z szukaną
             if(etykieta.toString().equals(nazwa)){
                 return n;
             }
         }
 
-        // Jeżeli nie znajdzie się etykiety należy wyświetlić błąd
         throw new MyError("Nie odnaleziono rządanej etykiety");
     }
 
@@ -208,31 +199,24 @@ public class ZbiorWyrazen {
 
                 switch (polecenie[0]){
                     case "new" ->{
-                        // Czyszczenie pamięci
                         zmienne = new HashMap<String,Double>();
                     }
-                    case ":","//" -> {
-                        // W analizie nazwy etykiet i komentarze pomijamy
+                    case "do","",":","//" -> {
+
                     }
                     case "end"->{
-                        // Zakończenie skryptu kalkulatora
                         n=wyrazenia.size();
                     }
 
                     case "gosub"->{
-
-                        // Skok do etkiety z zwrotem (return)
                         Skok skok = new Skok(wyrazenie);
 
                         String etykieta = skok.analizuj();
                         if (!etykieta.equals("")) {
-
-                            // Określam zagnieżdzenie aby po wprowadzeniu return wrócić w to samo miejsce
                             zagn ++;
                             int mem = n;
                             n = getNumerIndeksu(etykieta, n);
 
-                            // Sprawdzam czy nie muszę dodać nowego poziomu zagnieżdzenia
                             if(powrotyGOSUB.size()>zagn){
                                 powrotyGOSUB.set(zagn,mem);
                             }else{
@@ -242,55 +226,35 @@ public class ZbiorWyrazen {
                         }
                     }
                     case "return"->{
-                        // Wracam do etykiety poprzedniej na podstawie gosub
                         n = powrotyGOSUB.get(zagn-1);
-                        powrotyGOSUB.set(zagn-1,0);
                         zagn --;
 
                     }
+
                     case "dim" ->{
-
-                        // Deklarowanie tablicy
                         String zaw = polecenie[1].replaceAll(" ","");
-
-                        // Dodanie talbicy na zaś
                         Deklarowanie dek = new Deklarowanie(zaw,zmienne);
 
                         dek.analizuj();
-                        if(dek.getName().length()>0) {
-                            // Tablica musi mieć jakąś nazwę
+                        dek.utworzZmienne();
 
-                            dek.utworzZmienne();
+                        zmienne = dek.getZmienne();
 
-                            // Dodaje nowy wykaz zmiennych
-                            zmienne = dek.getZmienne();
-                        }else{
-                            throw new MyError("Tablica musi mieć nazwę");
-                        }
                     }
-                    case "goto"-> {
-                        // Skok do innej rtykiety
+                    case "goto"->{
                         Skok skok = new Skok(wyrazenie);
 
                         String etykieta = skok.analizuj();
-                        if (!etykieta.equals("")) {
-                            n = getNumerIndeksu(etykieta, n);
-                        }else{
-                            throw new MyError("Nie podano nazwy etykiety do której ma odbyć się skok");
-                        }
-                    }
 
+                        n = getNumerIndeksu(etykieta,n);
+                    }
                     case "if"->{
-                        // Instrukcja warunkowa
+
                         InstrukcjaWarunkowa war = new InstrukcjaWarunkowa(polecenie[1],zmienne);
 
-                        war.analizuj(false);
+                        war.analizuj();
 
-                        if (!war.etykieta.equals("")) {
-                            n = getNumerIndeksu(war.etykieta, n);
-                        }else{
-                            throw new MyError("Zawartość warunku nie może być pusta");
-                        }
+                        n = getNumerIndeksu(war.etykieta,n);
                     }
                     default -> {
 
@@ -303,9 +267,10 @@ public class ZbiorWyrazen {
 
                             Double wynik = grp.wynik();
 
-                            if (wynik != null && !polecenie[0].equals("show")) {
+                            if (wynik != null) {
 
-                                wyniki.add(" = " + wynik);
+                                wynikiStringi.add("="+wynik);
+                                wyniki.add(wynik);
                             }
                         }else {
 
@@ -314,11 +279,10 @@ public class ZbiorWyrazen {
                             Grupowanie grp = new Grupowanie(rozbicie[1], zmienne);
 
                             Double wynik = grp.wynik();
-                            if (wynik != null && !polecenie[0].equals("show")) {
+                            if (wynik != null) {
 
 
-
-                                wyniki.add(rozbicie[0] + "=" + wynik);
+                                wynikiStringi.add(rozbicie[0] + "=" + wynik);
                                 zmienne.put(rozbicie[0], wynik);
                             }
                         }
