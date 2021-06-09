@@ -43,15 +43,12 @@ public class Kalkulator {
             oknoGUI.setWynik(wynik);
         }
 
-
-
     }
 
     public static void main(String[] args){
         //Kalkulator calc = new Kalkulator();
 
         oknoGUI.pokazGUI();
-
         Kalkulator calc = new Kalkulator();
     }
 }
