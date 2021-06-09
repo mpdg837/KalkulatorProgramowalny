@@ -126,7 +126,7 @@ public class GUI extends JFrame {
         butKwadrat.addActionListener(new MyActionListener(butKwadrat.getText(),tekst));
         butSinus.addActionListener(new MyActionListener(butSinus.getText(),tekst));
         butLogarytmNaturalny.addActionListener(new MyActionListener(butLogarytmNaturalny.getText(),tekst));
-        butEnter.addActionListener(new MyActionListener(butEnter.getText(),tekst));
+        butEnter.addActionListener(new EnterAction(tekst));
         butSzescian.addActionListener(new MyActionListener(butSzescian.getText(),tekst));
         butCosinus.addActionListener(new MyActionListener(butCosinus.getText(),tekst));
         butEksponenta.addActionListener(new MyActionListener(butEksponenta.getText(),tekst));
