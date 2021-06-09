@@ -30,7 +30,7 @@ public class ZbiorWyrazen {
         return wyniki;
     }
 
-    public HashMap<String, Double> getZmienne() {
+    public HashMap<String, Double> getZmienne()  {
         return zmienne;
     }
 
@@ -44,6 +44,7 @@ public class ZbiorWyrazen {
         zmienne.clear();
         wyniki.clear();
     }
+
 
     public String[] rozbijNaZmiennaIWyrazenie(String ciag) throws MyError{
 

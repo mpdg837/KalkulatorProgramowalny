@@ -64,7 +64,7 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
         for(JTextField field : linie){
             // Znalazłem linie sfocusowaną
             if(field.isFocusOwner()){
-                field.setText(ciag);
+                field.setText(field.getText() + ciag);
             }
         }
 
@@ -160,11 +160,7 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
             n++;
         }
 
-
-
-
     }
-
     public void dodajLinijke(){
 
         // Dodanie linijki

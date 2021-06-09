@@ -1,18 +1,28 @@
 package KalkulatorPRMT;
 
-import KalkulatorPRMT.GUIModul.*;
+import KalkulatorPRMT.GUIModul.ListaKalkulatorowa;
+import KalkulatorPRMT.GUIModul.Przycisk;
+import KalkulatorPRMT.GUIModul.SPrzycisk;
+import KalkulatorPRMT.GUIModul.SSPrzycisk;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
 public class GUI extends JFrame {
     ListaKalkulatorowa tekst;
+
+    JTextField wynik = new JTextField("0");
+
+    public void setWynik(String wynik) {
+        this.wynik.setText(wynik + this.wynik.getText());
+    }
+
+    public String getTekst() {
+        return tekst.getLinijka();
+    }
 
 
     public GUI(String nazwa) {
@@ -91,17 +101,50 @@ public class GUI extends JFrame {
         SSPrzycisk butSzescian = new SSPrzycisk("()^3");
         SSPrzycisk butCosinus = new SSPrzycisk("cos");
         SSPrzycisk butEksponenta = new SSPrzycisk("exp");
-        ImageButton butPlay =  new ImageButton(null);
-        try {
-            butPlay = new ImageButton(ImageIO.read(new File("play.png")));
-        }catch (IOException ignore){
-
-        }
+        SSPrzycisk butPlay = new SSPrzycisk("play");
         SSPrzycisk butModul = new SSPrzycisk("| |");
         SSPrzycisk butTangens = new SSPrzycisk("tan");
         SSPrzycisk butLogarytmDziesietny = new SSPrzycisk("log");
         SSPrzycisk butSilnia = new SSPrzycisk("n!");
 
+    //dodaj actionlistenery
+        but1.addActionListener(new MyActionListener(but1.getText(),tekst));
+        but2.addActionListener(new MyActionListener(but2.getText(),tekst));
+        but3.addActionListener(new MyActionListener(but3.getText(),tekst));
+        but4.addActionListener(new MyActionListener(but4.getText(),tekst));
+        but5.addActionListener(new MyActionListener(but5.getText(),tekst));
+        but6.addActionListener(new MyActionListener(but6.getText(),tekst));
+        but7.addActionListener(new MyActionListener(but7.getText(),tekst));
+        but8.addActionListener(new MyActionListener(but8.getText(),tekst));
+        but9.addActionListener(new MyActionListener(but9.getText(),tekst));
+        but0.addActionListener(new MyActionListener(but0.getText(),tekst));
+
+        butPierwiastek.addActionListener(new MyActionListener(butPierwiastek.getText(),tekst));
+        butPi.addActionListener(new MyActionListener(butPi.getText(),tekst));
+        butE.addActionListener(new MyActionListener(butE.getText(),tekst));
+        butKasuj.addActionListener(new MyActionListener(butKasuj.getText(),tekst));
+        butKwadrat.addActionListener(new MyActionListener(butKwadrat.getText(),tekst));
+        butSinus.addActionListener(new MyActionListener(butSinus.getText(),tekst));
+        butLogarytmNaturalny.addActionListener(new MyActionListener(butLogarytmNaturalny.getText(),tekst));
+        butEnter.addActionListener(new MyActionListener(butEnter.getText(),tekst));
+        butSzescian.addActionListener(new MyActionListener(butSzescian.getText(),tekst));
+        butCosinus.addActionListener(new MyActionListener(butCosinus.getText(),tekst));
+        butEksponenta.addActionListener(new MyActionListener(butEksponenta.getText(),tekst));
+        butPlay.addActionListener(new MyActionListener(butPlay.getText(),tekst));
+        butModul.addActionListener(new MyActionListener(butModul.getText(),tekst));
+        butTangens.addActionListener(new MyActionListener(butTangens.getText(),tekst));
+        butLogarytmDziesietny.addActionListener(new MyActionListener(butLogarytmDziesietny.getText(),tekst));
+        butSilnia.addActionListener(new MyActionListener(butSilnia.getText(),tekst));
+
+        butZnak.addActionListener(new MyActionListener(butZnak.getText(),tekst));
+        butPrzecinek.addActionListener(new MyActionListener(butPrzecinek.getText(),tekst));
+        butNawiasLewy.addActionListener(new MyActionListener(butNawiasLewy.getText(),tekst));
+        butNawiasPrawy.addActionListener(new MyActionListener(butNawiasPrawy.getText(),tekst));
+        butMnozenie.addActionListener(new MyActionListener(butMnozenie.getText(),tekst));
+        butDzielenie.addActionListener(new MyActionListener(butDzielenie.getText(),tekst));
+        butOdejmowanie.addActionListener(new MyActionListener(butOdejmowanie.getText(),tekst));
+        butDodawanie.addActionListener(new MyActionListener(butDodawanie.getText(),tekst));
+        butRownosc.addActionListener(new MyActionListener(butRownosc.getText(),tekst));
 
         panelCyfrowy.add(but7);
         panelCyfrowy.add(but8);
@@ -156,7 +199,7 @@ public class GUI extends JFrame {
         gora.add(upbar,BorderLayout.NORTH);
         gora.add(pane,BorderLayout.CENTER);
 
-        JTextField wynik = new JTextField("0");
+
         wynik.setFont(new Font("Arial",Font.BOLD,20));
         wynik.setPreferredSize(new Dimension(500,30));
         wynik.setForeground(Color.white);
