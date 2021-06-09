@@ -57,6 +57,20 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
         return "";
     }
 
+    public int getNumerZnaku(){
+        // Pobranie zawartości lini
+        String odp = "";
+
+        for(JTextField field : linie){
+            if(field.isFocusOwner()){
+                // Odnalazłem linie sfocusowaną
+                return field.getCaretPosition();
+            }
+        }
+
+        return 0;
+    }
+
     public void setLinijka(String ciag){
         // Pobeiram zawartość lini
         String odp = "";
