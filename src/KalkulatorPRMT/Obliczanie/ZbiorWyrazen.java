@@ -1,5 +1,6 @@
 package KalkulatorPRMT.Obliczanie;
 
+import KalkulatorPRMT.Obliczanie.Przetwarzanie.Formatter;
 import KalkulatorPRMT.Obliczanie.Przetwarzanie.Grupowanie;
 import KalkulatorPRMT.Obliczanie.Tablice.Deklarowanie;
 import KalkulatorPRMT.Obliczanie.Warunki.InstrukcjaWarunkowa;
@@ -269,7 +270,7 @@ public class ZbiorWyrazen {
 
                             if (wynik != null) {
 
-                                wynikiStringi.add("="+wynik);
+                                wynikiStringi.add("="+Formatter.konwersjaDoStringa(wynik));
                                 wyniki.add(wynik);
                             }
                         }else {
@@ -282,7 +283,7 @@ public class ZbiorWyrazen {
                             if (wynik != null) {
 
 
-                                wynikiStringi.add(rozbicie[0] + "=" + wynik);
+                                wynikiStringi.add(rozbicie[0] + "=" + Formatter.konwersjaDoStringa(wynik));
                                 zmienne.put(rozbicie[0], wynik);
                             }
                         }

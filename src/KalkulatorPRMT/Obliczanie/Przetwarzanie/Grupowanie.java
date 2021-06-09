@@ -80,7 +80,7 @@ public class Grupowanie {
             }
 
             // Wykonuję logarytm liniowy
-            nowazaw.append(DodatekMatematyczny.ln(rozwiazSkladowa(zawartosc)));
+            nowazaw.append(Formatter.konwersjaDoStringa(DodatekMatematyczny.ln(rozwiazSkladowa(zawartosc))));
 
             czyWykrytoKomende = true;
         }
@@ -163,7 +163,7 @@ public class Grupowanie {
         if(!czyWykrytoKomende) {
 
             // Gdy nie wykryto komendy
-            nowazaw.append(rozwiazSkladowa(zawartosc));
+            nowazaw.append(Formatter.konwersjaDoStringa(rozwiazSkladowa(zawartosc)));
         }
 
         return nowazaw;

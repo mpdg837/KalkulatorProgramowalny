@@ -35,20 +35,24 @@ public class DodatekMatematyczny {
     public static int fact(double liczba) throws MyError{
         if(liczba == (int)liczba){
             if(liczba>=0){
-                if(liczba == 0){
-                    // Silna 0 jest równa 1
+                if(liczba<32) {
+                    if (liczba == 0) {
+                        // Silna 0 jest równa 1
 
-                    return 1;
-                }else{
-                    // Wykonanie algorytmu silnej.
+                        return 1;
+                    } else {
+                        // Wykonanie algorytmu silnej.
 
-                    int wynik = 1;
+                        int wynik = 1;
 
-                    for(int n=1;n<=liczba;n++){
-                        wynik = wynik * n;
+                        for (int n = 1; n <= liczba; n++) {
+                            wynik = wynik * n;
+                        }
+
+                        return wynik;
                     }
-
-                    return wynik;
+                }else{
+                    throw new MyError("Silnia poza zakresem");
                 }
             }else{
                 // Gdy liczba nie spełnia warunków.
