@@ -8,7 +8,7 @@ public class SSPrzycisk extends JButton {
         super(tytul);
 
         this.setFocusable(false);
-        this.setBackground(new Color(180,180,180));
+        this.setBackground(Color.lightGray);
 
         this.setFont(new Font("Arial",Font.PLAIN,16));
         this.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));

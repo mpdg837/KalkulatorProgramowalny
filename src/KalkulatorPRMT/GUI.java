@@ -109,7 +109,7 @@ public class GUI extends JFrame {
             ImageButton butPi = new ImageButton(ImageIO.read(new File("pi.png")),"pi");
             SSPrzycisk butE = new SSPrzycisk("e");
             //ImageButton butE = new ImageButton(ImageIO.read(new File("e.png")),"e");
-            ImageButton butKasuj = new ImageButton(ImageIO.read(new File("usun.png")),"");
+            SSPrzycisk butKasuj = new SSPrzycisk ("<");
             ImageButton butKwadrat = new ImageButton(ImageIO.read(new File("kwadrat.png")),"()^2");
             ImageButton butSinus = new ImageButton(ImageIO.read(new File("sin.png")),"sin()");
             ImageButton butLogarytmNaturalny = new ImageButton(ImageIO.read(new File("ln.png")),"ln()");
@@ -167,22 +167,22 @@ public class GUI extends JFrame {
             but9.addActionListener(new MyActionListener(but9.getText(),tekst));
             but0.addActionListener(new MyActionListener(but0.getText(),tekst));
 
-            butPierwiastek.addActionListener(new MyActionListener(butPierwiastek.getText(),tekst));
-            butPi.addActionListener(new MyActionListener(butPi.getText(),tekst));
-            butE.addActionListener(new MyActionListener(butE.getText(),tekst));
-            butKasuj.addActionListener(new MyActionListener(butKasuj.getText(),tekst));
+            butPierwiastek.addActionListener(new MyActionListener(butPierwiastek.getName(),tekst));
+            butPi.addActionListener(new MyActionListener(butPi.getName(),tekst));
+            butE.addActionListener(new MyActionListener(butE.getName(),tekst));
+            butKasuj.addActionListener(new MyActionListener(butKasuj.getName(),tekst));
             butKwadrat.addActionListener(new MyActionListener(butKwadrat.getText(),tekst));
-            butSinus.addActionListener(new MyActionListener(butSinus.getText(),tekst));
+            butSinus.addActionListener(new MyActionListener(butSinus.getName(),tekst));
             butLogarytmNaturalny.addActionListener(new MyActionListener(butLogarytmNaturalny.getText(),tekst));
             butEnter.addActionListener(new EnterAction(tekst));
-            butSzescian.addActionListener(new MyActionListener(butSzescian.getText(),tekst));
-            butCosinus.addActionListener(new MyActionListener(butCosinus.getText(),tekst));
-            butEksponenta.addActionListener(new MyActionListener(butEksponenta.getText(),tekst));
+            butSzescian.addActionListener(new MyActionListener(butSzescian.getName(),tekst));
+            butCosinus.addActionListener(new MyActionListener(butCosinus.getName(),tekst));
+            butEksponenta.addActionListener(new MyActionListener(butEksponenta.getName(),tekst));
             butPlay.addActionListener(new PlayAction(this));
-            butModul.addActionListener(new MyActionListener(butModul.getText(),tekst));
-            butTangens.addActionListener(new MyActionListener(butTangens.getText(),tekst));
-            butLogarytmDziesietny.addActionListener(new MyActionListener(butLogarytmDziesietny.getText(),tekst));
-            butSilnia.addActionListener(new MyActionListener(butSilnia.getText(),tekst));
+            butModul.addActionListener(new MyActionListener(butModul.getName(),tekst));
+            butTangens.addActionListener(new MyActionListener(butTangens.getName(),tekst));
+            butLogarytmDziesietny.addActionListener(new MyActionListener(butLogarytmDziesietny.getName(),tekst));
+            butSilnia.addActionListener(new MyActionListener(butSilnia.getName(),tekst));
 
             butZnak.addActionListener(new MyActionListener(butZnak.getText(),tekst));
             butPrzecinek.addActionListener(new MyActionListener(butPrzecinek.getText(),tekst));
