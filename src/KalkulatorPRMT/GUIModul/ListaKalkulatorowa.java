@@ -91,7 +91,7 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
         return 0;
     }
 
-    public void setLinijka(String ciag, int polozeniekursora) throws BadLocationException {
+    public void setLinijka(String ciag, int polozeniekursora,boolean cofnij) throws BadLocationException {
         // Pobeiram zawartość lini
         String odp = "";
 
@@ -99,6 +99,11 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
             // Znalazłem linie sfocusowaną
             if(field.isFocusOwner()){
                 field.getDocument().insertString(polozeniekursora, ciag, null);
+                int caret = field.getCaretPosition();
+
+                if(caret>0){
+                    field.setCaretPosition(caret-1);
+                }
             }
         }
 

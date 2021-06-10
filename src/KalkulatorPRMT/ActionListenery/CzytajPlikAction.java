@@ -32,7 +32,7 @@ public class CzytajPlikAction implements ActionListener  {
                 BufferedReader br = new BufferedReader(new FileReader(file));
                 String st;
                 while ((st = br.readLine()) != null) {
-                    wpisz.setLinijka(st, polozeniekrusora);
+                    wpisz.setLinijka(st, polozeniekrusora,false);
                 }
             } catch (IOException | BadLocationException fileNotFoundException) {
                 fileNotFoundException.printStackTrace();
