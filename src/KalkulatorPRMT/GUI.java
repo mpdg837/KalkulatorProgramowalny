@@ -104,26 +104,28 @@ public class GUI extends JFrame {
         try {
 
 
-            ImageButton butPierwiastek = new ImageButton(ImageIO.read(new File("sqrt.png")),"sqrt(");
+            ImageButton butPierwiastek = new ImageButton(ImageIO.read(new File("sqrt.png")),"sqrt()");
             SSPrzycisk butPi = new SSPrzycisk("pi");
             SSPrzycisk butE = new SSPrzycisk("e");
-            SSPrzycisk butKasuj = new SSPrzycisk("[x>");
-            SSPrzycisk butKwadrat = new SSPrzycisk("()^2");
-            SSPrzycisk butSinus = new SSPrzycisk("sin");
-            SSPrzycisk butLogarytmNaturalny = new SSPrzycisk("ln");
-            SSPrzycisk butEnter = new SSPrzycisk("enter");
-            SSPrzycisk butSzescian = new SSPrzycisk("()^3");
-            SSPrzycisk butCosinus = new SSPrzycisk("cos");
-            SSPrzycisk butEksponenta = new SSPrzycisk("exp");
-            SSPrzycisk butPlay = new SSPrzycisk("play");
-            SSPrzycisk butModul = new SSPrzycisk("| |");
-            SSPrzycisk butTangens = new SSPrzycisk("tan");
-            SSPrzycisk butLogarytmDziesietny = new SSPrzycisk("log");
-            SSPrzycisk butSilnia = new SSPrzycisk("n!");
-            SSPrzycisk pobierzplik = new SSPrzycisk("W");
-            SSPrzycisk obliczzpliku = new SSPrzycisk("S");
-            SSPrzycisk zapiszdopliku = new SSPrzycisk("Z");
+            ImageButton butKasuj = new ImageButton(ImageIO.read(new File("usun.png")),"");
+            ImageButton butKwadrat = new ImageButton(ImageIO.read(new File("kwadrat.png")),"()^2");
+            ImageButton butSinus = new ImageButton(ImageIO.read(new File("sin.png")),"sin()");
+            ImageButton butLogarytmNaturalny = new ImageButton(ImageIO.read(new File("ln.png")),"ln()");
+            ImageButton butEnter = new ImageButton(ImageIO.read(new File("ok.png")),"");
+            ImageButton butSzescian = new ImageButton(ImageIO.read(new File("szescian.png")),"()^3");
+            ImageButton butCosinus = new ImageButton(ImageIO.read(new File("cos.png")),"cos()");
+            ImageButton butEksponenta = new ImageButton(ImageIO.read(new File("ex.png")),"ex()");
+            ImageButton butPlay = new ImageButton(ImageIO.read(new File("play.png")),"");
+            ImageButton butModul = new ImageButton(ImageIO.read(new File("mod.png")),"mod()");
+            ImageButton butTangens = new ImageButton(ImageIO.read(new File("tan.png")),"tan()");
+            ImageButton butLogarytmDziesietny = new ImageButton(ImageIO.read(new File("log.png")),"log()");
+            ImageButton butSilnia = new ImageButton(ImageIO.read(new File("silnia.png")),"()!");
+            ImageButton pobierzplik = new ImageButton(ImageIO.read(new File("przegladaj.png")),"");
+            ImageButton obliczzpliku = new ImageButton(ImageIO.read(new File("play1.png")),"");
+            ImageButton zapiszdopliku = new ImageButton(ImageIO.read(new File("zapisz.png")),"");
             SSPrzycisk nowyplik = new SSPrzycisk("N");
+
+
 
 
             JPanel upbar = new JPanel(new BorderLayout());
