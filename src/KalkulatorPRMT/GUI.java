@@ -1,9 +1,6 @@
 package KalkulatorPRMT;
 
-import KalkulatorPRMT.GUIModul.ListaKalkulatorowa;
-import KalkulatorPRMT.GUIModul.Przycisk;
-import KalkulatorPRMT.GUIModul.SPrzycisk;
-import KalkulatorPRMT.GUIModul.SSPrzycisk;
+import KalkulatorPRMT.GUIModul.*;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -216,7 +213,8 @@ public class GUI extends JFrame {
 
         add(panelFinalny,BorderLayout.WEST);
 
-        JPanel panelBoczny = new JPanel();
+        Zakladki panelBoczny = new Zakladki();
+
         panelBoczny.setPreferredSize(new Dimension(200,200));
 
         add(panelBoczny,BorderLayout.EAST);
