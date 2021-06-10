@@ -169,11 +169,11 @@ public class GUI extends JFrame {
 
             butPierwiastek.addActionListener(new MyActionListener(butPierwiastek.getName(),tekst));
             butPi.addActionListener(new MyActionListener(butPi.getName(),tekst));
-            butE.addActionListener(new MyActionListener(butE.getName(),tekst));
+            butE.addActionListener(new MyActionListener(butE.getText(),tekst));
             butKasuj.addActionListener(new MyActionListener(butKasuj.getName(),tekst));
-            butKwadrat.addActionListener(new MyActionListener(butKwadrat.getText(),tekst));
+            butKwadrat.addActionListener(new MyActionListener(butKwadrat.getName(),tekst));
             butSinus.addActionListener(new MyActionListener(butSinus.getName(),tekst));
-            butLogarytmNaturalny.addActionListener(new MyActionListener(butLogarytmNaturalny.getText(),tekst));
+            butLogarytmNaturalny.addActionListener(new MyActionListener(butLogarytmNaturalny.getName(),tekst));
             butEnter.addActionListener(new EnterAction(tekst));
             butSzescian.addActionListener(new MyActionListener(butSzescian.getName(),tekst));
             butCosinus.addActionListener(new MyActionListener(butCosinus.getName(),tekst));
@@ -188,8 +188,8 @@ public class GUI extends JFrame {
             butPrzecinek.addActionListener(new MyActionListener(butPrzecinek.getText(),tekst));
             butNawiasLewy.addActionListener(new MyActionListener(butNawiasLewy.getText(),tekst));
             butNawiasPrawy.addActionListener(new MyActionListener(butNawiasPrawy.getText(),tekst));
-            butMnozenie.addActionListener(new MyActionListener(butMnozenie.getText(),tekst));
-            butDzielenie.addActionListener(new MyActionListener(butDzielenie.getText(),tekst));
+            butMnozenie.addActionListener(new MyActionListener(butMnozenie.getName(),tekst));
+            butDzielenie.addActionListener(new MyActionListener(butDzielenie.getName(),tekst));
             butOdejmowanie.addActionListener(new MyActionListener(butOdejmowanie.getText(),tekst));
             butDodawanie.addActionListener(new MyActionListener(butDodawanie.getText(),tekst));
             butRownosc.addActionListener(new MyActionListener(butRownosc.getText(),tekst));
