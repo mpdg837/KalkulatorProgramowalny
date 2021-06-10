@@ -54,9 +54,11 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
     public void setZawartoscLini(String[] linieS){
         // Dodawanie linijek
         clearAll();
+        int i = 0;
         for(String linia:linieS){
             dodajLinijke();
-            linie.get(linie.size()-1).setText(linia);
+            linie.get(i).setText(linia);
+            i++;
         }
     }
     public void setScrollPane(JScrollPane scroll){
@@ -115,9 +117,9 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
                 field.getDocument().insertString(polozeniekursora, ciag, null);
                 int caret = field.getCaretPosition();
 
-                if(caret>0){
-                    field.setCaretPosition(caret-1);
-                }
+               // if(caret>0){
+               //     field.setCaretPosition(caret-1);
+              //  }
             }
         }
 

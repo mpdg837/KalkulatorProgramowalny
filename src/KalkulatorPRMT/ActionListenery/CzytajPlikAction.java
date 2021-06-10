@@ -7,6 +7,7 @@ import javax.swing.text.BadLocationException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CzytajPlikAction implements ActionListener  {
@@ -27,34 +28,48 @@ public class CzytajPlikAction implements ActionListener  {
         int polozeniekrusora = wpisz.getNumerZnaku();
         if(!sciezka.getText().isEmpty()) {
             File file = new File(sciezka.getText());
+            if (file.exists()) {
+                try {
+                    BufferedReader br = new BufferedReader(new FileReader(file));
+                    //robie liste do przechowywania linii
+                    List<String> lista = new ArrayList<>();
+                    String st;
+                    int n = 0;
+                    while ((st = br.readLine()) != null) {
+                        lista.add(st);
+                        n++;
+                    }
+                    String[] tablica = new String[n];
 
-            try {
-                BufferedReader br = new BufferedReader(new FileReader(file));
-                String st;
-                while ((st = br.readLine()) != null) {
-                    wpisz.setLinijka(st, polozeniekrusora,false);
+                    for(int i = 0; i<n;i++){
+                        //uzupelniam tablice liniami i podaje argument do metody
+                        tablica[i] = lista.get(i);
+
+                    }
+                    wpisz.setZawartoscLini(tablica);
+
+
+                } catch (IOException fileNotFoundException) {
+                    fileNotFoundException.printStackTrace();
                 }
-            } catch (IOException | BadLocationException fileNotFoundException) {
-                fileNotFoundException.printStackTrace();
-            }
-            //obliczam i ustawiam wynik
-            ZbiorWyrazen zbior = new ZbiorWyrazen();
-            String[] dzialanie = wpisz.getZawartoscLini();
+                //obliczam i ustawiam wynik
+                ZbiorWyrazen zbior = new ZbiorWyrazen();
+                String[] dzialanie = wpisz.getZawartoscLini();
 
-            for (String dzial : dzialanie) {
-                zbior.add(dzial);
-            }
-            zbior.rozwiaz();
-            List<String> wyniki = zbior.getListaStringow();
+                for (String dzial : dzialanie) {
+                    zbior.add(dzial);
+                }
 
-            for (String wynik : wyniki) {
-                System.out.println(wynik);
-                oblicz.setText(wynik);
+            }
+            else{JPanel blad = new JPanel();
+                JOptionPane.showMessageDialog(blad, "Błąd! Podany plik nie istnieje");
+
             }
         }
-        else{
-            JPanel blad = new JPanel();
-            JOptionPane.showMessageDialog(blad,"Błąd! Nie podano nazwy pliku");
+        else {
+                JPanel blad = new JPanel();
+                JOptionPane.showMessageDialog(blad, "Błąd! Nie podano nazwy pliku");
+            }
         }
     }
-}
+

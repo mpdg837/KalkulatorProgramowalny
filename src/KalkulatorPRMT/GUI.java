@@ -30,6 +30,7 @@ public class GUI extends JFrame {
 
     public GUI(String nazwa) {
         super(nazwa);
+
     }
 
 
