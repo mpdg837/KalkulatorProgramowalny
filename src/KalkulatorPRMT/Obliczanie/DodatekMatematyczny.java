@@ -10,7 +10,7 @@ public class DodatekMatematyczny {
             // Aby był wyrzucany błąd MyError nie dostępny z pakietu Math.
             throw new MyError("Nie istnieją rzeczywiste pierwiastki liczb ujemnych");
         }else{
-            return Math.log(liczba);
+            return Math.sqrt(liczba);
         }
     }
 
