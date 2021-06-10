@@ -23,8 +23,12 @@ public class ZapiszAction implements ActionListener {
             if (!file.exists()) {
                 file.createNewFile();
             }
-            myWriter = new FileWriter(sciezka.getText());
-            myWriter.write(wpisz.getLinijka());
+            myWriter = new FileWriter(sciezka.getText(),true);
+            BufferedWriter bw = new BufferedWriter(myWriter);
+            PrintWriter out = new PrintWriter(bw);
+            out.println(wpisz.getLinijka());
+            out.close();
+            bw.close();
             myWriter.close();
         } catch (IOException ioException) {
             ioException.printStackTrace();

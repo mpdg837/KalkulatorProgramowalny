@@ -1,4 +1,4 @@
-package KalkulatorPRMT;
+package KalkulatorPRMT.ActionListenery;
 
 import KalkulatorPRMT.GUIModul.ListaKalkulatorowa;
 import KalkulatorPRMT.Obliczanie.ZbiorWyrazen;
@@ -9,12 +9,12 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.List;
 
-public class CzytajPlik implements ActionListener  {
+public class CzytajPlikAction implements ActionListener  {
     JTextField sciezka;
     ListaKalkulatorowa wpisz;
     JTextField oblicz;
 
-    public CzytajPlik(JTextField sciezka, ListaKalkulatorowa wpisz, JTextField oblicz){
+    public CzytajPlikAction(JTextField sciezka, ListaKalkulatorowa wpisz, JTextField oblicz){
         this.sciezka = sciezka;
         this.wpisz = wpisz;
         this.oblicz = oblicz;
