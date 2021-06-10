@@ -10,7 +10,7 @@ public class ImageButton extends JButton {
     public ImageButton(Image img){
         super(" ");
         this.setFocusable(false);
-        this.setBackground(new Color(200,200,200));
+        this.setBackground(Color.lightGray);
 
         simg = img;
     }
@@ -19,6 +19,8 @@ public class ImageButton extends JButton {
     public void paint(Graphics g) {
         super.paint(g);
 
-        g.drawImage(simg,this.getWidth()/2-12,this.getHeight()/2-12,24,24,this);
+        Image scaledInstance = simg.getScaledInstance(24,24,Image.SCALE_SMOOTH);
+
+        g.drawImage(scaledInstance,this.getWidth()/2-12,this.getHeight()/2-12,24,24,this);
     }
 }
