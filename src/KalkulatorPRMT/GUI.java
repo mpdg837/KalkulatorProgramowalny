@@ -104,7 +104,7 @@ public class GUI extends JFrame {
         try {
 
 
-            ImageButton butPierwiastek = new ImageButton(ImageIO.read(new File("sqrt.png")));
+            ImageButton butPierwiastek = new ImageButton(ImageIO.read(new File("sqrt.png")),"sqrt(");
             SSPrzycisk butPi = new SSPrzycisk("pi");
             SSPrzycisk butE = new SSPrzycisk("e");
             SSPrzycisk butKasuj = new SSPrzycisk("[x>");
