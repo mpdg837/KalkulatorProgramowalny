@@ -18,23 +18,30 @@ public class ZapiszAction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         FileWriter myWriter;
-        File file = new File(sciezka.getText());
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
+        if(!sciezka.getText().isEmpty()) {
+            File file = new File(sciezka.getText());
+            try {
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
+                myWriter = new FileWriter(sciezka.getText(), true);
+                BufferedWriter bw = new BufferedWriter(myWriter);
+                PrintWriter out = new PrintWriter(bw);
+                out.println(wpisz.getLinijka());
+                out.close();
+                bw.close();
+                myWriter.close();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
             }
-            myWriter = new FileWriter(sciezka.getText(),true);
-            BufferedWriter bw = new BufferedWriter(myWriter);
-            PrintWriter out = new PrintWriter(bw);
-            out.println(wpisz.getLinijka());
-            out.close();
-            bw.close();
-            myWriter.close();
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
+
         }
+        else{
+            JPanel blad = new JPanel();
+            JOptionPane.showMessageDialog(blad,"Błąd! Nie podano nazwy pliku");
 
 
+        }
     }
 }
 
