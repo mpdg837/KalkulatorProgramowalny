@@ -113,7 +113,7 @@ public class GUI extends JFrame {
             ImageButton butKwadrat = new ImageButton(ImageIO.read(new File("kwadrat.png")),"()^2");
             ImageButton butSinus = new ImageButton(ImageIO.read(new File("sin.png")),"sin()");
             ImageButton butLogarytmNaturalny = new ImageButton(ImageIO.read(new File("ln.png")),"ln()");
-            ImageButton butEnter = new ImageButton(ImageIO.read(new File("ok.png")),"");
+            ImageButton butEnter = new ImageButton(ImageIO.read(new File("enter.png")),"");
             ImageButton butSzescian = new ImageButton(ImageIO.read(new File("szescian.png")),"()^3");
             ImageButton butCosinus = new ImageButton(ImageIO.read(new File("cos.png")),"cos()");
             ImageButton butEksponenta = new ImageButton(ImageIO.read(new File("ex.png")),"ex()");
