@@ -2,14 +2,16 @@ package KalkulatorPRMT.GUIModul;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class ImageButton extends JButton {
 
-    Image simg;
+    BufferedImage simg;
     private String name;
 
-    public ImageButton(Image img,String name){
-        super(" ");
+    public ImageButton(BufferedImage img, String name){
+        super("");
+        this.setPreferredSize(new Dimension(32,32));
         this.setFocusable(false);
         this.setBackground(Color.lightGray);
         this.name = name;
@@ -20,16 +22,17 @@ public class ImageButton extends JButton {
     public void paint(Graphics g) {
         super.paint(g);
 
-        Image scaledInstance = simg.getScaledInstance(24,24,Image.SCALE_SMOOTH);
+        int width = (int)(24*simg.getWidth()/simg.getHeight());
+        Image scaledInstance = simg.getScaledInstance((int)(24*simg.getWidth()/simg.getHeight()),24,Image.SCALE_SMOOTH);
 
-        g.drawImage(scaledInstance,this.getWidth()/2-12,this.getHeight()/2-12,24,24,this);
+        g.drawImage(scaledInstance,this.getWidth()/2-width/2,this.getHeight()/2-12,this);
     }
 
-    public void setText(String nazwa){
+    public void setName(String nazwa){
         name= nazwa;
     }
 
-    public String getText(){
+    public String getName(){
         return name;
     }
 }

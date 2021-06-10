@@ -115,13 +115,13 @@ public class GUI extends JFrame {
             ImageButton butSzescian = new ImageButton(ImageIO.read(new File("szescian.png")),"()^3");
             ImageButton butCosinus = new ImageButton(ImageIO.read(new File("cos.png")),"cos()");
             ImageButton butEksponenta = new ImageButton(ImageIO.read(new File("ex.png")),"ex()");
-            ImageButton butPlay = new ImageButton(ImageIO.read(new File("play.png")),"");
+            ImageButton butPlay = new ImageButton(ImageIO.read(new File("play1.png")),"");
             ImageButton butModul = new ImageButton(ImageIO.read(new File("mod.png")),"mod()");
             ImageButton butTangens = new ImageButton(ImageIO.read(new File("tan.png")),"tan()");
             ImageButton butLogarytmDziesietny = new ImageButton(ImageIO.read(new File("log.png")),"log()");
             ImageButton butSilnia = new ImageButton(ImageIO.read(new File("silnia.png")),"()!");
             ImageButton pobierzplik = new ImageButton(ImageIO.read(new File("przegladaj.png")),"");
-            ImageButton obliczzpliku = new ImageButton(ImageIO.read(new File("play1.png")),"");
+            ImageButton obliczzpliku = new ImageButton(ImageIO.read(new File("ok.png")),"");
             ImageButton zapiszdopliku = new ImageButton(ImageIO.read(new File("zapisz.png")),"");
             SSPrzycisk nowyplik = new SSPrzycisk("N");
 
@@ -131,7 +131,7 @@ public class GUI extends JFrame {
             JPanel upbar = new JPanel(new BorderLayout());
             JPanel upbarbar = new JPanel();
 
-            upbarbar.setPreferredSize(new Dimension(300,30));
+            upbarbar.setPreferredSize(new Dimension(200,40));
 
             //dodaje przyciski do panelu bocznego
             upbarbar.add(nowyplik);
@@ -140,7 +140,13 @@ public class GUI extends JFrame {
             upbarbar.add(zapiszdopliku);
 
             sciezka.setEnabled(false);
-            upbar.add(sciezka,BorderLayout.CENTER);
+
+            JPanel sPanel = new JPanel();
+
+            sciezka.setPreferredSize(new Dimension(200,30));
+            sPanel.add(sciezka);
+
+            upbar.add(sPanel,BorderLayout.EAST);
 
             upbar.add(upbarbar,BorderLayout.WEST);
 
