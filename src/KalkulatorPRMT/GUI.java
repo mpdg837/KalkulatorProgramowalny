@@ -1,10 +1,7 @@
 package KalkulatorPRMT;
 
 import KalkulatorPRMT.ActionListenery.*;
-import KalkulatorPRMT.GUIModul.ListaKalkulatorowa;
-import KalkulatorPRMT.GUIModul.Przycisk;
-import KalkulatorPRMT.GUIModul.SPrzycisk;
-import KalkulatorPRMT.GUIModul.SSPrzycisk;
+import KalkulatorPRMT.GUIModul.*;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
