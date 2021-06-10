@@ -245,11 +245,20 @@ public class ZbiorWyrazen {
 
                     n = getNumerIndeksu(etykieta,n);
                 }
+                case "ifnot"-> {
+
+                    InstrukcjaWarunkowa war = new InstrukcjaWarunkowa(polecenie[1], zmienne);
+
+                    war.analizuj(true);
+                    if (!war.etykieta.equals("")) {
+                        n = getNumerIndeksu(war.etykieta, n);
+                    }
+                }
                 case "if"-> {
 
                     InstrukcjaWarunkowa war = new InstrukcjaWarunkowa(polecenie[1], zmienne);
 
-                    war.analizuj();
+                    war.analizuj(false);
                     if (!war.etykieta.equals("")) {
                         n = getNumerIndeksu(war.etykieta, n);
                     }
