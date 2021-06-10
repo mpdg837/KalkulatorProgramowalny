@@ -1,0 +1,11 @@
+package KalkulatorPRMT.GUIModul.MenuBar.Akcje;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class KoniecAction implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.exit(0);
+    }
+}

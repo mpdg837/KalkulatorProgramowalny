@@ -77,6 +77,20 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
         return "";
     }
 
+    public JTextField getWiersz(){
+        // Pobranie zawartości lini
+        String odp = "";
+
+        for(JTextField field : linie){
+            if(field.isFocusOwner()){
+                // Odnalazłem linie sfocusowaną
+                return field;
+            }
+        }
+
+        return null;
+    }
+
     public int getNumerZnaku(){
         // Pobranie zawartości lini
         String odp = "";

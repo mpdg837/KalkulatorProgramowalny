@@ -2,6 +2,7 @@ package KalkulatorPRMT;
 
 import KalkulatorPRMT.ActionListenery.*;
 import KalkulatorPRMT.GUIModul.*;
+import KalkulatorPRMT.GUIModul.MenuBar.MyMenuBar;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -14,7 +15,7 @@ import javax.swing.*;
 
 
 public class GUI extends JFrame {
-    ListaKalkulatorowa tekst;
+    public ListaKalkulatorowa tekst;
 
     JTextField wynik = new JTextField("0");
 
@@ -33,6 +34,9 @@ public class GUI extends JFrame {
 
 
     public void pokazGUI() {
+
+
+
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
                 System.exit(1);
@@ -265,7 +269,7 @@ public class GUI extends JFrame {
             panelFinalny.add(panelCyfrowy, BorderLayout.WEST);
 
 
-            panelFinalny.setPreferredSize(new Dimension(650,500));
+
             add(panelFinalny,BorderLayout.CENTER);
 
 
@@ -276,6 +280,17 @@ public class GUI extends JFrame {
         }catch (IOException ignore){
 
         }
+
+        MyMenuBar bar = new MyMenuBar(this);
+        this.setMenuBar(bar);
+
+        JLabel lab = new JLabel("Kalkulator 0.9 beta. Projekt zaliczeniowy. Wersja testowa, niekompletna");
+        lab.setFont(new Font("Arial",Font.PLAIN,12));
+
+        panelFinalny.setPreferredSize(new Dimension(650,600));
+
+        this.setSize(new Dimension(900,600));
+        this.add(lab,BorderLayout.SOUTH);
         EventQueue.invokeLater(() -> setVisible(true));
     }
 
