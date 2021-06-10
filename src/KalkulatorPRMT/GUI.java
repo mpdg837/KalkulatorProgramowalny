@@ -1,5 +1,6 @@
 package KalkulatorPRMT;
 
+import KalkulatorPRMT.ActionListenery.*;
 import KalkulatorPRMT.GUIModul.ListaKalkulatorowa;
 import KalkulatorPRMT.GUIModul.Przycisk;
 import KalkulatorPRMT.GUIModul.SPrzycisk;
@@ -47,6 +48,8 @@ public class GUI extends JFrame {
         panelDzialania2.setBackground(Color.DARK_GRAY);
         JPanel panelDzialania3 = new JPanel(new GridLayout(2,1,2,2));
         panelDzialania3.setBackground(Color.DARK_GRAY);
+        JPanel panelBoczny = new JPanel();
+        panelBoczny.setPreferredSize(new Dimension(200,200));
         BorderLayout lay1 = new BorderLayout();
         lay1.setVgap(2);
         lay1.setHgap(2);
@@ -65,6 +68,11 @@ public class GUI extends JFrame {
 
         JScrollPane pane = new JScrollPane(tekst);
         tekst.setScrollPane(pane);
+        //Pole do wyswietlania ściezki
+        JTextField sciezka = new JTextField("");
+        sciezka.setPreferredSize(new Dimension(100,20));
+
+
 
         pane.setPreferredSize(new Dimension(500,200));
         pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -81,6 +89,7 @@ public class GUI extends JFrame {
         Przycisk butZnak = new Przycisk("+/-");
         Przycisk butPrzecinek = new Przycisk(",");
 
+
         JButton butNawiasLewy = new SPrzycisk("(");
         JButton butNawiasPrawy = new SPrzycisk(")");
         JButton butMnozenie = new SPrzycisk("*");
@@ -88,6 +97,8 @@ public class GUI extends JFrame {
         JButton butOdejmowanie = new SPrzycisk("-");
         JButton butDodawanie = new SPrzycisk("+");
         JButton butRownosc = new Przycisk("=");
+
+
 
 
         SSPrzycisk butPierwiastek = new SSPrzycisk("sqrt");
@@ -106,8 +117,12 @@ public class GUI extends JFrame {
         SSPrzycisk butTangens = new SSPrzycisk("tan");
         SSPrzycisk butLogarytmDziesietny = new SSPrzycisk("log");
         SSPrzycisk butSilnia = new SSPrzycisk("n!");
+        SSPrzycisk pobierzplik = new SSPrzycisk("Wybierz");
+        SSPrzycisk obliczzpliku = new SSPrzycisk("Oblicz");
+        SSPrzycisk zapiszdopliku = new SSPrzycisk("Zapisz");
 
-    //dodaj actionlistenery
+
+        //dodaj actionlistenery
         but1.addActionListener(new MyActionListener(but1.getText(),tekst));
         but2.addActionListener(new MyActionListener(but2.getText(),tekst));
         but3.addActionListener(new MyActionListener(but3.getText(),tekst));
@@ -145,6 +160,9 @@ public class GUI extends JFrame {
         butOdejmowanie.addActionListener(new MyActionListener(butOdejmowanie.getText(),tekst));
         butDodawanie.addActionListener(new MyActionListener(butDodawanie.getText(),tekst));
         butRownosc.addActionListener(new MyActionListener(butRownosc.getText(),tekst));
+        pobierzplik.addActionListener(new PobierzAction(panelBoczny,sciezka));
+        obliczzpliku.addActionListener(new CzytajPlik(sciezka,tekst ,wynik));
+        zapiszdopliku.addActionListener(new ZapiszAction(sciezka, tekst));
 
         panelCyfrowy.add(but7);
         panelCyfrowy.add(but8);
@@ -185,6 +203,11 @@ public class GUI extends JFrame {
         panelDzialania4.add(butTangens);
         panelDzialania4.add(butLogarytmDziesietny);
         panelDzialania4.add(butSilnia);
+        //dodaje przyciski do panelu bocznego
+        panelBoczny.add(pobierzplik,BorderLayout.NORTH);
+        panelBoczny.add(obliczzpliku,BorderLayout.SOUTH);
+        panelBoczny.add(sciezka,BorderLayout.CENTER);
+        panelBoczny.add(zapiszdopliku,BorderLayout.SOUTH);
 
         //nakladanie paneli na siebie w celu stworzenia calej palety przyciskow
         panelDzialania123.add(panelDzialania1, BorderLayout.NORTH);
@@ -216,8 +239,8 @@ public class GUI extends JFrame {
 
         add(panelFinalny,BorderLayout.WEST);
 
-        JPanel panelBoczny = new JPanel();
-        panelBoczny.setPreferredSize(new Dimension(200,200));
+
+
 
         add(panelBoczny,BorderLayout.EAST);
         pack();

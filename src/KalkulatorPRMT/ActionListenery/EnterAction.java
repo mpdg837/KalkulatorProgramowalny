@@ -1,4 +1,4 @@
-package KalkulatorPRMT;
+package KalkulatorPRMT.ActionListenery;
 
 import KalkulatorPRMT.GUIModul.ListaKalkulatorowa;
 

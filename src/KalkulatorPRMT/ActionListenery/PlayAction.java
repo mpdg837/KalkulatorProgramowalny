@@ -1,5 +1,6 @@
-package KalkulatorPRMT;
+package KalkulatorPRMT.ActionListenery;
 
+import KalkulatorPRMT.GUI;
 import KalkulatorPRMT.Obliczanie.ZbiorWyrazen;
 
 import java.awt.event.ActionEvent;
