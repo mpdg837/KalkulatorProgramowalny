@@ -148,7 +148,7 @@ public class Grupowanie {
 
                             double numer = Double.parseDouble(num);
                             zawartosc = "";
-                            nowazaw.append(numer);
+                            nowazaw.append(Formatter.konwersjaDoStringa(numer));
                         }catch (NumberFormatException err){
                             throw new MyError("Wprowadzono nieprawidłowo liczbę");
                         }
