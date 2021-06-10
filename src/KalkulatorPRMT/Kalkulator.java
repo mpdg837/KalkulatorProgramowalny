@@ -1,5 +1,6 @@
 package KalkulatorPRMT;
 
+import KalkulatorPRMT.GUIModul.ImageButton;
 import KalkulatorPRMT.Obliczanie.Przetwarzanie.*;
 import KalkulatorPRMT.Obliczanie.ZbiorWyrazen;
 
@@ -50,6 +51,7 @@ public class Kalkulator {
 
         GUI gui = new GUI("Kalkulator");
         gui.pokazGUI();
+
         Kalkulator calc = new Kalkulator();
     }
 }
