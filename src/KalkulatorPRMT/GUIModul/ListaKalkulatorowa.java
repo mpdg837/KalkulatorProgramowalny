@@ -1,6 +1,7 @@
 package KalkulatorPRMT.GUIModul;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -90,14 +91,14 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
         return 0;
     }
 
-    public void setLinijka(String ciag){
+    public void setLinijka(String ciag, int polozeniekursora) throws BadLocationException {
         // Pobeiram zawartość lini
         String odp = "";
 
         for(JTextField field : linie){
             // Znalazłem linie sfocusowaną
             if(field.isFocusOwner()){
-                field.setText(field.getText() + ciag);
+                field.getDocument().insertString(polozeniekursora, ciag, null);
             }
         }
 
