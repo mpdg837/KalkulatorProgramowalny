@@ -93,8 +93,8 @@ public class GUI extends JFrame {
 
         JButton butNawiasLewy = new SPrzycisk("(");
         JButton butNawiasPrawy = new SPrzycisk(")");
-        JButton butMnozenie = new SPrzycisk("*");
-        JButton butDzielenie = new SPrzycisk("/");
+
+
         JButton butOdejmowanie = new SPrzycisk("-");
         JButton butDodawanie = new SPrzycisk("+");
         JButton butRownosc = new Przycisk("=");
@@ -102,11 +102,13 @@ public class GUI extends JFrame {
 
 
         try {
-
+            //jak zmienię jeszcze e, to się cały panel sypnie, więc na razie e zostawiam bez image, ja bym
+            //tylko kolor zmienił pod e i będzie cacy, reszta przycisków wygląda gites
 
             ImageButton butPierwiastek = new ImageButton(ImageIO.read(new File("sqrt.png")),"sqrt()");
-            SSPrzycisk butPi = new SSPrzycisk("pi");
+            ImageButton butPi = new ImageButton(ImageIO.read(new File("pi.png")),"pi");
             SSPrzycisk butE = new SSPrzycisk("e");
+            //ImageButton butE = new ImageButton(ImageIO.read(new File("e.png")),"e");
             ImageButton butKasuj = new ImageButton(ImageIO.read(new File("usun.png")),"");
             ImageButton butKwadrat = new ImageButton(ImageIO.read(new File("kwadrat.png")),"()^2");
             ImageButton butSinus = new ImageButton(ImageIO.read(new File("sin.png")),"sin()");
@@ -123,8 +125,11 @@ public class GUI extends JFrame {
             ImageButton pobierzplik = new ImageButton(ImageIO.read(new File("przegladaj.png")),"");
             ImageButton obliczzpliku = new ImageButton(ImageIO.read(new File("ok.png")),"");
             ImageButton zapiszdopliku = new ImageButton(ImageIO.read(new File("zapisz.png")),"");
-            SSPrzycisk nowyplik = new SSPrzycisk("N");
+            ImageButton nowyplik = new ImageButton(ImageIO.read(new File("new.png")),"");
 
+            // przerzucone
+            ImageButton butMnozenie = new ImageButton(ImageIO.read(new File("mnozenie.png")),"*");
+            ImageButton butDzielenie = new ImageButton(ImageIO.read(new File("dzielenie.png")),"/");
 
 
 
