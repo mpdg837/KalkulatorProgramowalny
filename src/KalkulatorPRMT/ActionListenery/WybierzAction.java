@@ -5,11 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class PobierzAction implements ActionListener  {
+public class WybierzAction implements ActionListener  {
     JFileChooser oknoplikow;
     JPanel panel;
     JTextField sciezka;
-    public PobierzAction(JPanel panel, JTextField sciezka){
+    public WybierzAction(JPanel panel, JTextField sciezka){
         oknoplikow = new JFileChooser();
         this.panel = panel;
         this.sciezka = sciezka;

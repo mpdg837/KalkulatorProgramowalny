@@ -160,7 +160,7 @@ public class GUI extends JFrame {
         butOdejmowanie.addActionListener(new MyActionListener(butOdejmowanie.getText(),tekst));
         butDodawanie.addActionListener(new MyActionListener(butDodawanie.getText(),tekst));
         butRownosc.addActionListener(new MyActionListener(butRownosc.getText(),tekst));
-        pobierzplik.addActionListener(new PobierzAction(panelBoczny,sciezka));
+        pobierzplik.addActionListener(new WybierzAction(panelBoczny,sciezka));
         obliczzpliku.addActionListener(new CzytajPlikAction(sciezka,tekst ,wynik));
         zapiszdopliku.addActionListener(new ZapiszAction(sciezka, tekst));
 
