@@ -3,7 +3,6 @@ package KalkulatorPRMT.GUIModul.MenuBar;
 import KalkulatorPRMT.GUI;
 import KalkulatorPRMT.GUIModul.MenuBar.Akcje.*;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class MyMenuBar extends MenuBar {
