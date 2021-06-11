@@ -20,5 +20,6 @@ public class KopiujLinijkeAction implements ActionListener {
         StringSelection stringSelection = new StringSelection(okno.tekst.getLinijka());
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
+
     }
 }

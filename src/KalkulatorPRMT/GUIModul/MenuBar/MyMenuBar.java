@@ -33,7 +33,7 @@ public class MyMenuBar extends MenuBar {
         edycja.add( wytij);
 
         MenuItem kopiuL = new MenuItem("Kopiuj linijke");
-        kopiu.addActionListener(new KopiujLinijkeAction(frame));
+        kopiuL.addActionListener(new KopiujLinijkeAction(frame));
         edycja.add(kopiuL);
 
         MenuItem wklej = new MenuItem("Wklej    (Ctrl + V)");
