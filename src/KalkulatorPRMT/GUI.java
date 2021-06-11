@@ -125,7 +125,7 @@ public class GUI extends JFrame {
             ImageButton butModul = new ImageButton(ImageIO.read(new File("mod.png")),"mod()");
             ImageButton butTangens = new ImageButton(ImageIO.read(new File("tan.png")),"tan()");
             ImageButton butLogarytmDziesietny = new ImageButton(ImageIO.read(new File("log.png")),"log()");
-            ImageButton butSilnia = new ImageButton(ImageIO.read(new File("silnia.png")),"()!");
+            ImageButton butSilnia = new ImageButton(ImageIO.read(new File("silnia.png")),"fact()");
             ImageButton pobierzplik = new ImageButton(ImageIO.read(new File("przegladaj.png")),"");
             ImageButton obliczzpliku = new ImageButton(ImageIO.read(new File("ok.png")),"");
             ImageButton zapiszdopliku = new ImageButton(ImageIO.read(new File("zapisz.png")),"");
