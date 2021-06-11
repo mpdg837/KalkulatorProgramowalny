@@ -303,9 +303,9 @@ public class ZbiorWyrazen {
         try {
 
             // Zwracam błąd
-            JOptionPane.showMessageDialog(new JPanel(),"Zapisane działanie nie zawiera błędów","Poprawność zapisu",JOptionPane.INFORMATION_MESSAGE);
-            analizuj();
 
+            analizuj();
+            JOptionPane.showMessageDialog(new JPanel(),"Zapisane działanie nie zawiera błędów","Poprawność zapisu",JOptionPane.INFORMATION_MESSAGE);
             return true;
         }catch (MyError err){
 
