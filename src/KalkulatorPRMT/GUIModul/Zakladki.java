@@ -22,7 +22,9 @@ public class Zakladki extends JTabbedPane {
         this.setBackground(Color.GRAY);
     }
     public void addWynikHistoria(String wynik){
-        historia.add(new JTextArea(wynik));
+        JTextArea pole = new JTextArea(1,17);
+        pole.setText(wynik);
+        historia.add(pole);
         repaint();
 
     }
