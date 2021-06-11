@@ -29,9 +29,17 @@ public class PlayAction implements ActionListener {
         zbior.rozwiaz();
         List<String> wyniki = zbior.getListaStringow();
 
-        for(String wynik: wyniki){
-            zakladki.addWynikHistoria(wynik);
-            gui.setWynik(wynik);
+        if(wyniki.size()>30){
+            for(int n=wyniki.size()-30;n<wyniki.size();n++){
+                zakladki.addWynikHistoria(wyniki.get(n));
+                gui.setWynik(wyniki.get(n));
+            }
+        }else{
+            for(String wynik: wyniki){
+                zakladki.addWynikHistoria(wynik);
+                gui.setWynik(wynik);
+            }
         }
+
     }
 }

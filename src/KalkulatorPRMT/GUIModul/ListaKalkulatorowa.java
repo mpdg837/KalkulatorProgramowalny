@@ -31,14 +31,17 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
     }
 
     public void clearAll(){
-        for(int n=1;n<linie.size();n++){
-            linie.remove(linie.get(n));
-            numerki.remove(numerki.get(n));
+
+        for(int n=0;n<linie.size();n++){
+
+            this.remove(linie.get(n));
+            this.remove(numerki.get(n));
+
         }
 
-        if(linie.size()>0){
-            linie.get(0).setText("");
-        }
+        linie.clear();
+        numerki.clear();
+
     }
     public String[] getZawartoscLini(){
         // Pobieranie zawartości linijki
@@ -59,18 +62,20 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
             //odrzucam ostatnia pusta linie
             if(!linia.equals("")) {
                 //dodaje wszystkie linijki na poczatku
-                if(linie.size() == 1) {
-                    for(int j = 0; j<linieS.length-2; j++){
-                        dodajLinijke();
-                    }
-                    i--;
-                }
-                //teraz je wypelniam
-                i++;
-                linie.get(i).setText(linia);
+
+
+                dodajLinijke();
+
+
+                linie.get(linie.size()-1).setText(linia);
 
 
             }
+        }
+
+        // Jeżeli wcyztano pusty plik
+        if(linie.size()==0){
+            dodajLinijke();
         }
     }
     public void setScrollPane(JScrollPane scroll){
@@ -128,14 +133,14 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
             if(field.isFocusOwner()){
                 field.getDocument().insertString(polozeniekursora, ciag, null);
                 int caret = field.getCaretPosition();
-
-               // if(caret>0){
-               //     field.setCaretPosition(caret-1);
-              //  }
+                if(cofnij) {
+                    if (caret > 0) {
+                        field.setCaretPosition(caret - 1);
+                    }
+                }
             }
         }
 
-        update.pack();
     }
 
     public void nastepnaLinia(boolean enter){

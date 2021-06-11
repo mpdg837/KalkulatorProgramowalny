@@ -9,7 +9,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
-import java.io.InvalidObjectException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -115,11 +114,11 @@ public class GUI extends JFrame {
             SSPrzycisk butE = new SSPrzycisk("e");
             //ImageButton butE = new ImageButton(ImageIO.read(new File("e.png")),"e");
             SSPrzycisk butKasuj = new SSPrzycisk ("<");
-            ImageButton butKwadrat = new ImageButton(ImageIO.read(new File("kwadrat.png")),"()^2");
+            ImageButton butKwadrat = new ImageButton(ImageIO.read(new File("kwadrat.png")),"pow2()");
             ImageButton butSinus = new ImageButton(ImageIO.read(new File("sin.png")),"sin()");
             ImageButton butLogarytmNaturalny = new ImageButton(ImageIO.read(new File("ln.png")),"ln()");
             ImageButton butEnter = new ImageButton(ImageIO.read(new File("enter.png")),"");
-            ImageButton butSzescian = new ImageButton(ImageIO.read(new File("szescian.png")),"()^3");
+            ImageButton butSzescian = new ImageButton(ImageIO.read(new File("szescian.png")),"pow3()");
             ImageButton butCosinus = new ImageButton(ImageIO.read(new File("cos.png")),"cos()");
             ImageButton butEksponenta = new ImageButton(ImageIO.read(new File("ex.png")),"ex()");
             ImageButton butPlay = new ImageButton(ImageIO.read(new File("play1.png")),"");
@@ -172,6 +171,7 @@ public class GUI extends JFrame {
             but9.addActionListener(new MyActionListener(but9.getText(),tekst,false));
             but0.addActionListener(new MyActionListener(but0.getText(),tekst,false));
 
+            nowyplik.addActionListener(new NowyAction(tekst,sciezka));
             butPierwiastek.addActionListener(new MyActionListener(butPierwiastek.getName(),tekst,true));
             butPi.addActionListener(new MyActionListener(butPi.getName(),tekst,false));
             butE.addActionListener(new MyActionListener(butE.getText(),tekst,false));
@@ -198,8 +198,8 @@ public class GUI extends JFrame {
             butOdejmowanie.addActionListener(new MyActionListener(butOdejmowanie.getText(),tekst,false));
             butDodawanie.addActionListener(new MyActionListener(butDodawanie.getText(),tekst,false));
             butRownosc.addActionListener(new MyActionListener(butRownosc.getText(),tekst,false));
-            pobierzplik.addActionListener(new WybierzAction(upbar,sciezka));
-            obliczzpliku.addActionListener(new CzytajPlikAction(sciezka,tekst ,wynik));
+            pobierzplik.addActionListener(new WybierzAction(upbar,sciezka,tekst));
+            obliczzpliku.addActionListener(new PoprawnoscAction(tekst ));
             zapiszdopliku.addActionListener(new ZapiszAction(sciezka, tekst));
 
             panelCyfrowy.add(but7);
@@ -249,7 +249,7 @@ public class GUI extends JFrame {
             panelDzialania123.add(butRownosc, BorderLayout.WEST);
 
             JPanel gora = new JPanel(new BorderLayout());
-            panelBoczny.setPreferredSize(new Dimension(200,200));
+            panelBoczny.setPreferredSize(new Dimension(200,600));
 
 
             gora.add(upbar,BorderLayout.NORTH);
@@ -276,7 +276,7 @@ public class GUI extends JFrame {
 
 
             add(panelBoczny,BorderLayout.EAST);
-            pack();
+
 
         }catch (IOException ignore){
 
@@ -290,8 +290,9 @@ public class GUI extends JFrame {
 
         panelFinalny.setPreferredSize(new Dimension(650,600));
 
-        this.setSize(new Dimension(900,600));
         this.add(lab,BorderLayout.SOUTH);
+
+        pack();
         EventQueue.invokeLater(() -> setVisible(true));
     }
 

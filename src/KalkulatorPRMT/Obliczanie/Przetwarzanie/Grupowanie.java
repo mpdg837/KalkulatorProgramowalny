@@ -151,6 +151,8 @@ public class Grupowanie {
                             nowazaw.append(Formatter.konwersjaDoStringa(numer));
                         }catch (NumberFormatException err){
                             throw new MyError("Wprowadzono nieprawidłowo liczbę");
+                        }catch (NullPointerException err){
+                            throw new MyError("Wprowadzono pustą wartość");
                         }
                     }
 
