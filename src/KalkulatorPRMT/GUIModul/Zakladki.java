@@ -7,9 +7,12 @@ public class Zakladki extends JTabbedPane {
 
     public JPanel historia;
     public JPanel zmienne;
+    int x = 0;
+    int y = 0;
+
     public Zakladki(){
 
-        historia = new JPanel();
+        historia = new JPanel(null);
         historia.setBackground(Color.LIGHT_GRAY);
         zmienne = new JPanel();
         zmienne.setBackground(Color.LIGHT_GRAY);
@@ -22,9 +25,13 @@ public class Zakladki extends JTabbedPane {
         this.setBackground(Color.GRAY);
     }
     public void addWynikHistoria(String wynik){
-        JTextArea pole = new JTextArea(1,17);
-        pole.setText(wynik);
+        JLabel pole = new JLabel();
+        pole.setLocation(x,y);
+        y+=13;
+        pole.setText(wynik + "\n");
+        pole.setSize(pole.getPreferredSize());
         historia.add(pole);
+
         repaint();
 
     }
