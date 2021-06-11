@@ -56,9 +56,21 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
         clearAll();
         int i = 0;
         for(String linia:linieS){
-            dodajLinijke();
-            linie.get(i).setText(linia);
-            i++;
+            //odrzucam ostatnia pusta linie
+            if(!linia.equals("")) {
+                //dodaje wszystkie linijki na poczatku
+                if(linie.size() == 1) {
+                    for(int j = 0; j<linieS.length-2; j++){
+                        dodajLinijke();
+                    }
+                    i--;
+                }
+                //teraz je wypelniam
+                i++;
+                linie.get(i).setText(linia);
+
+
+            }
         }
     }
     public void setScrollPane(JScrollPane scroll){
