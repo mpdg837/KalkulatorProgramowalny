@@ -49,6 +49,7 @@ public class CzytajPlikAction implements ActionListener  {
                     wpisz.setZawartoscLini(tablica);
 
 
+
                 } catch (IOException fileNotFoundException) {
                     fileNotFoundException.printStackTrace();
                 }

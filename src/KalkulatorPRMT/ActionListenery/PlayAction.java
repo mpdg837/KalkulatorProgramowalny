@@ -1,8 +1,10 @@
 package KalkulatorPRMT.ActionListenery;
 
 import KalkulatorPRMT.GUI;
+import KalkulatorPRMT.GUIModul.Zakladki;
 import KalkulatorPRMT.Obliczanie.ZbiorWyrazen;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,9 +12,10 @@ import java.util.List;
 
 public class PlayAction implements ActionListener {
     private GUI gui;
-    public PlayAction(GUI gui){
+    Zakladki zakladki;
+    public PlayAction(GUI gui, Zakladki zakladki){
         this.gui = gui;
-
+        this.zakladki = zakladki;
     }
 
     @Override
@@ -27,7 +30,7 @@ public class PlayAction implements ActionListener {
         List<String> wyniki = zbior.getListaStringow();
 
         for(String wynik: wyniki){
-            System.out.println(wynik);
+            zakladki.addWynikHistoria(wynik);
             gui.setWynik(wynik);
         }
     }
