@@ -9,27 +9,17 @@ public class Convert {
     // Klasa odpowiadająca za konwersję wyrażenia strnig (napisu) do klasy Wyrażenie,
     // Przechowującym działanie podzielone na znaki działań, liczby i nazwy zmiennych.
 
-    public static TypDzialania getZnak(String znak, int n){
+    public static TypDzialania getZnak(String znak){
 
         // Przetworzenie znaków działań na klasy działań
 
-        switch (znak){
-            case "+":
-                return new Dodawanie();
-
-            case "-":
-                return new Odejmowanie();
-
-            case "*":
-                return new Mnozenie();
-
-            case "/":
-                return new Dzielenie();
-
-            default:
-                return new Dodawanie();
-
-        }
+        return switch (znak) {
+            case "+" -> new Dodawanie();
+            case "-" -> new Odejmowanie();
+            case "*" -> new Mnozenie();
+            case "/" -> new Dzielenie();
+            default -> new Dodawanie();
+        };
     }
     public static Wyrazenie fromStringtoWyrazenie( HashMap<String,Double> zmienne,String ciag){
 
@@ -43,7 +33,7 @@ public class Convert {
 
         // Tworzę tablicę znaków do analizy ciągu działania
         char[] znaki = ciag.toCharArray();
-        int n=0;
+
 
         // Sprawdzam czy pierwszy znak jest minusem:
 
@@ -66,17 +56,15 @@ public class Convert {
                 case "+" , "-" , "*" ,"/" -> {
 
                     // Dodaje wcześniej zgromadzony znak i wyrażenie/liczbę do klasy Wyrażenie
-                    if(wartosc.length()==0 && (zna+"").equals("-")){
-                        // Gdy wprowadzam minusa, może to oznaczać liczbę ujemną.
-
-                    }else {
-                        odp.add(getZnak(znak, n), wartosc.toString());
+                    if(wartosc.length()!=0 || !(zna+"").equals("-")){
+                        
+                        odp.add(getZnak(znak), wartosc.toString());
 
                         // Wykrywam znak działania
                         // Dodaje go do klasy Wyrażenie:
 
                         // Resetuje zmienne kontrolujące analizę:
-                        n++;
+
                         znak = zna + "";
                         wartosc = new StringBuilder();
                     }
@@ -89,7 +77,7 @@ public class Convert {
 
         // Dodaje niedodany jeszcze do tablicy znak wyrażenia wraz z zmienną/liczbą:
 
-        odp.add(getZnak(znak,n),wartosc.toString());
+        odp.add(getZnak(znak),wartosc.toString());
 
         return odp;
     }

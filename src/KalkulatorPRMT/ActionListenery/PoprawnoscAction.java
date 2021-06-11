@@ -2,17 +2,14 @@ package KalkulatorPRMT.ActionListenery;
 
 import KalkulatorPRMT.GUIModul.ListaKalkulatorowa;
 import KalkulatorPRMT.Obliczanie.ZbiorWyrazen;
-import javax.swing.*;
-import javax.swing.text.BadLocationException;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class PoprawnoscAction implements ActionListener {
 
-    ListaKalkulatorowa wpisz;
+    final ListaKalkulatorowa wpisz;
 
 
     public PoprawnoscAction(ListaKalkulatorowa wpisz) {

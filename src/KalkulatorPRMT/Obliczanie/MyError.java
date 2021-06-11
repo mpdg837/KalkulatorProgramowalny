@@ -2,7 +2,7 @@ package KalkulatorPRMT.Obliczanie;
 
 public class MyError extends Exception{
 
-    private String mess;
+    private final String mess;
     public MyError(String message){
         mess = message;
     }

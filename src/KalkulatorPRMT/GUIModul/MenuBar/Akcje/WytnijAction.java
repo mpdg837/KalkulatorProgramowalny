@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class WytnijAction implements ActionListener {
-    private GUI okno;
+    final private GUI okno;
 
     public WytnijAction(GUI okno) {
         this.okno = okno;

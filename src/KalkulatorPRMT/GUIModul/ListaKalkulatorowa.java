@@ -5,15 +5,13 @@ import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class ListaKalkulatorowa extends JPanel implements KeyListener {
 
     // Lista pól tekstowych
-    ArrayList<JTextField> linie= new ArrayList<JTextField>();
-    ArrayList<JLabel> numerki= new ArrayList<JLabel>();
+    ArrayList<JTextField> linie= new ArrayList<>();
+    ArrayList<JLabel> numerki= new ArrayList<>();
 
     JScrollPane pane;
     JFrame update;
@@ -57,7 +55,7 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
     public void setZawartoscLini(String[] linieS){
         // Dodawanie linijek
         clearAll();
-        int i = 0;
+
         for(String linia:linieS){
             //odrzucam ostatnia pusta linie
             if(!linia.equals("")) {
@@ -84,7 +82,6 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
     }
     public String getLinijka(){
         // Pobranie zawartości lini
-        String odp = "";
 
         for(JTextField field : linie){
             if(field.isFocusOwner()){
@@ -98,7 +95,6 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
 
     public JTextField getWiersz(){
         // Pobranie zawartości lini
-        String odp = "";
 
         for(JTextField field : linie){
             if(field.isFocusOwner()){
@@ -112,7 +108,6 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
 
     public int getNumerZnaku(){
         // Pobranie zawartości lini
-        String odp = "";
 
         for(JTextField field : linie){
             if(field.isFocusOwner()){
@@ -126,7 +121,6 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
 
     public void setLinijka(String ciag, int polozeniekursora,boolean cofnij) throws BadLocationException {
         // Pobeiram zawartość lini
-        String odp = "";
 
         for(JTextField field : linie){
             // Znalazłem linie sfocusowaną
@@ -152,7 +146,6 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
         boolean enterwyk = false;
 
         String memory = "";
-        int n=0;
         for(JTextField field : linie){
 
             if(nastepnalinijka){
@@ -182,7 +175,6 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
                     nastepnalinijka = true;
                 }
             }
-            n++;
         }
 
         if(!wykonano || enter) {
@@ -202,7 +194,6 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
 
     public int getNumer(){
         // Pobranie zawartości lini
-        String odp = "";
 
         int n=0;
         for(JTextField field : linie){
@@ -278,9 +269,9 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
 
         // Wykrywanie sterowania klawiaturą
         switch (e.getKeyCode()){
-            case KeyEvent.VK_ENTER ->{nastepnaLinia(true);} //Enter
-            case KeyEvent.VK_UP ->{poprzedniaLinia();} // Do góry
-            case KeyEvent.VK_DOWN ->{nastepnaLinia(false);} // Do dołu
+            case KeyEvent.VK_ENTER ->nastepnaLinia(true); //Enter
+            case KeyEvent.VK_UP ->poprzedniaLinia(); // Do góry
+            case KeyEvent.VK_DOWN -> nastepnaLinia(false); // Do dołu
             case KeyEvent.VK_BACK_SPACE -> {
                 if(getLinijka().length()==0){
                     boolean usun = false;

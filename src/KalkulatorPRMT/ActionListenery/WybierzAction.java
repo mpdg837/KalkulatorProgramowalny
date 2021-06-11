@@ -40,7 +40,7 @@ public class WybierzAction implements ActionListener  {
             sciezka.setText(filename);
 
             //wczytuje plik
-            int polozeniekrusora = wpisz.getNumerZnaku();
+
             if(!sciezka.getText().isEmpty()) {
 
                 if (file.exists()) {

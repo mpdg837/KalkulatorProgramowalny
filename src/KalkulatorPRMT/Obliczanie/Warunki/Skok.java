@@ -2,7 +2,7 @@ package KalkulatorPRMT.Obliczanie.Warunki;
 
 public class Skok {
 
-    private String ciag;
+    private final String ciag;
 
     public Skok(String ciag){
         this.ciag = ciag;
@@ -12,12 +12,9 @@ public class Skok {
         char[] znaki = ciag.toCharArray();
 
         StringBuilder build = new StringBuilder();
-        StringBuilder etykieta = new StringBuilder();
-        StringBuilder command = new StringBuilder();
 
         int poziomzag = 0;
 
-        boolean waruneko= false;
 
         for(char c : znaki){
 

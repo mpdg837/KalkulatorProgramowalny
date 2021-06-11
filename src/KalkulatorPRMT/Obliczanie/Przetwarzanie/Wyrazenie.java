@@ -11,7 +11,7 @@ public class Wyrazenie extends Dzialanie{
 
     // Klasa wyrażenie odpowiada za przechowywanie nieuporządkowanego działania zawierającego zmienne oraz liczby. Działanie takie dzięki tej klasie można
     // Przetowrzyć do działania, które zawieraa tylko
-    private HashMap<String,Double> zmienne;
+    final private HashMap<String,Double> zmienne;
     HashMap<TypDzialania,String> baza = new LinkedHashMap<>();
 
     public Wyrazenie(HashMap<String,Double> zmienne){

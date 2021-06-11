@@ -4,13 +4,11 @@ import KalkulatorPRMT.Obliczanie.MyError;
 import KalkulatorPRMT.Obliczanie.Warunki.Rodzaje.Warunek;
 
 import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.StreamSupport;
 
 public class ZbiorWarunkow {
 
-    private String ciag;
-    private HashMap<String,Double> zmienne = new HashMap<>();
+    private final String ciag;
+    private final HashMap<String,Double> zmienne;
 
     public ZbiorWarunkow(String ciag,HashMap<String,Double> zmienne){
         this.ciag = ciag;
@@ -40,12 +38,9 @@ public class ZbiorWarunkow {
 
                         if(zaczal){
                             switch (dzialanie){
-                                case "&" ->{
-                                    odp = odp & czyOk;
-                                }
-                                case "|" ->{
-                                    odp = odp | czyOk;
-                                }
+                                case "&" ->odp = odp & czyOk;
+                                case "|" -> odp = odp | czyOk;
+
                             }
                         }else{
                             odp = czyOk;
@@ -60,11 +55,7 @@ public class ZbiorWarunkow {
 
 
                 }
-                default -> {
-
-                    zdanie.append(c);
-
-                }
+                default -> zdanie.append(c);
             }
 
         }
@@ -79,12 +70,9 @@ public class ZbiorWarunkow {
             boolean czyOk = war.toBoolean();
 
             switch (dzialanie){
-                case "&" ->{
-                    odp = odp & czyOk;
-                }
-                case "|" ->{
-                    odp = odp | czyOk;
-                }
+                case "&" ->odp = odp & czyOk;
+                case "|" -> odp = odp | czyOk;
+
             }
         }
 

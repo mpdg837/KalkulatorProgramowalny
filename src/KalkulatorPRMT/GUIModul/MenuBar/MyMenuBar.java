@@ -37,7 +37,7 @@ public class MyMenuBar extends MenuBar {
         edycja.add(kopiuL);
 
         MenuItem wklej = new MenuItem("Wklej    (Ctrl + V)");
-        wklej.addActionListener(new WklejAction(frame));
+        wklej.addActionListener(new WklejAction());
         edycja.add(wklej);
 
         edycja.add(wklej);

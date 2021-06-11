@@ -7,8 +7,8 @@ import java.util.HashMap;
 
 public class Deklarowanie {
 
-    private String ciag;
-    private HashMap<String,Double> zmienne;
+    final private String ciag;
+    final private HashMap<String,Double> zmienne;
 
     private int size;
     private String name;
@@ -28,14 +28,9 @@ public class Deklarowanie {
         for(char znak : znaki){
 
             switch (znak+"") {
-                case "[" -> {
+                case "[" -> wNawiasie = true;
 
-                    wNawiasie = true;
-                }
-                case "]"->{
-                    wNawiasie = false;
-                    break;
-                }
+                case "]"-> wNawiasie = false;
                 default ->{
                     if(wNawiasie){
                         build.append(znak);

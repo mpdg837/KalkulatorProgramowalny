@@ -5,18 +5,15 @@ import KalkulatorPRMT.Obliczanie.MyError;
 import KalkulatorPRMT.Obliczanie.Tablice.DlugoscTablicy;
 
 import javax.swing.*;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
 
 public class Grupowanie {
 
     // Klasa odpowiada za obslugę nawiasów w wyrażeniach
 
     // Lista zmiennych używanych przez realizator
-    public HashMap<String,Double> zmienne = new HashMap<String,Double>();
+    public HashMap<String,Double> zmienne;
 
 
     private final String ciagDzilania;
@@ -179,8 +176,7 @@ public class Grupowanie {
             int stopienzagniezdzenia = 0;
 
             // Inicjacja analizy ciągu wyrażenia
-            StringBuilder build = new StringBuilder();
-            ArrayList<StringBuilder> poziomy = new ArrayList<StringBuilder>();
+            ArrayList<StringBuilder> poziomy = new ArrayList<>();
 
             var znaki = ciagDzilania.toCharArray();
 
@@ -197,12 +193,8 @@ public class Grupowanie {
             for (char c : znaki) {
 
                 switch (c + "") {
-                    case "=" ->{
-                        throw new MyError("Wykryto znak = w nieporządanym miejscu");
-                    }
-                    case "[" ->{
-                        trybEnumeracjiTablicy = true;
-                    }
+                    case "=" -> throw new MyError("Wykryto znak = w nieporządanym miejscu");
+                    case "[" -> trybEnumeracjiTablicy = true;
                     case "]" ->{
 
                         String zawEnum = zawEnumeracji.toString();

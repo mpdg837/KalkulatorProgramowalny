@@ -9,8 +9,8 @@ import java.awt.event.ActionListener;
 public class NowyAction implements ActionListener {
 
 
-    ListaKalkulatorowa wpisz;
-    JTextField sciezka;
+    final ListaKalkulatorowa wpisz;
+    final JTextField sciezka;
 
     public NowyAction(ListaKalkulatorowa wpisz,JTextField sciezka) {
 

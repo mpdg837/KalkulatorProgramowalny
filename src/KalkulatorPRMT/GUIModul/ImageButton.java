@@ -22,8 +22,8 @@ public class ImageButton extends JButton {
     public void paint(Graphics g) {
         super.paint(g);
 
-        int width = (int)(24*simg.getWidth()/simg.getHeight());
-        Image scaledInstance = simg.getScaledInstance((int)(24*simg.getWidth()/simg.getHeight()),24,Image.SCALE_SMOOTH);
+        int width = 24*simg.getWidth()/simg.getHeight();
+        Image scaledInstance = simg.getScaledInstance((24*simg.getWidth()/simg.getHeight()),24,Image.SCALE_SMOOTH);
 
         g.drawImage(scaledInstance,this.getWidth()/2-width/2,this.getHeight()/2-12,this);
     }

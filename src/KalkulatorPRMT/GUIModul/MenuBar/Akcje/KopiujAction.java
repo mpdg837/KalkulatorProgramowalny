@@ -2,7 +2,6 @@ package KalkulatorPRMT.GUIModul.MenuBar.Akcje;
 
 import KalkulatorPRMT.GUI;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -11,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class KopiujAction implements ActionListener {
 
-    private GUI okno;
+    final private GUI okno;
     public KopiujAction(GUI okno){
         this.okno = okno;
     }

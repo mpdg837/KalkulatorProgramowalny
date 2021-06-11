@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class KopiujLinijkeAction implements ActionListener {
-    private GUI okno;
+    final private GUI okno;
     public KopiujLinijkeAction(GUI okno){
         this.okno = okno;
     }

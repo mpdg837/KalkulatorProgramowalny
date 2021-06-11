@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayAction implements ActionListener {
-    private GUI gui;
-    Zakladki zakladki;
+    final private GUI gui;
+    final Zakladki zakladki;
     public PlayAction(GUI gui, Zakladki zakladki){
         this.gui = gui;
         this.zakladki = zakladki;

@@ -3,12 +3,11 @@ package KalkulatorPRMT.Obliczanie.Przetwarzanie;
 import KalkulatorPRMT.Obliczanie.MyError;
 
 import java.util.HashMap;
-import java.util.zip.DeflaterOutputStream;
 
 public class KalkulatorowyString {
 
-    private String ciagwejsciowy;
-    private HashMap<String,Double> zmienne = new HashMap<>();
+    private final String ciagwejsciowy;
+    private final HashMap<String,Double> zmienne;
 
     public KalkulatorowyString(String ciagWejsciowy, HashMap<String,Double> zmienne){
         this.ciagwejsciowy = ciagWejsciowy;
@@ -16,13 +15,13 @@ public class KalkulatorowyString {
     }
 
     private String pobierzZmienna(String nazwa) throws MyError{
-        String tresc = "";
+        String tresc;
 
         if(zmienne.containsKey(nazwa)){
             tresc = zmienne.get(nazwa)+"";
         }else{
             try{
-                double tryx = Double.parseDouble(nazwa);
+                Double.parseDouble(nazwa);
             }catch (NumberFormatException err){
                 throw  new MyError("Podano zły format liczby lub zmiennej");
             }
@@ -45,10 +44,8 @@ public class KalkulatorowyString {
         for(char c : znaki){
 
             switch (c+""){
-                case "'" ->{
-                    trybTekstowy = !trybTekstowy;
+                case "'" ->trybTekstowy = !trybTekstowy;
 
-                    }
                 case "+" -> {
 
                     if (!trybTekstowy) {

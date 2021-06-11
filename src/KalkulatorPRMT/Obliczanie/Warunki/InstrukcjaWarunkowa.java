@@ -6,8 +6,8 @@ import java.util.HashMap;
 
 public class InstrukcjaWarunkowa {
 
-    private String ciag;
-    private HashMap<String,Double> zmienne;
+    final private String ciag;
+    final private HashMap<String,Double> zmienne;
 
     public String etykieta;
 
@@ -49,7 +49,7 @@ public class InstrukcjaWarunkowa {
                 default -> {
                     if(poziomzag>0 && !waruneko){
                         build.append(c);
-                    }else if(poziomzag>0 && waruneko){
+                    }else if(poziomzag>0){
                         etykieta.append(c);
                     }else{
                         if (!" ".equals(c + "")) {
