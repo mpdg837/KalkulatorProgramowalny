@@ -7,6 +7,8 @@ public class Zakladki extends JTabbedPane {
 
     public JPanel historia;
     public JPanel zmienne;
+
+
     int x = 0;
     int y = 0;
 
@@ -23,10 +25,11 @@ public class Zakladki extends JTabbedPane {
         this.addTab("Zmienne",zmienne);
 
         this.setBackground(Color.GRAY);
+
     }
     public void addWynikHistoria(String wynik){
         JLabel pole = new JLabel();
-        pole.setLocation(x,y);
+        pole.setLocation(x,y+20);
         y+=13;
         pole.setText(wynik + "\n");
         pole.setSize(pole.getPreferredSize());
