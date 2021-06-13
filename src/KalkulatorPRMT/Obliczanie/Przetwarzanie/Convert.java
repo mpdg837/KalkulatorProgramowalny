@@ -14,7 +14,6 @@ public class Convert {
         // Przetworzenie znaków działań na klasy działań
 
         return switch (znak) {
-            case "+" -> new Dodawanie();
             case "-" -> new Odejmowanie();
             case "*" -> new Mnozenie();
             case "/" -> new Dzielenie();

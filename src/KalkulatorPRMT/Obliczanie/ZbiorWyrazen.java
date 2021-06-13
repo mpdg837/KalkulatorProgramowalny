@@ -5,10 +5,7 @@ import KalkulatorPRMT.Obliczanie.Przetwarzanie.Grupowanie;
 import KalkulatorPRMT.Obliczanie.Tablice.Deklarowanie;
 import KalkulatorPRMT.Obliczanie.Warunki.InstrukcjaWarunkowa;
 import KalkulatorPRMT.Obliczanie.Warunki.Skok;
-import KalkulatorPRMT.Obliczanie.Warunki.ZbiorWarunkow;
-
 import javax.swing.*;
-import java.net.StandardSocketOptions;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

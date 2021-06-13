@@ -3,11 +3,9 @@ package KalkulatorPRMT.ActionListenery;
 import KalkulatorPRMT.GUI;
 import KalkulatorPRMT.GUIModul.Zakladki;
 import KalkulatorPRMT.Obliczanie.ZbiorWyrazen;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class PlayAction implements ActionListener {
@@ -28,6 +26,7 @@ public class PlayAction implements ActionListener {
         }
         zbior.rozwiaz();
         List<String> wyniki = zbior.getListaStringow();
+        HashMap<String,Double> zmienne = zbior.getZmienne();
 
         if(wyniki.size()>30){
             for(int n=wyniki.size()-30;n<wyniki.size();n++){
@@ -37,6 +36,7 @@ public class PlayAction implements ActionListener {
         }else{
             for(String wynik: wyniki){
                 zakladki.addWynikHistoria(wynik);
+                zakladki.addZmienne(zmienne);
                 gui.setWynik(wynik);
             }
         }

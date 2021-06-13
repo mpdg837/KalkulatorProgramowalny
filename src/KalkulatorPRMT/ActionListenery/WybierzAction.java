@@ -43,7 +43,6 @@ public class WybierzAction implements ActionListener  {
 
             if(!sciezka.getText().isEmpty()) {
 
-                if (file.exists()) {
                     try {
                         BufferedReader br = new BufferedReader(new FileReader(file));
                         //robie liste do przechowywania linii
@@ -77,11 +76,8 @@ public class WybierzAction implements ActionListener  {
                         zbior.add(dzial);
                     }
 
-                }
-                else{JPanel blad = new JPanel();
-                    JOptionPane.showMessageDialog(blad, "Błąd! Podany plik nie istnieje");
 
-                }
+
             }
             else {
                 JPanel blad = new JPanel();

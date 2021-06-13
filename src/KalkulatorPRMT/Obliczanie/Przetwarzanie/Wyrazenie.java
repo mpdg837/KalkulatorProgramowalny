@@ -64,10 +64,10 @@ public class Wyrazenie extends Dzialanie{
             for (TypDzialania dzialania : baza.keySet()) {
 
 
-                if (baza.get(dzialania).toLowerCase().equals("pi")) {
+                if (baza.get(dzialania).equalsIgnoreCase("pi")) {
                     // Gdy stała PI
                     odp.add(dzialania, Stale.PI);
-                } else if (baza.get(dzialania).toLowerCase().equals("e")) {
+                } else if (baza.get(dzialania).equalsIgnoreCase("e")) {
                     // Gdy stała Eulera
                     odp.add(dzialania, Stale.eulerConstant);
                 } else if (zmienne.containsKey(baza.get(dzialania))) {

@@ -67,7 +67,7 @@ public class Grupowanie {
 
         boolean czyWykrytoKomende = false;
 
-        if(komenda2.toString().toLowerCase().equals("ln")){
+        if(komenda2.toString().equalsIgnoreCase("ln")){
 
             nowazaw = new StringBuilder();
 

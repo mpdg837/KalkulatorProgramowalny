@@ -24,10 +24,7 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
         for(int n=0;n<1;n++) {
             dodajLinijke();
         }
-
-
     }
-
     public void clearAll(){
 
         for(int n=0;n<linie.size();n++){
