@@ -52,7 +52,7 @@ public class Zakladki extends JTabbedPane {
             x += 13;
             pole.setSize(pole.getPreferredSize());
             zmienne.add(pole);
-            System.out.println("EEELOOOOO");
+            System.out.println("EEELOOOOOo");
             repaint();
         } else {
             zmiennawjlabel.get(zmienna).setText(zmienna + "= " + zmiennawartosc);
