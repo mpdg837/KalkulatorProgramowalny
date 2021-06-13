@@ -36,10 +36,11 @@ public class PlayAction implements ActionListener {
         }else{
             for(String wynik: wyniki){
                 zakladki.addWynikHistoria(wynik);
-                zakladki.addZmienne(zmienne);
                 gui.setWynik(wynik);
             }
+            zakladki.addZmienne(zmienne);
         }
+
 
     }
 }

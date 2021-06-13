@@ -22,7 +22,6 @@ public class NowyAction implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         wpisz.clearAll();
         wpisz.dodajLinijke();
-
         sciezka.setText("");
     }
 }

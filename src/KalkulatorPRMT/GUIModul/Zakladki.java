@@ -3,16 +3,15 @@ package KalkulatorPRMT.GUIModul;
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
-import java.util.List;
 
 public class Zakladki extends JTabbedPane {
 
     public JPanel historia;
     public JPanel zmienne;
-    int x = 0;
-    int y = 0;
-    Set<String> nazwyzmiennych = new HashSet<>();
-    HashMap<String ,JLabel > zmiennawjlabel = new HashMap<>();
+    private int x = 0;
+    private int y = 0;
+    private  Set<String> nazwyzmiennych = new HashSet<>();
+    private  HashMap<String ,JLabel > zmiennawjlabel = new HashMap<>();
 
     public Zakladki(){
 
@@ -37,31 +36,27 @@ public class Zakladki extends JTabbedPane {
         historia.add(pole);
         repaint();
 
-    }
-    public void addZmienne(HashMap<String,Double> slownik){
-        JLabel pole;
 
-        String zmienna = (String) slownik.keySet().toArray()[slownik.keySet().toArray().length -1];
-        Double zmiennawartosc = (Double) slownik.values().toArray()[slownik.values().toArray().length -1];
-        if(!nazwyzmiennych.contains(zmienna)) {
+    }
+    public void addZmienne(HashMap<String,Double> slownik) {
+        JLabel pole;
+        System.out.println("!!!!!!!!!" + slownik.keySet().toArray().length);
+        String zmienna = (String) slownik.keySet().toArray()[slownik.keySet().toArray().length - 1];
+        Double zmiennawartosc = (Double) slownik.values().toArray()[slownik.values().toArray().length - 1];
+        if (!nazwyzmiennych.contains(zmienna)) {
             nazwyzmiennych.add(zmienna);
             pole = new JLabel();
             pole.setText(zmienna + "= " + zmiennawartosc);
-            pole.setLocation(0,x);
-            zmiennawjlabel.put(zmienna,pole);
-            x+=13;
+            pole.setLocation(0, x);
+            zmiennawjlabel.put(zmienna, pole);
+            x += 13;
             pole.setSize(pole.getPreferredSize());
             zmienne.add(pole);
+            System.out.println("EEELOOOOO");
             repaint();
-
-        }
-        else{
+        } else {
             zmiennawjlabel.get(zmienna).setText(zmienna + "= " + zmiennawartosc);
-
-
-
         }
-
 
     }
 }
