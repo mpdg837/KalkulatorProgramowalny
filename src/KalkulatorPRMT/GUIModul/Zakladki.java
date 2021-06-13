@@ -40,7 +40,7 @@ public class Zakladki extends JTabbedPane {
     }
     public void addZmienne(HashMap<String,Double> slownik) {
         JLabel pole;
-        System.out.println("!!!!!!!!!" + slownik.keySet().toArray().length);
+
         String zmienna = (String) slownik.keySet().toArray()[slownik.keySet().toArray().length - 1];
         Double zmiennawartosc = (Double) slownik.values().toArray()[slownik.values().toArray().length - 1];
         if (!nazwyzmiennych.contains(zmienna)) {
@@ -52,7 +52,7 @@ public class Zakladki extends JTabbedPane {
             x += 13;
             pole.setSize(pole.getPreferredSize());
             zmienne.add(pole);
-            System.out.println("EEELOOOOO");
+
             repaint();
         } else {
             zmiennawjlabel.get(zmienna).setText(zmienna + "= " + zmiennawartosc);

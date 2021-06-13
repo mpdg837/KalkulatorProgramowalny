@@ -15,8 +15,9 @@ import javax.swing.*;
 
 public class GUI extends JFrame {
     public ListaKalkulatorowa tekst;
+    public JTextField sciezka;
 
-    JTextField wynik = new JTextField("0");
+    public JTextField wynik = new JTextField("0");
 
     public void setWynik(String wynik) {
         this.wynik.setText(wynik);
@@ -74,7 +75,7 @@ public class GUI extends JFrame {
         JScrollPane pane = new JScrollPane(tekst);
         tekst.setScrollPane(pane);
         //Pole do wyswietlania ściezki
-        JTextField sciezka = new JTextField("");
+        sciezka = new JTextField("");
         sciezka.setPreferredSize(new Dimension(100,20));
 
 
@@ -200,7 +201,7 @@ public class GUI extends JFrame {
             butRownosc.addActionListener(new MyActionListener(butRownosc.getText(),tekst,false));
             pobierzplik.addActionListener(new WybierzAction(upbar,sciezka,tekst));
             obliczzpliku.addActionListener(new PoprawnoscAction(tekst ));
-            zapiszdopliku.addActionListener(new ZapiszAction(sciezka, tekst));
+            zapiszdopliku.addActionListener(new ZapiszAction(sciezka, tekst,false));
 
             panelCyfrowy.add(but7);
             panelCyfrowy.add(but8);

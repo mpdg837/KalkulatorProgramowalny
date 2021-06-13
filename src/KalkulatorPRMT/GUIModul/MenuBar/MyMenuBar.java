@@ -1,8 +1,12 @@
 package KalkulatorPRMT.GUIModul.MenuBar;
 
+import KalkulatorPRMT.ActionListenery.NowyAction;
+import KalkulatorPRMT.ActionListenery.WybierzAction;
+import KalkulatorPRMT.ActionListenery.ZapiszAction;
 import KalkulatorPRMT.GUI;
 import KalkulatorPRMT.GUIModul.MenuBar.Akcje.*;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class MyMenuBar extends MenuBar {
@@ -10,7 +14,6 @@ public class MyMenuBar extends MenuBar {
     public Menu plik = new Menu("Plik");
     public Menu edycja = new Menu("Edycja");
     public Menu info = new Menu("Informacje");
-
 
     public MyMenuBar(GUI frame)
     {
@@ -22,6 +25,8 @@ public class MyMenuBar extends MenuBar {
         MenuItem item = new MenuItem("O programie");
         item.addActionListener(new InfoAction());
         info.add(item);
+
+
 
         MenuItem kopiu = new MenuItem("Kopiuj   (Ctrl + C)");
         kopiu.addActionListener(new KopiujAction(frame));
@@ -39,12 +44,23 @@ public class MyMenuBar extends MenuBar {
         wklej.addActionListener(new WklejAction());
         edycja.add(wklej);
 
-        edycja.add(wklej);
 
-        plik.add(new MenuItem("Nowy"));
-        plik.add(new MenuItem("Otwórz"));
-        plik.add(new MenuItem("Zapisz"));
-        plik.add(new MenuItem("Zapisz jako"));
+        MenuItem nowy = new MenuItem("Nowy");
+        nowy.addActionListener(new NowyAction(frame.tekst,frame.sciezka));
+        plik.add(nowy);
+
+        MenuItem otw = new MenuItem("Otwórz");
+        otw.addActionListener(new WybierzAction(new JPanel(),frame.sciezka,frame.tekst));
+        plik.add(otw);
+
+        MenuItem zap= new MenuItem("Zapisz");
+        zap.addActionListener(new ZapiszAction(frame.sciezka,frame.tekst,false));
+        plik.add(zap);
+
+        MenuItem zapj= new MenuItem("Zapisz jako");
+        zapj.addActionListener(new ZapiszAction(frame.sciezka,frame.tekst,true));
+        plik.add(zapj);
+
 
         MenuItem wyj =  new MenuItem("Wyjście");
 

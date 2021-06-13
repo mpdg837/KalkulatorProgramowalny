@@ -12,11 +12,11 @@ import java.util.List;
 
 public class ZbiorWyrazen {
 
-    List<String> wyrazenia = new ArrayList<String>();
-    List<Double> wyniki= new ArrayList<Double>();
-    HashMap<String,Double> zmienne= new HashMap<String, Double>();
+    List<String> wyrazenia = new ArrayList<>();
+    List<Double> wyniki= new ArrayList<>();
+    HashMap<String,Double> zmienne= new HashMap<>();
 
-    public List<String> wynikiStringi= new ArrayList<String>();
+    public List<String> wynikiStringi= new ArrayList<>();
     public List<String> getListaStringow(){
         return wynikiStringi;
     }
@@ -25,13 +25,6 @@ public class ZbiorWyrazen {
 
     }
 
-    public List<String> getWyrazenia() {
-        return wyrazenia;
-    }
-
-    public List<Double> getWyniki() {
-        return wyniki;
-    }
 
     public HashMap<String, Double> getZmienne() {
         return zmienne;
@@ -42,11 +35,6 @@ public class ZbiorWyrazen {
         this.wyrazenia.add(wyrazenia);
     }
 
-    public void clearAll(){
-        wyrazenia.clear();
-        zmienne.clear();
-        wyniki.clear();
-    }
 
     public String[] rozbijNaZmiennaIWyrazenie(String ciag) throws MyError{
 
@@ -69,9 +57,8 @@ public class ZbiorWyrazen {
         for(char znak : znaki){
             switch (znak+""){
                 // Gdy znajduje równa się
-                case "[" ->{
-                    wykrytoEnumeracje = true;
-                }
+                case "[" -> wykrytoEnumeracje = true;
+
                 case "]" ->{
 
                     String enu = enumeracja.toString();
@@ -80,7 +67,7 @@ public class ZbiorWyrazen {
                     Grupowanie grp = new Grupowanie(enu, zmienne);
                     int wynik = (int)(double)grp.wynik();
 
-                    wyrazenie.append(wynik+"");
+                    wyrazenie.append(wynik);
 
                     wykrytoEnumeracje = false;
                     enumeracja = new StringBuilder();
@@ -118,7 +105,7 @@ public class ZbiorWyrazen {
         return zbitka;
     }
 
-    public String[] getPolecenie(String ciag) throws MyError{
+    public String[] getPolecenie(String ciag){
         char[] znaki = ciag.toCharArray();
 
         StringBuilder build = new StringBuilder();
@@ -138,19 +125,17 @@ public class ZbiorWyrazen {
 
                 switch (polecenie.toString()) {
 
-                    case "if","goto",":","dim","gosub","return","//" -> {
-                        wykrytoPolecenie = true;
-                    }
+                    case "if","goto",":","dim","gosub","return","//" -> wykrytoPolecenie = true;
+
 
                 }
             }
         }
 
-        String[] odp = {polecenie.toString(),build.toString()};
-        return odp;
+        return new String[]{polecenie.toString(),build.toString()};
     }
 
-    public int getNumerIndeksu(String nazwa,int nx) throws MyError{
+    public int getNumerIndeksu(String nazwa) throws MyError{
 
         for(int n=0;n<wyrazenia.size();n++){
             String wyrazenie = wyrazenia.get(n);
@@ -180,7 +165,7 @@ public class ZbiorWyrazen {
         wyniki.clear();
         zmienne.clear();
 
-        List<Integer> powrotyGOSUB= new ArrayList<Integer>();
+        List<Integer> powrotyGOSUB= new ArrayList<>();
         int zagn = 0;
 
         for (int n=0;n<wyrazenia.size();n++) {
@@ -192,15 +177,12 @@ public class ZbiorWyrazen {
             String[] polecenie = getPolecenie(wyrazenie);
 
             switch (polecenie[0]){
-                case "new" ->{
-                    zmienne = new HashMap<String,Double>();
-                }
+                case "new" -> zmienne = new HashMap<>();
                 case "do","",":","//" -> {
 
                 }
-                case "end"->{
-                    n=wyrazenia.size();
-                }
+                case "end"-> n=wyrazenia.size();
+
 
                 case "gosub"->{
                     Skok skok = new Skok(wyrazenie);
@@ -209,7 +191,7 @@ public class ZbiorWyrazen {
                     if (!etykieta.equals("")) {
                         zagn ++;
                         int mem = n;
-                        n = getNumerIndeksu(etykieta, n);
+                        n = getNumerIndeksu(etykieta);
 
                         if(powrotyGOSUB.size()>zagn){
                             powrotyGOSUB.set(zagn,mem);
@@ -240,7 +222,7 @@ public class ZbiorWyrazen {
 
                     String etykieta = skok.analizuj();
 
-                    n = getNumerIndeksu(etykieta,n);
+                    n = getNumerIndeksu(etykieta);
                 }
                 case "ifnot"-> {
 
@@ -248,7 +230,7 @@ public class ZbiorWyrazen {
 
                     war.analizuj(true);
                     if (!war.etykieta.equals("")) {
-                        n = getNumerIndeksu(war.etykieta, n);
+                        n = getNumerIndeksu(war.etykieta);
                     }
                 }
                 case "if"-> {
@@ -257,7 +239,7 @@ public class ZbiorWyrazen {
 
                     war.analizuj(false);
                     if (!war.etykieta.equals("")) {
-                        n = getNumerIndeksu(war.etykieta, n);
+                        n = getNumerIndeksu(war.etykieta);
                     }
                 }
                 default -> {
@@ -296,19 +278,17 @@ public class ZbiorWyrazen {
         }
     }
 
-    public boolean sprawdzPoprawnosc(){
+    public void sprawdzPoprawnosc(){
         try {
 
             // Zwracam błąd
 
             analizuj();
-            JOptionPane.showMessageDialog(new JPanel(),"Zapisane działanie nie zawiera błędów","Poprawność zapisu",JOptionPane.INFORMATION_MESSAGE);
-            return true;
+            JOptionPane.showMessageDialog(new JPanel(),"Skrypt kalkulatora wykonał się poprawnie","Poprawność zapisu",JOptionPane.INFORMATION_MESSAGE);
         }catch (MyError err){
 
             // Zwracam błąd
             JOptionPane.showMessageDialog(new JPanel(),err.getMessage(),"Błąd",JOptionPane.ERROR_MESSAGE);
-            return false;
         }
     }
     public void rozwiaz() {

@@ -20,7 +20,6 @@ public class Formatter {
                 throw new MyError("Za duży wynik");
             }
 
-            System.out.println(dec.format(num));
             return dec.format(num);
         }
     }

@@ -1,8 +1,6 @@
 package KalkulatorPRMT.ActionListenery;
 
 import KalkulatorPRMT.GUIModul.ListaKalkulatorowa;
-import KalkulatorPRMT.Obliczanie.ZbiorWyrazen;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
@@ -15,12 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WybierzAction implements ActionListener  {
-    JFileChooser oknoplikow;
+
     JPanel panel;
     JTextField sciezka;
     ListaKalkulatorowa wpisz;
     public WybierzAction(JPanel panel, JTextField sciezka, ListaKalkulatorowa wpisz){
-        oknoplikow = new JFileChooser();
+
         this.panel = panel;
         this.sciezka = sciezka;
         this.wpisz = wpisz;
@@ -28,9 +26,13 @@ public class WybierzAction implements ActionListener  {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        JFileChooser oknoplikow = new JFileChooser();
         oknoplikow.setFileFilter(new FileNameExtensionFilter("Pliki tekstowe", "txt"));
         oknoplikow.setApproveButtonText("Wybierz");
+        oknoplikow.setAcceptAllFileFilterUsed(true);
+
         oknoplikow.showOpenDialog(panel);
+
 
         File file = oknoplikow.getSelectedFile();
 
@@ -64,24 +66,27 @@ public class WybierzAction implements ActionListener  {
                         wpisz.setZawartoscLini(tablica);
 
 
+                        br.close();
 
                     } catch (IOException fileNotFoundException) {
-                        fileNotFoundException.printStackTrace();
-                    }
-                    //obliczam i ustawiam wynik
-                    ZbiorWyrazen zbior = new ZbiorWyrazen();
-                    String[] dzialanie = wpisz.getZawartoscLini();
+                        JPanel blad = new JPanel();
+                        JOptionPane.showMessageDialog(blad, "Plik nie został odnaleziony","Wczytywanie pliku",JOptionPane.ERROR_MESSAGE);
+                        sciezka.setText("");
 
-                    for (String dzial : dzialanie) {
-                        zbior.add(dzial);
+
+                    }catch (Exception err){
+                        JPanel blad = new JPanel();
+                        JOptionPane.showMessageDialog(blad, "Nieokreślony błąd","Wczytywanie pliku",JOptionPane.ERROR_MESSAGE);
+                        sciezka.setText("");
                     }
+
 
 
 
             }
             else {
                 JPanel blad = new JPanel();
-                JOptionPane.showMessageDialog(blad, "Błąd! Nie podano nazwy pliku");
+                JOptionPane.showMessageDialog(blad, "Błąd! Nie podano nazwy pliku","Wczytywanie pliku",JOptionPane.ERROR_MESSAGE);
             }
 
         }
