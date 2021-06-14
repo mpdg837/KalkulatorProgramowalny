@@ -3,6 +3,7 @@ package KalkulatorPRMT.GUIModul;
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class Zakladki extends JTabbedPane {
 
@@ -10,9 +11,9 @@ public class Zakladki extends JTabbedPane {
     public JPanel zmienne;
     private int x = 0;
     private int y = 0;
-    private  Set<String> nazwyzmiennych = new HashSet<>();
-    private  HashMap<String ,JLabel > zmiennawjlabel = new HashMap<>();
-
+    private final List<String> nazwyzmiennych = new ArrayList<>();
+    private final List<Double> wartoscizmiennych= new ArrayList<>();
+    private final HashMap<String,JLabel> zmiennawjlabel = new HashMap<>();
     public Zakladki(){
 
         historia = new JPanel(null);
@@ -40,22 +41,28 @@ public class Zakladki extends JTabbedPane {
     }
     public void addZmienne(HashMap<String,Double> slownik) {
         JLabel pole;
-        System.out.println("!!!!!!!!!" + slownik.keySet().toArray().length);
-        String zmienna = (String) slownik.keySet().toArray()[slownik.keySet().toArray().length - 1];
-        Double zmiennawartosc = (Double) slownik.values().toArray()[slownik.values().toArray().length - 1];
-        if (!nazwyzmiennych.contains(zmienna)) {
-            nazwyzmiennych.add(zmienna);
-            pole = new JLabel();
-            pole.setText(zmienna + "= " + zmiennawartosc);
-            pole.setLocation(0, x);
-            zmiennawjlabel.put(zmienna, pole);
-            x += 13;
-            pole.setSize(pole.getPreferredSize());
-            zmienne.add(pole);
-            System.out.println("EEELOOOOOo");
-            repaint();
-        } else {
-            zmiennawjlabel.get(zmienna).setText(zmienna + "= " + zmiennawartosc);
+        if(!(slownik.size() == 0)) {
+            for(String klucz:slownik.keySet()){
+                nazwyzmiennych.add(klucz);
+                wartoscizmiennych.add(slownik.get(klucz));
+                pole = new JLabel();
+
+                if(!zmiennawjlabel.containsKey(klucz)) {
+                    zmiennawjlabel.put(klucz, pole);
+                    zmiennawjlabel.get(klucz).setText(nazwyzmiennych.get(nazwyzmiennych.indexOf(klucz)) + "= " + wartoscizmiennych.get(wartoscizmiennych.indexOf(slownik.get(klucz))));
+                    pole.setLocation(0, x);
+                    x += 13;
+                    pole.setSize(pole.getPreferredSize());
+                    zmienne.add(pole);
+                }
+                else{
+                    zmiennawjlabel.get(klucz).setText(nazwyzmiennych.get(nazwyzmiennych.indexOf(klucz)) + "= " + wartoscizmiennych.get(wartoscizmiennych.indexOf(slownik.get(klucz))));
+                }
+                repaint();
+
+            }
+            nazwyzmiennych.clear();
+            wartoscizmiennych.clear();
         }
 
     }

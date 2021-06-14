@@ -27,6 +27,9 @@ public class PlayAction implements ActionListener {
         zbior.rozwiaz();
         List<String> wyniki = zbior.getListaStringow();
         HashMap<String,Double> zmienne = zbior.getZmienne();
+        if(zmienne.size()>0){
+            zakladki.addZmienne(zmienne);
+        }
 
         if(wyniki.size()>30){
             for(int n=wyniki.size()-30;n<wyniki.size();n++){
@@ -38,9 +41,8 @@ public class PlayAction implements ActionListener {
                 zakladki.addWynikHistoria(wynik);
                 gui.setWynik(wynik);
             }
-            zakladki.addZmienne(zmienne);
-        }
 
+        }
 
     }
 }
