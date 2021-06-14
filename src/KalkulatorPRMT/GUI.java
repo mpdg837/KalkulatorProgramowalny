@@ -92,8 +92,8 @@ public class GUI extends JFrame {
         Przycisk but8 = new Przycisk("8");
         Przycisk but9 = new Przycisk("9");
         Przycisk but0 = new Przycisk("0");
-        Przycisk butZnak = new Przycisk("+/-");
-        Przycisk butPrzecinek = new Przycisk(",");
+        Przycisk butZnak = new Przycisk("00");
+        Przycisk butPrzecinek = new Przycisk(".");
 
 
         JButton butNawiasLewy = new SPrzycisk("(");
@@ -114,7 +114,7 @@ public class GUI extends JFrame {
             ImageButton butPi = new ImageButton(ImageIO.read(new File("pi.png")),"pi");
             SSPrzycisk butE = new SSPrzycisk("e");
             //ImageButton butE = new ImageButton(ImageIO.read(new File("e.png")),"e");
-            SSPrzycisk butKasuj = new SSPrzycisk ("<");
+            SSPrzycisk butKasuj = new SSPrzycisk ("");
             ImageButton butKwadrat = new ImageButton(ImageIO.read(new File("kwadrat.png")),"pow2()");
             ImageButton butSinus = new ImageButton(ImageIO.read(new File("sin.png")),"sin()");
             ImageButton butLogarytmNaturalny = new ImageButton(ImageIO.read(new File("ln.png")),"ln()");
@@ -123,7 +123,7 @@ public class GUI extends JFrame {
             ImageButton butCosinus = new ImageButton(ImageIO.read(new File("cos.png")),"cos()");
             ImageButton butEksponenta = new ImageButton(ImageIO.read(new File("ex.png")),"ex()");
             ImageButton butPlay = new ImageButton(ImageIO.read(new File("play1.png")),"");
-            ImageButton butModul = new ImageButton(ImageIO.read(new File("mod.png")),"mod()");
+            ImageButton butModul = new ImageButton(ImageIO.read(new File("mod.png")),"abs()");
             ImageButton butTangens = new ImageButton(ImageIO.read(new File("tan.png")),"tan()");
             ImageButton butLogarytmDziesietny = new ImageButton(ImageIO.read(new File("log.png")),"log()");
             ImageButton butSilnia = new ImageButton(ImageIO.read(new File("silnia.png")),"fact()");
