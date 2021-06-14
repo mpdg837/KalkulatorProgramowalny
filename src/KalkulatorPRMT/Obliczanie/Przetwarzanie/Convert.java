@@ -55,7 +55,28 @@ public class Convert {
                 case " " ->{}
                 case "-" ->{
                     if (sprawdzMinus) {
-                        wartosc.append(zna);
+                        // Działania na minusach
+                        char[] znaki2 = wartosc.toString().toCharArray();
+                        StringBuilder zmianaciagu = new StringBuilder();
+
+                        if(znaki2.length>0){
+                            if((znaki2[0]+"").equals("-")){
+                                for(int n=1;n<znaki2.length;n++){
+                                    zmianaciagu.append(znaki2[n]);
+                                }
+                            }else{
+                                zmianaciagu.append("-");
+                                for(int n=0;n<znaki2.length;n++){
+                                    zmianaciagu.append(znaki2[n]);
+                                }
+                            }
+
+                            wartosc = zmianaciagu;
+                        }else{
+                            wartosc.append("-");
+                        }
+
+
                     }else
                     if(wartosc.length()!=0 || !(zna+"").equals("-")) {
 
