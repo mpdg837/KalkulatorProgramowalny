@@ -92,8 +92,8 @@ public class GUI extends JFrame {
         Przycisk but8 = new Przycisk("8");
         Przycisk but9 = new Przycisk("9");
         Przycisk but0 = new Przycisk("0");
-        Przycisk butZnak = new Przycisk("+/-");
-        Przycisk butPrzecinek = new Przycisk(",");
+        Przycisk butZera = new Przycisk("00");
+        Przycisk butKropka = new Przycisk(".");
 
 
         JButton butNawiasLewy = new SPrzycisk("(");
@@ -114,7 +114,7 @@ public class GUI extends JFrame {
             ImageButton butPi = new ImageButton(ImageIO.read(new File("pi.png")),"pi");
             SSPrzycisk butE = new SSPrzycisk("e");
             //ImageButton butE = new ImageButton(ImageIO.read(new File("e.png")),"e");
-            SSPrzycisk butKasuj = new SSPrzycisk ("<");
+            SSPrzycisk butPusty = new SSPrzycisk ("");
             ImageButton butKwadrat = new ImageButton(ImageIO.read(new File("kwadrat.png")),"pow2()");
             ImageButton butSinus = new ImageButton(ImageIO.read(new File("sin.png")),"sin()");
             ImageButton butLogarytmNaturalny = new ImageButton(ImageIO.read(new File("ln.png")),"ln()");
@@ -123,7 +123,7 @@ public class GUI extends JFrame {
             ImageButton butCosinus = new ImageButton(ImageIO.read(new File("cos.png")),"cos()");
             ImageButton butEksponenta = new ImageButton(ImageIO.read(new File("ex.png")),"ex()");
             ImageButton butPlay = new ImageButton(ImageIO.read(new File("play1.png")),"");
-            ImageButton butModul = new ImageButton(ImageIO.read(new File("mod.png")),"mod()");
+            ImageButton butModul = new ImageButton(ImageIO.read(new File("mod.png")),"abs()");
             ImageButton butTangens = new ImageButton(ImageIO.read(new File("tan.png")),"tan()");
             ImageButton butLogarytmDziesietny = new ImageButton(ImageIO.read(new File("log.png")),"log()");
             ImageButton butSilnia = new ImageButton(ImageIO.read(new File("silnia.png")),"fact()");
@@ -176,7 +176,7 @@ public class GUI extends JFrame {
             butPierwiastek.addActionListener(new MyActionListener(butPierwiastek.getName(),tekst,true));
             butPi.addActionListener(new MyActionListener(butPi.getName(),tekst,false));
             butE.addActionListener(new MyActionListener(butE.getText(),tekst,false));
-            butKasuj.addActionListener(new MyActionListener(butKasuj.getName(),tekst,false));
+            butPusty.addActionListener(new MyActionListener(butPusty.getName(),tekst,false));
             butKwadrat.addActionListener(new MyActionListener(butKwadrat.getName(),tekst,true));
             butSinus.addActionListener(new MyActionListener(butSinus.getName(),tekst,true));
             butLogarytmNaturalny.addActionListener(new MyActionListener(butLogarytmNaturalny.getName(),tekst,true));
@@ -190,8 +190,8 @@ public class GUI extends JFrame {
             butLogarytmDziesietny.addActionListener(new MyActionListener(butLogarytmDziesietny.getName(),tekst,true));
             butSilnia.addActionListener(new MyActionListener(butSilnia.getName(),tekst,true));
 
-            butZnak.addActionListener(new MyActionListener(butZnak.getText(),tekst,false));
-            butPrzecinek.addActionListener(new MyActionListener(butPrzecinek.getText(),tekst,false));
+            butZera.addActionListener(new MyActionListener(butZera.getText(),tekst,false));
+            butKropka.addActionListener(new MyActionListener(butKropka.getText(),tekst,false));
             butNawiasLewy.addActionListener(new MyActionListener(butNawiasLewy.getText(),tekst,false));
             butNawiasPrawy.addActionListener(new MyActionListener(butNawiasPrawy.getText(),tekst,false));
             butMnozenie.addActionListener(new MyActionListener(butMnozenie.getName(),tekst,false));
@@ -212,9 +212,9 @@ public class GUI extends JFrame {
             panelCyfrowy.add(but1);
             panelCyfrowy.add(but2);
             panelCyfrowy.add(but3);
-            panelCyfrowy.add(butZnak);
+            panelCyfrowy.add(butZera);
             panelCyfrowy.add(but0);
-            panelCyfrowy.add(butPrzecinek);
+            panelCyfrowy.add(butKropka);
 
             panelDzialania1.add(butNawiasLewy);
             panelDzialania1.add(butNawiasPrawy);
@@ -229,7 +229,7 @@ public class GUI extends JFrame {
             panelDzialania4.add(butPierwiastek);
             panelDzialania4.add(butPi);
             panelDzialania4.add(butE);
-            panelDzialania4.add(butKasuj);
+            panelDzialania4.add(butPusty);
             panelDzialania4.add(butKwadrat);
             panelDzialania4.add(butSinus);
             panelDzialania4.add(butLogarytmNaturalny);
