@@ -49,14 +49,30 @@ public class Convert {
 
         // Rozpoczynam właściwą analizę:
 
+        boolean sprawdzMinus=false;
         for(char zna : znaki){
             switch (zna+""){
                 case " " ->{}
-                case "+" , "-" , "*" ,"/" -> {
+                case "-" ->{
+                    if (sprawdzMinus) {
+                        wartosc.append(zna);
+                    }else
+                    if(wartosc.length()!=0 || !(zna+"").equals("-")) {
+
+                            odp.add(getZnak(znak), wartosc.toString());
+
+                            znak = zna + "";
+                            wartosc = new StringBuilder();
+
+
+                    }
+                    sprawdzMinus = true;
+                }
+                case "*" ,"/","+" -> {
 
                     // Dodaje wcześniej zgromadzony znak i wyrażenie/liczbę do klasy Wyrażenie
-                    if(wartosc.length()!=0 || !(zna+"").equals("-")){
-                        
+                    if(wartosc.length()!=0){
+                        sprawdzMinus = true;
                         odp.add(getZnak(znak), wartosc.toString());
 
                         // Wykrywam znak działania
@@ -68,9 +84,10 @@ public class Convert {
                         wartosc = new StringBuilder();
                     }
                 }
-                default -> // Dodaje znaki do StringBuildera odpowiadającego za skompletowanie pojedyńczych zmiennych/liczb które będą skłądowymi wyrażenia:
-                        wartosc.append(zna);
-
+                default -> {// Dodaje znaki do StringBuildera odpowiadającego za skompletowanie pojedyńczych zmiennych/liczb które będą skłądowymi wyrażenia:
+                    sprawdzMinus = false;
+                    wartosc.append(zna);
+                }
             }
         }
 
