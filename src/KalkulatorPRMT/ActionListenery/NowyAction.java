@@ -23,5 +23,7 @@ public class NowyAction implements ActionListener {
         wpisz.clearAll();
         wpisz.dodajLinijke();
         sciezka.setText("");
+
+        wpisz.repaint();
     }
 }

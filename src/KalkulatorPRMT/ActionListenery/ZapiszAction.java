@@ -107,7 +107,7 @@ public class ZapiszAction implements ActionListener {
             } catch (IOException ioException) {
                 JOptionPane.showMessageDialog(sciezka, "Odmowa dostępu");
             }
-
+            wpisz.repaint();
         }
     }
 }

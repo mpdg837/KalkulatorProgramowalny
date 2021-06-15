@@ -291,6 +291,7 @@ public class ListaKalkulatorowa extends JPanel implements KeyListener {
                     }
                 }
             }
+
         }
 
     }

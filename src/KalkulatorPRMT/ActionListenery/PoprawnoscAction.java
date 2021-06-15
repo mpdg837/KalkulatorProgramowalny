@@ -28,5 +28,6 @@ public class PoprawnoscAction implements ActionListener {
             zbior.add(dzial);
         }
         zbior.sprawdzPoprawnosc();
+        wpisz.repaint();
     }
 }

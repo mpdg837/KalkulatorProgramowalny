@@ -90,6 +90,6 @@ public class WybierzAction implements ActionListener  {
             }
 
         }
-
+        wpisz.repaint();
     }
 }
