@@ -20,7 +20,8 @@ public class WklejAction implements ActionListener {
             r.keyPress(KeyEvent.VK_V);
             r.keyRelease(KeyEvent.VK_CONTROL);
             r.keyRelease(KeyEvent.VK_V);
-        }catch (AWTException ignore){
+
+        }catch(Exception ignore){
 
         }
     }
