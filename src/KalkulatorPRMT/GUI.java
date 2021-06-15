@@ -287,7 +287,7 @@ public class GUI extends JFrame {
         MyMenuBar bar = new MyMenuBar(this);
         this.setMenuBar(bar);
 
-        JLabel lab = new JLabel("Kalkulator 0.9 beta. Projekt zaliczeniowy. Wersja prezentacyjna");
+        JLabel lab = new JLabel("Kalkulator 1.0 beta. Projekt zaliczeniowy. Wersja prezentacyjna");
         lab.setFont(new Font("Arial",Font.PLAIN,12));
 
         panelFinalny.setPreferredSize(new Dimension(650,600));
