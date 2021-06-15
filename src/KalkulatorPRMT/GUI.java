@@ -114,7 +114,7 @@ public class GUI extends JFrame {
             ImageButton butPi = new ImageButton(ImageIO.read(new File("pi.png")),"pi");
             SSPrzycisk butE = new SSPrzycisk("e");
             //ImageButton butE = new ImageButton(ImageIO.read(new File("e.png")),"e");
-            SSPrzycisk butPusty = new SSPrzycisk ("");
+            JPanel butPusty = new JPanel();
             ImageButton butKwadrat = new ImageButton(ImageIO.read(new File("kwadrat.png")),"pow2()");
             ImageButton butSinus = new ImageButton(ImageIO.read(new File("sin.png")),"sin()");
             ImageButton butLogarytmNaturalny = new ImageButton(ImageIO.read(new File("ln.png")),"ln()");
@@ -176,7 +176,7 @@ public class GUI extends JFrame {
             butPierwiastek.addActionListener(new MyActionListener(butPierwiastek.getName(),tekst,true));
             butPi.addActionListener(new MyActionListener(butPi.getName(),tekst,false));
             butE.addActionListener(new MyActionListener(butE.getText(),tekst,false));
-            butPusty.addActionListener(new MyActionListener(butPusty.getName(),tekst,false));
+
             butKwadrat.addActionListener(new MyActionListener(butKwadrat.getName(),tekst,true));
             butSinus.addActionListener(new MyActionListener(butSinus.getName(),tekst,true));
             butLogarytmNaturalny.addActionListener(new MyActionListener(butLogarytmNaturalny.getName(),tekst,true));

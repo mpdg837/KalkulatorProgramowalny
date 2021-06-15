@@ -33,14 +33,14 @@ public class Wyrazenie extends Dzialanie{
             if (!znakpierwszy) {
                 // Analizuję pierwszy znak działania aby niepotrzebnie nie pisać plusa
 
-                if(keys.getZnakDzialania().equals("+")){
-                    // Pomijam plusa
-                    build.append(baza.get(keys));
-                }else{
+                if(!keys.getZnakDzialania().equals("+")){
+
                     // Nie mogę pominąć znaku:
                     build.append(keys.getZnakDzialania());
-                    build.append(baza.get(keys));
+
                 }
+
+                build.append(baza.get(keys));
                 znakpierwszy = true;
             } else {
                 // Nie mogę pominąć znaku

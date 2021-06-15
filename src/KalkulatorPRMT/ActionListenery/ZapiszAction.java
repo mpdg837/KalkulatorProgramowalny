@@ -73,7 +73,7 @@ public class ZapiszAction implements ActionListener {
 
         if(!end) {
             try {
-                if (file != null) {
+
                     if (!file.exists()) {
                         boolean utworzyl = file.createNewFile();
 
@@ -103,7 +103,7 @@ public class ZapiszAction implements ActionListener {
 
                     sciezka.setText(file.getPath());
 
-                }
+
             } catch (IOException ioException) {
                 JOptionPane.showMessageDialog(sciezka, "Odmowa dostępu");
             }
