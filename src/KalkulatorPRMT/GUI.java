@@ -115,6 +115,7 @@ public class GUI extends JFrame {
             SSPrzycisk butE = new SSPrzycisk("e");
             //ImageButton butE = new ImageButton(ImageIO.read(new File("e.png")),"e");
             JPanel butPusty = new JPanel();
+            butPusty.setBackground(Color.DARK_GRAY);
             ImageButton butKwadrat = new ImageButton(ImageIO.read(new File("kwadrat.png")),"pow2()");
             ImageButton butSinus = new ImageButton(ImageIO.read(new File("sin.png")),"sin()");
             ImageButton butLogarytmNaturalny = new ImageButton(ImageIO.read(new File("ln.png")),"ln()");
