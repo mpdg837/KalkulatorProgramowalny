@@ -66,8 +66,8 @@ public class Convert {
                                 }
                             }else{
                                 zmianaciagu.append("-");
-                                for(int n=0;n<znaki2.length;n++){
-                                    zmianaciagu.append(znaki2[n]);
+                                for (char c : znaki2) {
+                                    zmianaciagu.append(c);
                                 }
                             }
 
