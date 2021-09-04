@@ -1,0 +1,11 @@
+n=0
+pole = 0
+:loop
+if(n>10)goto(end)
+dodatek = exp(n)*0.001
+n=n+0.001
+pole = pole + dodatek
+goto(loop)
+:end
+show('Pole '+pole)
+end
